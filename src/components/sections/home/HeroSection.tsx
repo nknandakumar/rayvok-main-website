@@ -52,7 +52,7 @@ export default function HeroSection() {
 							Web design &amp; development
 						</p>
 						<h1
-							className="text-rayvok-offwhite mb-6  tracking-[-0.02em] text-[32px] leading-[1] md:text-[64px] lg:text-[88px] animate-fade-in-up"
+							className="text-rayvok-offwhite mb-6  tracking-[-0.02em] text-[46px] leading-[1] md:text-[64px] lg:text-[88px] animate-fade-in-up"
 							style={{ animationDelay: "0.2s", animationFillMode: "both" }}
 						>
 							Web design that turns visitors into customers

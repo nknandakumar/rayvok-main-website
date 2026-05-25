@@ -16,7 +16,7 @@ export default function ServicesSection() {
         "Brand-aligned visuals",
         "CTA architecture",
       ],
-      image: "https://i.pinimg.com/736x/ce/7a/1b/ce7a1bff6f592d1f2e755fd9e2477da9.jpg",
+      image: "https://i.pinimg.com/736x/1d/43/35/1d4335e99b360da547b69887a8c22fff.jpg",
       objectPosition: "object-top",
       objectFit: "object-cover",
       imagePadding: ""
@@ -115,12 +115,7 @@ export default function ServicesSection() {
                 {/* Right Column: Clean Content */}
                 <div className="lg:col-span-6 p-8 sm:p-12 lg:p-16 flex flex-col justify-between">
                   <div>
-                    {/* Header: Service step counter & title */}
-                    <div className="flex items-center mb-8">
-  <span className="font-mono text-[#5C5C55] text-[14px] font-semibold tracking-wider block">
-    {service.num}
-  </span>
-</div>
+             
 
                     <h3 className="text-[#F5F5F0] text-[32px] lg:text-[40px] font-display font-medium tracking-tight mb-6 leading-tight group-hover:text-[#C9FE34] transition-colors duration-300">
                       {service.title}
@@ -139,7 +134,7 @@ export default function ServicesSection() {
                     </div>
 
                     {/* Features List */}
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 mb-4">
+                    <ul className="grid grid-cols-2 sm:grid-cols-2 gap-x-6 gap-y-4 mb-4">
                       {service.features.map((feature, fIndex) => (
                         <li key={fIndex} className="flex items-center gap-3 text-[#B0AFAB] text-[14px] font-ui">
                           <div className="flex items-center justify-center w-4 h-4 rounded-full bg-[#C9FE34] shrink-0">
