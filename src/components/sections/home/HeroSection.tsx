@@ -46,7 +46,7 @@ export default function HeroSection() {
 				>
 					<div className="max-w-6xl w-full">
 						<p
-							className="label text-[10px] md:text-sm text-rayvok-mid rounded-lg bg-rayvok-surface/20 border border-rayvok-surface inline-block px-4 py-1.5 mb-6 animate-fade-in-up"
+							className="label text-[10px] md:text-sm text-white rounded-lg bg-rayvok-surface/20 border border-rayvok-mid inline-block px-4 py-1.5 mb-6 animate-fade-in-up"
 							style={{ animationDelay: "0.1s", animationFillMode: "both" }}
 						>
 							Web design &amp; development
@@ -58,7 +58,7 @@ export default function HeroSection() {
 							Web design that turns visitors into customers
 						</h1>
 						<p
-							className="text-rayvok-mid fontui mb-10 max-w-2xl md:mx-auto text-[14px] md:text-[20px] animate-fade-in-up"
+							className="text-rayvok-mid fontui mb-10 max-w-2xl md:mx-auto text-[16px] md:text-[20px] animate-fade-in-up"
 							style={{ animationDelay: "0.3s", animationFillMode: "both" }}
 						>
 							We design and build websites for SaaS products, businesses, and

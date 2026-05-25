@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 export default function FAQSection() {
   const faqs = [
@@ -37,41 +39,88 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-32 px-6 md:px-12 bg-rayvok-deep border-t border-rayvok-surface">
-      <div className="container mx-auto max-w-4xl">
-        <div className="mb-16">
-          <p className="label text-rayvok-mid rounded-lg bg-rayvok-surface/20 border border-rayvok-surface inline-block px-4 py-1.5 mb-6">FAQ</p>
-          <h2 className="text-rayvok-offwhite text-[38px] md:text-[54px] lg:text-[80px] leading-[1.1] tracking-tight">
-            Questions? <span className="text-rayvok-volt">Answered.</span>
-          </h2>
-        </div>
+    <section id="faq" className="py-24 md:py-36 px-6 md:px-12 bg-rayvok-deep border-t border-rayvok-surface relative overflow-hidden">
+      {/* Background radial glow */}
+      <div className="absolute w-[400px] h-[400px] rounded-full bg-rayvok-volt/2 blur-[120px] bottom-[-150px] left-[-150px] pointer-events-none" />
 
-        <div className="space-y-4">
-          {faqs.map((faq, index) => (
-            <div 
-              key={index} 
-              className="border border-rayvok-surface rounded-lg bg-rayvok-black overflow-hidden transition-colors hover:border-rayvok-surface/80"
-            >
-              <button 
-                className="w-full text-left px-6 py-6 flex justify-between items-center focus:outline-none"
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
-              >
-                <span className="text-rayvok-offwhite font-medium pr-8">{faq.q}</span>
-                <span className={`text-rayvok-volt text-xl transition-transform duration-300 ${openIndex === index ? 'rotate-45' : ''}`}>
-                  +
-                </span>
-              </button>
-              <div 
-                className={`px-6 overflow-hidden transition-all duration-300 ease-in-out ${
-                  openIndex === index ? 'max-h-96 pb-6 opacity-100' : 'max-h-0 opacity-0'
-                }`}
-              >
-                <p className="text-rayvok-mid text-[15px] leading-relaxed">
-                  {faq.a}
-                </p>
-              </div>
-            </div>
-          ))}
+      <div className="container mx-auto max-w-[1300px]">
+        {/* Two Column Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start justify-start ">
+          
+          {/* Left Column: Heading & CTA */}
+          <div className="lg:col-span-5 flex flex-col items-start lg:sticky -mt-10">
+            <p className="label text-rayvok-mid rounded-lg bg-rayvok-surface/20 border border-rayvok-surface inline-block px-4 py-1.5 mb-6">
+              FAQ
+            </p>
+            <h2 className="text-rayvok-offwhite text-[38px] md:text-[54px] lg:text-[64px] xl:text-[80px] leading-[1.1] tracking-tight font-display font-semibold mb-6">
+              Questions? <span className="text-rayvok-volt">Answered.</span>
+            </h2>
+            <p className="text-rayvok-mid text-[16px] md:text-[18px] leading-relaxed mb-8 max-w-md">
+              We're here for you ⚡ Have a specific question not covered here? Reach out to us.
+            </p>
+            <Link href="/start" className="btn-primary">
+              Book a Call
+            </Link>
+          </div>
+
+          {/* Right Column: Accordion stack separated by thin border dividers */}
+          <div className="lg:col-span-7 border-t border-rayvok-surface">
+            {faqs.map((faq, index) => {
+              const isOpen = openIndex === index;
+              return (
+                <div 
+                  key={index} 
+                  className="border-b border-rayvok-surface transition-all duration-300 group"
+                >
+                  <button 
+                    className="w-full text-left py-6 flex justify-between items-center focus:outline-none bg-transparent cursor-pointer"
+                    onClick={() => setOpenIndex(isOpen ? null : index)}
+                  >
+                    <span className="text-rayvok-offwhite font-display font-medium text-[16px] md:text-[20px] pr-8 group-hover:text-rayvok-volt transition-colors duration-300 leading-snug">
+                      {faq.q}
+                    </span>
+                    
+                    {/* Immersive circular button toggle */}
+                    <div 
+                      className={`w-10 h-10 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ${
+                        isOpen 
+                          ? "bg-rayvok-volt border-rayvok-volt text-rayvok-black" 
+                          : "border-rayvok-surface text-rayvok-mid group-hover:border-rayvok-volt group-hover:text-rayvok-volt"
+                      }`}
+                    >
+                      <svg 
+                        className={`w-5 h-5 transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}
+                        fill="none" 
+                        stroke="currentColor" 
+                        strokeWidth="2.5" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+                      </svg>
+                    </div>
+                  </button>
+
+                  {/* Dynamic smooth slide animation for Answer */}
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <p className="text-rayvok-mid text-[15px] leading-relaxed pb-6 max-w-2xl">
+                          {faq.a}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+
         </div>
       </div>
     </section>

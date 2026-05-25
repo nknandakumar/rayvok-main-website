@@ -12,8 +12,7 @@ export default function Home() {
     <>
       <HeroSection />
       <ServicesSection />
-      {/* Dark to Light Theme Transition Bridge */}
-      <div className="h-32 bg-gradient-to-b from-[#0E0E0E] to-[#FAF8F5] relative z-10 -mt-1 -mb-1" />
+      
       <SelectedWorkSection />
       <HowItWorksSection />
       <WhyRayvokSection />

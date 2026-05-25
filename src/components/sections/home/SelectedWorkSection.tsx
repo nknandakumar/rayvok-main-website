@@ -188,7 +188,7 @@ export default function SelectedWorkSection() {
 					>
 						<Link
 							href="/work"
-							className="pointer-events-auto flex items-center gap-3 bg-[#1A1A1A] text-[#F5F5F0] font-ui font-bold text-[12px] uppercase tracking-[0.1em] px-7 py-3.5 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.22)] hover:bg-rayvok-volt hover:text-rayvok-black transition-all duration-300 whitespace-nowrap"
+							className="pointer-events-auto flex items-center gap-3 bg-[#1A1A1A] text-[#F5F5F0] font-ui  text-[12px] uppercase tracking-[0.1em] px-7 py-3.5 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.22)] hover:bg-rayvok-volt hover:text-rayvok-black transition-all duration-300 whitespace-nowrap"
 						>
 							<span className="w-2 h-2 rounded-full bg-rayvok-volt group-hover:bg-rayvok-black transition-colors" />
 							See all work
@@ -216,7 +216,7 @@ export default function SelectedWorkSection() {
 			<section
 				id="work"
 				ref={sectionRef}
-				className="py-32 px-6 md:px-12 bg-[#FAF8F5] relative overflow-hidden"
+				className="py-32 px-6 md:px-12 bg-rayvok-offwhite relative overflow-hidden"
 				onMouseMove={handleMouseMove}
 			>
 				{/* Subtle tonal accent */}

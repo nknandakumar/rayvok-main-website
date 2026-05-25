@@ -74,7 +74,7 @@ export default function HowItWorksSection() {
   ];
 
   return (
-    <section className="py-24 md:py-40 border-t border-[#EAE7DF] relative overflow-clip bg-[#FAF8F5]">
+    <section className="py-24 md:py-40 border-t border-[#EAE7DF] relative overflow-clip bg-rayvok-offwhite">
       {/* Background radial glow */}
       <div className="absolute w-[500px] h-[500px] rounded-full bg-[#C9FE34]/6 blur-[140px] top-[20%] left-[-150px] pointer-events-none" />
       
@@ -85,7 +85,7 @@ export default function HowItWorksSection() {
             The process
           </p>
           <h2 className="text-[#1A1A1A] text-[38px] md:text-[54px] lg:text-[80px] leading-[1.1] tracking-tight font-display font-semibold text-center">
-            From first message to <span className="text-[#999999]">live site</span> — here's exactly what happens.
+            From first message to <span className="text-[#999999]">live site</span> here's exactly what happens.
           </h2>
         </div>
 
@@ -107,9 +107,9 @@ export default function HowItWorksSection() {
                 className="flex flex-col border-b border-[#E6E2D8] pb-20 md:pb-32 pt-12 first:pt-0 min-h-[45vh] justify-center"
               >
                 {/* Step indicator */}
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="font-mono text-[#5A5A50] text-[14px] font-semibold uppercase tracking-wider">
-                    • STEP {step.num}
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="font-mono text-[#5A5A50] pl-1 text-[14px] uppercase tracking-wider">
+                   STEP {step.num}
                   </span>
                 </div>
 
@@ -125,9 +125,7 @@ export default function HowItWorksSection() {
 
                 {/* Deliverables Checklist */}
                 <div className="space-y-4">
-                  <p className="font-ui text-[12px] uppercase tracking-wider text-[#8C8C85] font-semibold mb-2">
-                    You'll walk away with:
-                  </p>
+                  
                   <ul className="space-y-3">
                     {step.deliverables.map((item, dIndex) => (
                       <li key={dIndex} className="flex items-start gap-3.5 text-[#1A1A1A]/90 font-body text-[14px] md:text-[15px]">
@@ -143,7 +141,7 @@ export default function HowItWorksSection() {
                 </div>
 
                 {/* Inline Mobile Fallback Image - Full Width (Bleeds out of standard padding) */}
-                <div className="mt-12 bg-rayvok-volt lg:hidden -mx-6 md:-mx-12 aspect-[4/3] sm:aspect-[16/9] relative bg-[#F5F3EE] border-t border-b border-[#DEDAD0] flex items-center justify-center p-6 sm:p-12">
+                <div className="mt-12 bg-rayvok-volt lg:hidden -mx-6 md:-mx-12 aspect-[4/4] sm:aspect-[16/9] relative bg-[#F5F3EE] border-t border-b border-[#DEDAD0] flex items-center justify-center p-6 sm:p-12">
                   <div className="relative w-full h-full rounded-2xl overflow-hidden border border-[#DEDAD0] bg-white shadow-[0_8px_24px_rgba(0,0,0,0.02)]">
                     <Image
                       src={step.image}

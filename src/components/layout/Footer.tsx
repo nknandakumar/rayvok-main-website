@@ -1,70 +1,381 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [isWorkOpen, setIsWorkOpen] = useState(false);
+  const [isSocialOpen, setIsSocialOpen] = useState(false);
 
   return (
-    <footer className="bg-rayvok-deep pt-24 pb-12 border-t border-rayvok-surface">
+    <footer className="bg-[#000000] text-white pt-20 pb-12 relative overflow-hidden w-full border-t border-white/5">
       <div className="container mx-auto px-6 md:px-12">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-12 md:gap-0 mb-20">
-          <div>
+        
+        {/* ========================================================================= */}
+        {/* DESKTOP & TABLET LAYOUT (>= 768px)                                        */}
+        {/* ========================================================================= */}
+        <div className="hidden md:block">
+          {/* Top Part: split columns */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24 mb-24 items-start">
+            {/* Brand Tagline & CTA Button (Left Side) */}
+            <div className="md:col-span-6 lg:col-span-7 flex flex-col items-start">
+              {/* Favicon Icon above wordmark */}
+              <div className="flex flex-row gap-2" >
+   <Image
+                src="https://res.cloudinary.com/dokrpo5fl/image/upload/w_128,h_128,c_fill,r_24/RaccentLogo_hadt1o.png"
+                alt="Rayvok Favicon"
+                width={40}
+                height={40}
+                className="w-10 h-10 object-cover rounded-lg mb-4"
+              />
+              {/* Wordmark Logo */}
+              <Image
+                src="https://res.cloudinary.com/dokrpo5fl/image/upload/v1779005682/wordmarklight_bx3hju.png"
+                alt="Rayvok Logo"
+                width={180}
+                height={60}
+                className="h-8 w-auto object-contain mb-6"
+              />
+                
+              </div>
+            
+           
+              <p className="text-[#8C8C85] font-body text-[16px] md:text-[18px] leading-relaxed max-w-md">
+                Web design & development for B2B SaaS, products, and professionals.
+                Shipped in weeks, not months.
+              </p>
+              <Link 
+                href="/start" 
+                className="inline-flex items-center justify-center bg-white text-black font-ui font-semibold text-[13px] tracking-wide uppercase px-7 py-3 rounded-full hover:bg-gray-200 active:scale-[0.98] transition-all duration-300 shadow mt-8 border-none"
+              >
+                Book a Call
+              </Link>
+            </div>
+
+            {/* Nav Categories Links (Right Side) */}
+            <div className="md:col-span-6 lg:col-span-5 grid grid-cols-2 gap-8 w-full md:justify-items-end">
+              {/* Work Links Column */}
+              <div className="flex flex-col gap-5">
+                <h4 className="text-white font-display font-bold text-[16px] tracking-wide">
+                  Navigation
+                </h4>
+                <nav className="flex flex-col gap-3 font-ui text-[14px] text-[#8C8C85]">
+                  <Link href="/#services" className="hover:text-white transition-colors">
+                    Services
+                  </Link>
+                  <Link href="/#testimonials" className="hover:text-white transition-colors">
+                    Testimonials
+                  </Link>
+                  <Link href="/#faq" className="hover:text-white transition-colors">
+                    FAQs
+                  </Link>
+                  <Link href="/#work" className="hover:text-white transition-colors">
+                    Featured Work
+                  </Link>
+                </nav>
+              </div>
+
+              {/* Social Links Column */}
+              <div className="flex flex-col gap-5 lg:pr-8">
+                <h4 className="text-white font-display font-bold text-[16px] tracking-wide">
+                  Social
+                </h4>
+                <nav className="flex flex-col gap-3 font-ui text-[14px] text-[#8C8C85]">
+                  <a 
+                    href="https://twitter.com/rayvokHQ" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="hover:text-white transition-colors"
+                  >
+                    Twitter / X
+                  </a>
+                  <a 
+                    href="https://youtube.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="hover:text-white transition-colors"
+                  >
+                    Youtube
+                  </a>
+                  <a 
+                    href="https://linkedin.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="hover:text-white transition-colors"
+                  >
+                    LinkedIn
+                  </a>
+                  <a 
+                    href="https://instagram.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="hover:text-white transition-colors"
+                  >
+                    Instagram
+                  </a>
+                </nav>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Part: Copyright and Legal */}
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center pt-8 border-t border-white/5 gap-6 md:gap-0 mb-2">
+            <p className="text-[#8C8C85] text-[12px] tracking-wide uppercase font-mono">
+              &copy; {currentYear} RAYVOK. ALL RIGHTS RESERVED.
+            </p>
+
+            <nav className="flex flex-wrap items-center gap-x-8 gap-y-4 text-[12px] text-[#8C8C85] font-mono">
+              <Link href="/legal" className="hover:text-white transition-colors uppercase">
+                Legal Notice
+              </Link>
+              <Link href="/privacy" className="hover:text-white transition-colors uppercase">
+                Privacy Policy
+              </Link>
+              <Link href="/terms" className="hover:text-white transition-colors uppercase">
+                Terms of Service
+              </Link>
+              <Link href="/cookies" className="hover:text-white transition-colors uppercase">
+                Cookie Settings
+              </Link>
+            </nav>
+          </div>
+
+          
+        </div>
+
+        {/* ========================================================================= */}
+        {/* MOBILE LAYOUT (< 768px)                                                   */}
+        {/* ========================================================================= */}
+        <div className="block md:hidden flex flex-col gap-10">
+          {/* Collapsible Accordion Navigation Categories */}
+          <div className="flex flex-col border-t border-white/10">
+            {/* Work Accordion */}
+            <div className="border-b border-white/10">
+              <button
+                type="button"
+                onClick={() => setIsWorkOpen(!isWorkOpen)}
+                className="flex items-center justify-between w-full py-5 text-left text-white font-display text-[18px] font-bold transition-colors hover:text-[#C9FE34]"
+              >
+                <span>Work</span>
+                <ChevronDown
+                  size={18}
+                  className={`text-[#8C8C85] transition-transform duration-300 ${
+                    isWorkOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+              <AnimatePresence initial={false}>
+                {isWorkOpen && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <nav className="flex flex-col gap-4 pb-6 pl-2 text-[15px] text-[#8C8C85] font-ui">
+                      <Link href="/#services" className="hover:text-white transition-colors">
+                        Services
+                      </Link>
+                      <Link href="/#testimonials" className="hover:text-white transition-colors">
+                        Testimonials
+                      </Link>
+                      <Link href="/#faq" className="hover:text-white transition-colors">
+                        FAQs
+                      </Link>
+                      <Link href="/#work" className="hover:text-white transition-colors">
+                        Featured Work
+                      </Link>
+                    </nav>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Social Accordion */}
+            <div className="border-b border-white/10">
+              <button
+                type="button"
+                onClick={() => setIsSocialOpen(!isSocialOpen)}
+                className="flex items-center justify-between w-full py-5 text-left text-white font-display text-[18px] font-bold transition-colors hover:text-[#C9FE34]"
+              >
+                <span>Social</span>
+                <ChevronDown
+                  size={18}
+                  className={`text-[#8C8C85] transition-transform duration-300 ${
+                    isSocialOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+              <AnimatePresence initial={false}>
+                {isSocialOpen && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <nav className="flex flex-col gap-4 pb-6 pl-2 text-[15px] text-[#8C8C85] font-ui">
+                      <a
+                        href="https://twitter.com/rayvokHQ"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-white transition-colors"
+                      >
+                        Twitter / X
+                      </a>
+                      <a
+                        href="https://youtube.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-white transition-colors"
+                      >
+                        Youtube
+                      </a>
+                      <a
+                        href="https://linkedin.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-white transition-colors"
+                      >
+                        LinkedIn
+                      </a>
+                      <a
+                        href="https://instagram.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-white transition-colors"
+                      >
+                        Instagram
+                      </a>
+                    </nav>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+
+          {/* Centered Brand Stack */}
+          <div className="flex flex-col items-center gap-4 text-center mt-2">
+            {/* Favicon Logo Centered */}
+            <Image
+              src="https://res.cloudinary.com/dokrpo5fl/image/upload/w_128,h_128,c_fill,r_24/RaccentLogo_hadt1o.png"
+              alt="Rayvok Icon"
+              width={48}
+              height={48}
+              className="w-12 h-12 object-cover rounded-2xl"
+            />
+            {/* Wordmark Logo Centered */}
             <Image
               src="https://res.cloudinary.com/dokrpo5fl/image/upload/v1779005682/wordmarklight_bx3hju.png"
-              alt="Rayvok Logo"
+              alt="Rayvok Wordmark"
               width={160}
               height={40}
-              className="h-10 w-auto object-contain mb-4"
+              className="h-8 w-auto object-contain"
             />
-            <p className="text-rayvok-mid font-ui text-[13px] tracking-[0.06em] uppercase">
-              Web design & development
+            <p className="text-[#8C8C85] text-[12px] mt-2 tracking-wide font-mono uppercase">
+              &copy; {currentYear} RAYVOK. ALL RIGHTS RESERVED.
             </p>
           </div>
 
-          <div className="flex flex-col gap-2 items-start md:items-end font-ui text-[13px] tracking-[0.06em] uppercase">
-            <a
-              href="mailto:hello@rayvok.com"
-              className="text-rayvok-offwhite hover:text-rayvok-volt transition-colors"
+          {/* Centered Inline Legal Links with persistent underline decorations */}
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mt-1 text-center font-mono">
+            <Link 
+              href="/legal" 
+              className="text-[#8C8C85] hover:text-white text-[12px] transition-colors underline decoration-white/20 underline-offset-4 uppercase"
             >
-              hello@rayvok.com
-            </a>
-            <a
-              href="https://rayvok.com"
-              className="text-rayvok-offwhite hover:text-rayvok-volt transition-colors"
+              Legal Notice
+            </Link>
+            <Link 
+              href="/privacy" 
+              className="text-[#8C8C85] hover:text-white text-[12px] transition-colors underline decoration-white/20 underline-offset-4 uppercase"
             >
-              rayvok.com
+              Privacy Policy
+            </Link>
+            <Link 
+              href="/terms" 
+              className="text-[#8C8C85] hover:text-white text-[12px] transition-colors underline decoration-white/20 underline-offset-4 uppercase"
+            >
+              Terms of Service
+            </Link>
+            <Link 
+              href="/cookies" 
+              className="text-[#8C8C85] hover:text-white text-[12px] transition-colors underline decoration-white/20 underline-offset-4 uppercase"
+            >
+              Cookie Settings
+            </Link>
+          </div>
+
+          {/* Centered Circular Social Icons ending with the Accent Favicon */}
+          <div className="flex items-center justify-center gap-4 mt-4">
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-12 h-12 rounded-full border border-white/10 text-white hover:bg-white hover:text-black transition-all duration-300"
+              aria-label="LinkedIn"
+            >
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                <rect x="2" y="9" width="4" height="12" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
             </a>
             <a
               href="https://twitter.com/rayvokHQ"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-rayvok-offwhite hover:text-rayvok-volt transition-colors"
+              className="flex items-center justify-center w-12 h-12 rounded-full border border-white/10 text-white hover:bg-white hover:text-black transition-all duration-300"
+              aria-label="Twitter"
             >
-              @rayvokHQ
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
             </a>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-12 h-12 rounded-full border border-white/10 text-white hover:bg-white hover:text-black transition-all duration-300"
+              aria-label="Instagram"
+            >
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
+            </a>
+            <a
+              href="https://youtube.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-12 h-12 rounded-full border border-white/10 text-white hover:bg-white hover:text-black transition-all duration-300"
+              aria-label="YouTube"
+            >
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
+              </svg>
+            </a>
+            
+            {/* Trailing Brand Icon Badge */}
+            <div className="flex items-center justify-center w-12 h-12 rounded-full overflow-hidden border border-white/10 bg-rayvok-surface select-none">
+              <Image
+                src="https://res.cloudinary.com/dokrpo5fl/image/upload/w_128,h_128,c_fill,r_24/RaccentLogo_hadt1o.png"
+                alt="Rayvok Accent Badge"
+                width={40}
+                height={40}
+                className="w-10 h-10 object-cover rounded-xl"
+              />
+            </div>
           </div>
         </div>
 
-        <div className="flex flex-col-reverse md:flex-row justify-between items-start md:items-center pt-8 border-t border-rayvok-surface/50 gap-8 md:gap-0">
-          <p className="text-rayvok-mid text-[12px] font-ui uppercase tracking-[0.04em]">
-            &copy; {currentYear} Rayvok. All rights reserved.
-          </p>
-
-          <nav className="flex flex-wrap items-center gap-x-8 gap-y-4 font-ui text-[12px] tracking-[0.06em] uppercase text-rayvok-mid">
-            <Link href="/work" className="hover:text-rayvok-volt transition-colors">
-              Work
-            </Link>
-            <Link href="/about" className="hover:text-rayvok-volt transition-colors">
-              About
-            </Link>
-            <Link href="/start" className="hover:text-rayvok-volt transition-colors">
-              Start a project
-            </Link>
-            <Link href="/privacy" className="hover:text-rayvok-volt transition-colors">
-              Privacy
-            </Link>
-          </nav>
-        </div>
       </div>
     </footer>
   );
