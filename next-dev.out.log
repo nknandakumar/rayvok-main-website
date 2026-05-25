@@ -1,0 +1,19 @@
+
+> rayvok@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.4:3000
+✓ Ready in 2.4s
+
+ GET / 200 in 2.2s (next.js: 986ms, application-code: 1207ms)
+✓ Compiled in 1486ms
+ GET / 200 in 2.2s (next.js: 1046ms, application-code: 1132ms)
+ GET / 200 in 261ms (next.js: 14ms, application-code: 246ms)
+✓ Compiled in 799ms
+ GET / 200 in 638ms (next.js: 226ms, application-code: 412ms)
+✓ Compiled in 249ms
+ GET / 200 in 398ms (next.js: 161ms, application-code: 237ms)
+ GET / 200 in 450ms (next.js: 6ms, application-code: 444ms)
+[?25h

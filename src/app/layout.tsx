@@ -1,0 +1,112 @@
+import type { Metadata } from "next";
+import { Geist, Inter, Space_Grotesk, Space_Mono } from "next/font/google";
+import localFont from "next/font/local";
+import "./globals.css";
+import Navigation from "@/components/layout/Navigation";
+import Footer from "@/components/layout/Footer";
+
+const geist = Geist({
+  variable: "--font-geist",
+  subsets: ["latin"],
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+});
+
+const spaceMono = Space_Mono({
+  variable: "--font-space-mono",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
+// ── Primary font: Lay Grotesk ────────────────────────────────────────
+const layGrotesk = localFont({
+  src: [
+    { path: "./fonts/lay-grotesk-font-family/laygrotesk-trial-regular.otf",  weight: "400" },
+    { path: "./fonts/lay-grotesk-font-family/laygrotesk-trial-medium.otf",   weight: "500" },
+    { path: "./fonts/lay-grotesk-font-family/laygrotesk-trial-semibold.otf", weight: "600" },
+    { path: "./fonts/lay-grotesk-font-family/laygrotesk-trial-bold.otf",     weight: "700" },
+    { path: "./fonts/lay-grotesk-font-family/laygrotesk-trial-black.otf",    weight: "900" },
+  ],
+  variable: "--font-lay-grotesk",
+  display: "swap",
+});
+
+// ── Secondary font: PP Neue Montreal Mono ────────────────────────────
+const ppNeueMontrealMono = localFont({
+  src: [
+    { path: "./fonts/PPNeueMontrealMono/PPNeueMontrealMono-Thin.otf",          weight: "100" },
+    { path: "./fonts/PPNeueMontrealMono/PPNeueMontrealMono-Book.otf",          weight: "400" },
+    { path: "./fonts/PPNeueMontrealMono/PPNeueMontrealMono-Medium.otf",        weight: "500" },
+    { path: "./fonts/PPNeueMontrealMono/PPNeueMontrealMono-Bold.otf",          weight: "700" },
+  ],
+  variable: "--font-pp-neue-mono",
+  display: "swap",
+});
+
+// ── Legacy local fonts (kept for fallback) ───────────────────────────
+const ppNeue = localFont({
+  src: [
+    { path: "./fonts/pp-neue-montreal/ppneuemontreal-thin.otf",   weight: "100" },
+    { path: "./fonts/pp-neue-montreal/ppneuemontreal-book.otf",   weight: "400" },
+    { path: "./fonts/pp-neue-montreal/ppneuemontreal-medium.otf", weight: "500" },
+    { path: "./fonts/pp-neue-montreal/ppneuemontreal-bold.otf",   weight: "700" },
+  ],
+  variable: "--font-pp-neue",
+  display: "swap",
+});
+
+const switzer = localFont({
+  src: [
+    { path: "./fonts/swister/OTF/Switzer-Regular.otf",  weight: "400" },
+    { path: "./fonts/swister/OTF/Switzer-Medium.otf",   weight: "500" },
+    { path: "./fonts/swister/OTF/Switzer-Semibold.otf", weight: "600" },
+    { path: "./fonts/swister/OTF/Switzer-Bold.otf",     weight: "700" },
+  ],
+  variable: "--font-switzer",
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  title: "Rayvok — Web Design & Development for Businesses and SaaS",
+  description: "Rayvok builds high-performance websites for SaaS products, businesses, and professionals. Web design that turns visitors into revenue.",
+  openGraph: {
+    title: "Rayvok — Web Design & Development",
+    description: "Web design that turns visitors into revenue.",
+    siteName: "Rayvok",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dokrpo5fl/image/upload/v1779005565/wordmarkdark_kpx3dm.png", // Update with actual OG image later
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html
+      suppressHydrationWarning
+      lang="en"
+      className={`${geist.variable} ${inter.variable} ${spaceGrotesk.variable} ${spaceMono.variable} ${ppNeue.variable} ${switzer.variable} ${layGrotesk.variable} ${ppNeueMontrealMono.variable} antialiased`}
+    >
+      <body suppressHydrationWarning className="min-h-screen bg-rayvok-black text-rayvok-offwhite flex flex-col font-body selection:bg-rayvok-volt selection:text-rayvok-black">
+        <Navigation />
+        <main className="flex-1 flex flex-col pt-24">{children}</main>
+        <Footer />
+      </body>
+    </html>
+  );
+}
