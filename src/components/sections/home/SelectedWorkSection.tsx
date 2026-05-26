@@ -362,19 +362,31 @@ export default function SelectedWorkSection() {
 							onMouseLeave={() => setCtaHovered(false)}
 						>
 							<div
-								className="relative overflow-hidden border border-[#E1DDD5] w-full max-w-[1300px] mx-auto md:h-[720px] aspect-square md:aspect-auto flex flex-col items-center justify-center gap-8 group shadow-[0_20px_50px_rgba(0,0,0,0.06)] bg-cover bg-center md:cursor-none cursor-pointer"
-								style={{
-									backgroundImage:
-										"url('https://res.cloudinary.com/dokrpo5fl/image/upload/v1779625216/534337cc-7194-46b9-b82d-756e0e13b5ff_xledie.png')",
-								}}
+								className="relative overflow-hidden border border-[#E1DDD5] w-full max-w-[1300px] mx-auto md:h-[720px] aspect-square md:aspect-auto flex flex-col items-center justify-center gap-8 group shadow-[0_20px_50px_rgba(0,0,0,0.06)] bg-transparent md:cursor-none cursor-pointer"
 							>
-								{/* Decorative glows */}
-								<div className="absolute top-0 right-0 w-[400px] h-[400px] bg-rayvok-volt/5 rounded-full blur-[100px] pointer-events-none transition-transform duration-700 group-hover:scale-110" />
-								<div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-blue-500/5 rounded-full blur-[80px] pointer-events-none" />
+								{/* Image component for CTA Card */}
+								<Image
+									src="https://res.cloudinary.com/dokrpo5fl/image/upload/v1779797893/da4d07b9-ebd2-4ca6-8a64-a2bd31deb008_pqun0i.png"
+									alt="Let's build your card"
+									fill
+									className="object-cover scale-[1.05] transition-transform duration-600 ease-out group-hover:scale-[1.00]"
+									priority
+								/>
 
+								{/* Inner vignette — darkens around edges on hover */}
+								<div
+									className="absolute inset-0 z-10 transition-opacity duration-500 opacity-0 group-hover:opacity-100 pointer-events-none"
+									style={{
+										boxShadow: "inset 0 0 80px 24px rgba(0,0,0,0.28)",
+									}}
+								/>
+
+								{/* Decorative glows */}
+								<div className="absolute top-0 right-0 w-[400px] h-[400px] bg-rayvok-volt/5 rounded-full blur-[100px] pointer-events-none transition-transform duration-700 group-hover:scale-110 z-10" />
+								<div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-blue-500/5 rounded-full blur-[80px] pointer-events-none z-10" />
 
 								{/* Desktop: entire card is clickable via Link overlay */}
-								<Link href="/start" className="absolute inset-0 z-10 hidden md:block" aria-label="Start a project" />
+								<Link href="/start" className="absolute inset-0 z-20 hidden md:block" aria-label="Start a project" />
 							</div>
 						</motion.div>
             

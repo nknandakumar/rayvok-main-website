@@ -100,7 +100,7 @@ export default function ServicesSection() {
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 w-full items-stretch">
                 {/* Left Column: Visual/Graphic Showcase (Real Images) */}
-                <div className="lg:col-span-6 relative overflow-hidden bg-[#181818] min-h-[380px] sm:min-h-[450px] lg:min-h-[550px] border-b lg:border-b-0 lg:border-r border-white/5">
+                <div className="lg:col-span-6 relative overflow-hidden bg-[#181818] min-h-[240px] sm:min-h-[350px] lg:min-h-[550px] border-b lg:border-b-0 lg:border-r border-white/5">
                   <Image
                     src={service.image}
                     alt={service.title}
@@ -134,15 +134,10 @@ export default function ServicesSection() {
                     </div>
 
                     {/* Features List */}
-                    <ul className="grid grid-cols-2 sm:grid-cols-2 gap-x-6 gap-y-4 mb-4">
+                    <ul className="grid grid-cols-2 sm:grid-cols-2 gap-x-6 gap-y-3.5 mb-4">
                       {service.features.map((feature, fIndex) => (
-                        <li key={fIndex} className="flex items-center gap-3 text-[#B0AFAB] text-[14px] font-ui">
-                          <div className="flex items-center justify-center w-4 h-4 rounded-full bg-[#C9FE34] shrink-0">
-                            <svg className="w-2.5 h-2.5 text-[#0E0E0E]" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                          </div>
-                          <span>{feature}</span>
+                        <li key={fIndex} className="text-[#B0AFAB] text-[14px] font-ui">
+                          {feature}
                         </li>
                       ))}
                     </ul>

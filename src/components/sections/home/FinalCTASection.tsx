@@ -2,13 +2,13 @@ import Link from "next/link";
 
 export default function FinalCTASection() {
   return (
-    <section className="py-28 md:py-40 px-6 md:px-12 border-t border-[#EAE7DF] text-center bg-[#FAF8F5] relative md:h-screen overflow-hidden">
+    <section className="py-28 md:py-30 px-6 md:px-12 border-t border-[#EAE7DF] text-center bg-[#FAF8F5] relative md:h-screen overflow-hidden">
       {/* Soft warm background radial accent */}
       <div className="absolute w-[450px] h-[450px] rounded-full bg-[#C9FE34]/5 blur-[120px] bottom-[-200px] left-1/2 -translate-x-1/2 pointer-events-none" />
 
       <div className="container mx-auto pt-10 max-w-4xl relative z-10 flex flex-col justify-center items-center">
         {/* Typographical Heading matching the uploaded screenshot */}
-        <h2 className="text-[#1A1A1A] text-[24px] md:text-[56px] lg:text-[36px] leading-[1.1] tracking-tight font-display font-semibold mb-6">
+        <h2 className="text-[#1A1A1A] text-[24px] md:text-[56px] lg:text-[46px] leading-[1.1] tracking-tight font-display font-semibold mb-6">
           We treat every project as a joint venture, where our drive for creativity meets our <span className="text-[#999999]" > clients&apos; pursuit of success</span>, achieving remarkable breakthroughs together.
         </h2>
        

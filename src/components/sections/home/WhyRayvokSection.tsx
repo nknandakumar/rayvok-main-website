@@ -4,7 +4,7 @@ export default function WhyRayvokSection() {
 	return (
 		<section
 			id="why-us"
-			className="py-32 px-6 md:px-12 bg-rayvok-offwhite relative"
+			className="py-12 px-6 md:px-12 bg-rayvok-offwhite relative"
 		>
 			<div className="container mx-auto text-center max-w-6xl">
 				<div className="mb-8">
