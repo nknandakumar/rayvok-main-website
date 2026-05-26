@@ -14,35 +14,10 @@ export default function HeroSection() {
 
 	return (
 		<>
-			{/* ─── Hero content area with background ─────────────────────── */}
-			{/* 
-        -mt-20 pulls the section up under the fixed navbar so there's NO gap.
-        The section itself provides the top padding via pt-32 to push content below the navbar.
-      */}
-			<section className="relative -mt-20 pt-26 pb-2 flex flex-col justify-center overflow-hidden">
-				{/* Background image — full cover, sits behind everything */}
-				{/* eslint-disable-next-line @next/next/no-img-element */}
-				<img
-					src="https://res.cloudinary.com/dokrpo5fl/image/upload/v1779016767/hbg_jcxff3.jpg"
-					alt=""
-					aria-hidden="true"
-					className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none select-none"
-					style={{ zIndex: 0 }}
-				/>
-				{/* Overlay — only covers the content area, fades OUT before the marquee */}
-				<div
-					className="absolute inset-0 pointer-events-none"
-					style={{
-						zIndex: 1,
-						background:
-							"linear-gradient(to bottom, rgba(14,14,14,0.80) 0%, rgba(14,14,14,0.55) 55%, rgba(14,14,14,0.90) 80%, rgba(14,14,14,1) 100%)",
-					}}
-				/>
-
-				{/* Hero text content */}
+			<section className="relative -mt-20 pt-26 pb-2 flex flex-col justify-center overflow-hidden bg-rayvok-black">
 				<div
 					className="container mx-auto px-6 md:px-12 relative flex flex-col items-start md:items-center text-left md:text-center"
-					style={{ zIndex: 2 }}
+					style={{ zIndex: 1 }}
 				>
 					<div className="max-w-6xl w-full">
 						<p
@@ -52,7 +27,7 @@ export default function HeroSection() {
 							Web design &amp; development
 						</p>
 						<h1
-							className="text-rayvok-offwhite mb-6  tracking-[-0.02em] text-[46px] leading-[1] md:text-[64px] lg:text-[88px] animate-fade-in-up"
+							className="text-rayvok-offwhite mb-6 tracking-[-0.02em] text-[46px] leading-[1] md:text-[64px] lg:text-[88px] animate-fade-in-up"
 							style={{ animationDelay: "0.2s", animationFillMode: "both" }}
 						>
 							Web design that turns visitors into customers
@@ -61,7 +36,7 @@ export default function HeroSection() {
 							className="text-rayvok-mid fontui mb-10 max-w-2xl md:mx-auto text-[16px] md:text-[20px] animate-fade-in-up"
 							style={{ animationDelay: "0.3s", animationFillMode: "both" }}
 						>
-							We design and build websites for SaaS products, businesses, and
+							We design and build websites for businesses, SaaS products, and
 							professionals that convert visitors into leads, booked calls, and
 							customers.
 						</p>
@@ -87,10 +62,8 @@ export default function HeroSection() {
 				</div>
 			</section>
 
-			{/* ─── Marquee Images — fully outside the bg section, so NO dimming ─── */}
 			<div className="relative -mt-2 flex overflow-x-hidden w-full bg-rayvok-black pt-2 pb-4">
 				<div className="flex whitespace-nowrap w-max animate-marquee">
-					{/* Group 1 */}
 					<div className="flex shrink-0 gap-4 pr-4 items-start">
 						{images.map((img, idx) => (
 							<div
@@ -106,7 +79,6 @@ export default function HeroSection() {
 							</div>
 						))}
 					</div>
-					{/* Group 2 — clone for seamless loop */}
 					<div className="flex shrink-0 gap-4 pr-4 items-start">
 						{images.map((img, idx) => (
 							<div
@@ -123,7 +95,6 @@ export default function HeroSection() {
 						))}
 					</div>
 				</div>
-				{/* Edge fades */}
 				<div className="absolute inset-y-0 left-0 w-16 md:w-24 bg-gradient-to-r from-rayvok-black to-transparent z-10 pointer-events-none" />
 				<div className="absolute inset-y-0 right-0 w-16 md:w-24 bg-gradient-to-l from-rayvok-black to-transparent z-10 pointer-events-none" />
 			</div>
