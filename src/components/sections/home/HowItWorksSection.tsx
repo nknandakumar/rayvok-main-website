@@ -1,55 +1,82 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // ─── STEP 1: DISCOVERY CALL VISUAL WIDGET ────────────────────────────────────
 function DiscoveryVisual({ isActive }: { isActive: boolean }) {
   return (
-    <div className="w-full h-full bg-[#FAF9F5] p-5 md:p-6 flex flex-col justify-between select-none">
+    <div className="w-full h-full bg-[#FAF9F5] p-5 md:p-6 flex flex-col justify-between select-none overflow-hidden relative">
+      {/* Grid lines overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#EAE8E3_1px,transparent_1px),linear-gradient(to_bottom,#EAE8E3_1px,transparent_1px)] bg-[size:32px_32px] opacity-25 pointer-events-none" />
+
       {/* Header bar */}
-      <div className="flex items-center justify-between border-b border-[#EAE8E3] pb-4">
+      <div className="flex items-center justify-between border-b border-[#EAE8E3] pb-3.5 relative z-10">
         <div className="flex items-center gap-2">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#C9FE34] opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#9EC726]"></span>
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
           </span>
           <span className="font-mono text-[10px] md:text-[11px] uppercase tracking-wider text-[#5A5A50] font-bold">
             Rayvok Discovery Room
           </span>
         </div>
-        <div className="bg-[#EAE8E3] text-[#5A5A50] font-mono text-[9px] md:text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wider font-semibold">
-          30 MINS
+        <div className="flex items-center gap-1.5">
+          <span className="bg-black/5 text-[#5A5A50] font-mono text-[9px] px-2 py-0.5 rounded uppercase tracking-wider font-semibold">
+            REC
+          </span>
+          <span className="bg-[#C9FE34] border border-[#BDEB19] text-black font-mono text-[9px] px-2 py-0.5 rounded uppercase tracking-wider font-bold">
+            30 MIN
+          </span>
         </div>
       </div>
 
       {/* Main meeting area */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-grow items-center my-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-grow items-center my-3 relative z-10">
         {/* Avatars / Call Block */}
-        <div className="border border-[#EAE8E3] rounded-2xl bg-white p-4 flex flex-col items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.01)] relative overflow-hidden h-32 md:h-36">
-          <div className="flex items-center -space-x-3 mb-3">
-            <div className="w-10 h-10 rounded-full border-2 border-white bg-[#EAE8E3] flex items-center justify-center text-[#5A5A50] font-mono text-[10px] font-bold shadow-sm">
+        <div className="border border-[#EAE8E3] rounded-2xl bg-white p-4 flex flex-col items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.01)] relative overflow-hidden h-[120px] md:h-[135px]">
+          
+          {/* Subtle floating glow background */}
+          <div className="absolute w-24 h-24 rounded-full bg-[#C9FE34]/10 blur-xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+          
+          {/* Gentle floating avatars */}
+          <div className="flex items-center -space-x-3 mb-3 relative z-10">
+            <motion.div 
+              className="w-10 h-10 rounded-full border-2 border-white bg-[#EAE8E3] flex items-center justify-center text-[#5A5A50] font-mono text-[10px] font-bold shadow-sm"
+              animate={isActive ? {
+                y: [0, -4, 0],
+                x: [0, 1.5, 0]
+              } : {}}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            >
               YOU
-            </div>
-            <div className="w-10 h-10 rounded-full border-2 border-white bg-[#C9FE34] flex items-center justify-center text-black font-mono text-[10px] font-bold shadow-md">
+            </motion.div>
+            <motion.div 
+              className="w-10 h-10 rounded-full border-2 border-white bg-[#C9FE34] flex items-center justify-center text-black font-mono text-[10px] font-bold shadow-md"
+              animate={isActive ? {
+                y: [-3, 1, -3],
+                x: [1, -1.5, 1]
+              } : {}}
+              transition={{ duration: 2.7, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+            >
               RV
-            </div>
+            </motion.div>
           </div>
           
           {/* Waveform representation */}
-          <div className="flex items-center gap-1.5 h-6 justify-center w-full">
+          <div className="flex items-center gap-1.5 h-5 justify-center w-full relative z-10">
             {[0.6, 1.2, 0.8, 1.5, 0.4, 1.0, 0.7, 1.3, 0.5, 0.9].map((delay, i) => (
               <motion.div
                 key={i}
                 className="w-1 rounded-full bg-[#0E0E0E]"
-                style={{ height: "20px", transformOrigin: "center" }}
+                style={{ height: "18px", transformOrigin: "center" }}
                 animate={isActive ? {
-                  scaleY: [0.3, 1, 0.3],
+                  scaleY: [0.3, 1.1, 0.3],
                 } : { scaleY: 0.3 }}
                 transition={{
-                  duration: 1,
+                  duration: 0.9,
                   repeat: Infinity,
-                  delay: delay * 0.15,
+                  delay: delay * 0.12,
                   ease: "easeInOut"
                 }}
               />
@@ -58,8 +85,8 @@ function DiscoveryVisual({ isActive }: { isActive: boolean }) {
         </div>
 
         {/* Notes / Agenda Block */}
-        <div className="border border-[#EAE8E3] rounded-2xl bg-white p-4 shadow-[0_4px_12px_rgba(0,0,0,0.01)] h-32 md:h-36 flex flex-col justify-center">
-          <span className="font-mono text-[9px] uppercase tracking-wider text-[#999999] block mb-2 font-bold">
+        <div className="border border-[#EAE8E3] rounded-2xl bg-white p-4 shadow-[0_4px_12px_rgba(0,0,0,0.01)] h-[120px] md:h-[135px] flex flex-col justify-center relative overflow-hidden">
+          <span className="font-mono text-[9px] uppercase tracking-wider text-[#999999] block mb-2.5 font-bold">
             Alignment Topics
           </span>
           <div className="space-y-2 flex-grow flex flex-col justify-center">
@@ -68,23 +95,32 @@ function DiscoveryVisual({ isActive }: { isActive: boolean }) {
               "Deconstruct Website Pain Points",
               "Define Ideal Customer Journey"
             ].map((topic, i) => (
-              <div key={i} className="flex items-center gap-2">
-                <div className="flex items-center justify-center w-4 h-4 rounded-full bg-[#C9FE34] border border-[#BDEB19] shrink-0">
-                  <svg className="w-2.5 h-2.5 text-[#0E0E0E]" fill="none" stroke="currentColor" strokeWidth="4" viewBox="0 0 24 24">
+              <motion.div 
+                key={i} 
+                className="flex items-center gap-2"
+                initial={{ opacity: 0, x: -10 }}
+                animate={isActive ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+                transition={{ duration: 0.4, delay: i * 0.15 }}
+              >
+                <div className="flex items-center justify-center w-4 h-4 rounded-full bg-[#C9FE34] border border-[#BDEB19] shrink-0 shadow-sm">
+                  <svg className="w-2.5 h-2.5 text-[#0E0E0E]" fill="none" stroke="currentColor" strokeWidth="4.5" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <span className="text-[11px] md:text-[12px] font-medium text-[#1A1A1A] truncate">{topic}</span>
-              </div>
+                <span className="text-[11px] md:text-[12px] font-semibold text-[#1A1A1A] truncate">{topic}</span>
+              </motion.div>
             ))}
           </div>
         </div>
       </div>
 
       {/* Footer message */}
-      <div className="flex items-center justify-between text-[9px] md:text-[10px] font-mono text-[#999999] border-t border-[#EAE8E3] pt-3">
+      <div className="flex items-center justify-between text-[9px] md:text-[10px] font-mono text-[#999999] border-t border-[#EAE8E3] pt-3 relative z-10">
         <span>STATUS: HIGH ALIGNMENT</span>
-        <span>NO SALES PITCH</span>
+        <span className="flex items-center gap-1">
+          <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#C9FE34] animate-pulse" />
+          COLLABORATIVE DIALOGUE
+        </span>
       </div>
     </div>
   );
@@ -92,64 +128,173 @@ function DiscoveryVisual({ isActive }: { isActive: boolean }) {
 
 // ─── STEP 2: STRATEGY & PROPOSAL VISUAL WIDGET ───────────────────────────────
 function StrategyVisual({ isActive }: { isActive: boolean }) {
-  const milestones = [
-    { name: "Strategy & Scope Setup", days: "Days 1–3", progress: 100 },
-    { name: "High-Fidelity UI Design", days: "Days 4–9", progress: 65 },
-    { name: "Development & SEO Build", days: "Days 10–14", progress: 0 }
+  const [activeSubStep, setActiveSubStep] = useState(0);
+
+  // Auto-cycle through the 3 phases to make it highly interactive and visually alive
+  useEffect(() => {
+    if (!isActive) return;
+    const interval = setInterval(() => {
+      setActiveSubStep((prev) => (prev + 1) % 3);
+    }, 2800);
+    return () => clearInterval(interval);
+  }, [isActive]);
+
+  const phases = [
+    {
+      num: "01",
+      name: "Blueprint Setup",
+      days: "Days 1–3",
+      details: "Locking scope maps & features.",
+      deliverables: ["Tech Stack Selection", "UI Wireframing Map", "Competitor Research"]
+    },
+    {
+      num: "02",
+      name: "Figma UI Prototyping",
+      days: "Days 4–9",
+      details: "High-fidelity mockups & review.",
+      deliverables: ["Desktop UI Designs", "Mobile UX Prototyping", "Design System Setup"]
+    },
+    {
+      num: "03",
+      name: "Development & SEO",
+      days: "Days 10–14",
+      details: "Fast Next.js build & SEO check.",
+      deliverables: ["Mobile-First Development", "SEO Tags Optimizations", "Turbopack Build Audit"]
+    }
   ];
 
   return (
-    <div className="w-full h-full bg-[#FAF9F5] p-5 md:p-6 flex flex-col justify-between select-none">
+    <div className="w-full h-full bg-[#FAF9F5] p-5 md:p-6 flex flex-col justify-between select-none overflow-hidden relative">
+      {/* Grid background */}
+      <div className="absolute inset-0 bg-[radial-gradient(#EAE8E3_1px,transparent_1px)] [background-size:16px_16px] opacity-30 pointer-events-none" />
+
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-[#EAE8E3] pb-4">
+      <div className="flex items-center justify-between border-b border-[#EAE8E3] pb-3.5 relative z-10">
         <span className="font-mono text-[10px] md:text-[11px] uppercase tracking-wider text-[#5A5A50] font-bold">
-          Project Scope & Timeline Blueprint
+          Accelerated 2–3 Weeks Roadmap
         </span>
-        <div className="bg-black text-[#C9FE34] font-mono text-[9px] md:text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wider font-bold">
-          2–3 WEEKS TO LIVE
+        <div className="bg-black text-[#C9FE34] font-mono text-[9px] md:text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wider font-bold shadow-sm">
+          14 DAYS MAX
         </div>
       </div>
 
-      {/* Timeline Milestones */}
-      <div className="space-y-3.5 flex-grow flex flex-col justify-center my-4">
-        {milestones.map((m, idx) => {
-          return (
-            <div key={idx} className="border border-[#EAE8E3] rounded-xl bg-white p-3.5 shadow-[0_4px_12px_rgba(0,0,0,0.01)]">
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-2">
-                  <span className={`w-2 h-2 rounded-full ${m.progress === 100 ? 'bg-[#9EC726]' : m.progress > 0 ? 'bg-amber-400 animate-pulse' : 'bg-gray-200'}`} />
-                  <span className="text-[12px] md:text-[13px] font-bold text-[#1A1A1A]">{m.name}</span>
+      {/* Interactive Connected Pipeline SVG */}
+      <div className="h-16 relative flex items-center justify-center my-2.5 z-10">
+        {/* SVG Connector Path */}
+        <svg className="absolute w-full h-full pointer-events-none left-0 top-0">
+          {/* Inactive line */}
+          <line x1="15%" y1="50%" x2="85%" y2="50%" stroke="#EAE8E3" strokeWidth="3" strokeDasharray="4 4" />
+          
+          {/* Active vector path */}
+          <motion.line
+            x1="15%"
+            y1="50%"
+            x2={activeSubStep === 0 ? "15%" : activeSubStep === 1 ? "50%" : "85%"}
+            y2="50%"
+            stroke="#0E0E0E"
+            strokeWidth="3"
+            transition={{ type: "spring", stiffness: 60, damping: 15 }}
+          />
+
+          {/* Pulse progress particle */}
+          <motion.circle
+            r="5"
+            fill="#C9FE34"
+            stroke="#0E0E0E"
+            strokeWidth="2"
+            animate={{
+              cx: activeSubStep === 0 ? "15%" : activeSubStep === 1 ? "50%" : "85%",
+              cy: "50%"
+            }}
+            transition={{ type: "spring", stiffness: 60, damping: 15 }}
+          />
+        </svg>
+
+        {/* Floating Interactive Milestone Nodes */}
+        <div className="w-full flex justify-between px-[5%] relative z-20">
+          {phases.map((p, idx) => {
+            const isSubActive = activeSubStep === idx;
+            return (
+              <button
+                key={idx}
+                onClick={() => setActiveSubStep(idx)}
+                className="flex flex-col items-center focus:outline-none transition-transform duration-300"
+                style={{ transform: isSubActive ? "scale(1.08)" : "scale(0.95)" }}
+              >
+                <div 
+                  className={`w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center border text-[9px] md:text-[10px] font-mono font-bold transition-all duration-300 shadow-sm ${
+                    isSubActive 
+                      ? "bg-black text-[#C9FE34] border-black scale-110 ring-4 ring-[#C9FE34]/30" 
+                      : idx < activeSubStep 
+                        ? "bg-[#C9FE34] text-black border-[#BDEB19]" 
+                        : "bg-white text-[#999999] border-[#EAE8E3]"
+                  }`}
+                >
+                  {p.num}
                 </div>
-                <span className="font-mono text-[9px] text-[#999999] uppercase font-bold">{m.days}</span>
-              </div>
-              
-              {/* Progress bar container */}
-              <div className="w-full h-1.5 bg-[#F5F5F0] rounded-full overflow-hidden">
-                <motion.div
-                  className="h-full bg-[#0E0E0E] rounded-full"
-                  initial={{ width: 0 }}
-                  animate={isActive ? { width: `${m.progress}%` } : { width: 0 }}
-                  transition={{ duration: 0.8, delay: idx * 0.15 }}
-                />
-              </div>
-            </div>
-          );
-        })}
+                <span className={`text-[8px] md:text-[9px] font-mono mt-1.5 uppercase font-bold tracking-tight ${isSubActive ? "text-black font-extrabold" : "text-[#999999]"}`}>
+                  {p.days}
+                </span>
+              </button>
+            );
+          })}
+        </div>
       </div>
 
-      {/* Guarantees footer */}
-      <div className="grid grid-cols-2 gap-3 border-t border-[#EAE8E3] pt-4">
+      {/* Dynamic Detail Card with reveal animation */}
+      <div className="flex-grow flex items-center justify-center min-h-[90px] z-10">
+        <AnimatePresence mode="wait">
+          {phases.map((p, idx) => {
+            if (activeSubStep !== idx) return null;
+            return (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -8, scale: 0.98 }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
+                className="w-full border border-[#EAE8E3] rounded-xl bg-white p-3.5 shadow-[0_4px_16px_rgba(0,0,0,0.015)]"
+              >
+                <div className="flex justify-between items-center mb-1.5">
+                  <h4 className="text-[12px] md:text-[13px] font-bold text-[#1A1A1A]">
+                    Phase {p.num}: {p.name}
+                  </h4>
+                  <span className="font-mono text-[8px] bg-[#FAF8F5] border border-[#EAE8E3] text-[#5A5A50] px-1.5 py-0.5 rounded font-bold uppercase">
+                    ACTIVE
+                  </span>
+                </div>
+                <p className="text-[10px] md:text-[11px] text-[#5C5C57] mb-2 font-mono">
+                  {p.details}
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {p.deliverables.map((del, dIdx) => (
+                    <span 
+                      key={dIdx} 
+                      className="text-[8px] font-semibold text-black bg-[#FAF9F5] border border-[#EAE8E3] px-2 py-0.5 rounded-full"
+                    >
+                      {del}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
+        </AnimatePresence>
+      </div>
+
+      {/* Locked Status Indicators */}
+      <div className="grid grid-cols-2 gap-3 border-t border-[#EAE8E3] pt-3 mt-1 z-10">
         <div className="flex items-center gap-2 bg-[#F5F5F0] rounded-lg px-3 py-1.5 border border-[#EAE8E3] justify-center">
           <svg className="w-3.5 h-3.5 text-[#1A1A1A] shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
           </svg>
-          <span className="font-mono text-[9px] md:text-[10px] uppercase text-[#1A1A1A] font-bold truncate">Scope Locked</span>
+          <span className="font-mono text-[9px] uppercase text-[#1A1A1A] font-bold truncate">Scope Locked</span>
         </div>
         <div className="flex items-center gap-2 bg-[#F5F5F0] rounded-lg px-3 py-1.5 border border-[#EAE8E3] justify-center">
           <svg className="w-3.5 h-3.5 text-[#1A1A1A] shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
           </svg>
-          <span className="font-mono text-[9px] md:text-[10px] uppercase text-[#1A1A1A] font-bold truncate">Zero Surprises</span>
+          <span className="font-mono text-[9px] uppercase text-[#1A1A1A] font-bold truncate">Zero Surprises</span>
         </div>
       </div>
     </div>
@@ -158,98 +303,196 @@ function StrategyVisual({ isActive }: { isActive: boolean }) {
 
 // ─── STEP 3: DESIGN & BUILD VISUAL WIDGET ────────────────────────────────────
 function DesignVisual({ isActive }: { isActive: boolean }) {
+  const [sliderPos, setSliderPos] = useState(50);
+
+  // Smooth sliding sweep between 20% and 80% to showcase interactive before/after
+  useEffect(() => {
+    if (!isActive) return;
+    const startTime = Date.now();
+    const interval = setInterval(() => {
+      const elapsed = (Date.now() - startTime) / 1000;
+      const sweep = 50 + Math.sin(elapsed * 1.1) * 32;
+      setSliderPos(sweep);
+    }, 25);
+    return () => clearInterval(interval);
+  }, [isActive]);
+
   return (
-    <div className="w-full h-full bg-[#FAF9F5] p-5 flex flex-col justify-between select-none overflow-hidden relative">
-      {/* Design editor header */}
-      <div className="flex items-center justify-between border-b border-[#EAE8E3] pb-3">
-        <div className="flex items-center gap-1.5">
-          <div className="flex gap-1">
-            <span className="w-2.5 h-2.5 rounded-full bg-red-400/80" />
-            <span className="w-2.5 h-2.5 rounded-full bg-amber-400/80" />
-            <span className="w-2.5 h-2.5 rounded-full bg-green-400/80" />
-          </div>
-          <span className="font-mono text-[10px] md:text-[11px] text-[#5A5A50] ml-1.5 font-semibold">design_system.fig</span>
-        </div>
+    <div className="w-full h-full bg-[#FAF9F5] p-3.5 md:p-5 flex flex-col justify-between select-none overflow-hidden relative">
+      {/* ── Figma Wireframe Layer (Left side of comparison) ── */}
+      <div className="absolute inset-0 bg-[#FAF9F6] p-4 flex flex-col justify-between text-[8px] z-10">
+        {/* Grid lines */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#E2DFD8_1px,transparent_1px),linear-gradient(to_bottom,#E2DFD8_1px,transparent_1px)] bg-[size:12px_12px] opacity-35 pointer-events-none" />
         
-        {/* Figma tools */}
-        <div className="flex items-center gap-2 bg-[#EAE8E3] px-2 py-0.5 rounded-md text-[#5A5A50]">
-          <svg className="w-3 h-3 text-black" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2L2 22h20L12 2z" />
-          </svg>
-          <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-          </svg>
-          <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-            <path d="M12 19l7-7 3 3-10 10-3-3z" />
-          </svg>
+        {/* Top Assets wireframe row */}
+        <div className="grid grid-cols-2 gap-3 mb-2 relative z-10">
+          {/* Typography card wireframe */}
+          <div className="border border-dashed border-blue-400 rounded-xl bg-blue-50/15 p-2 flex items-center justify-center gap-2 relative h-[50px]">
+            <div className="absolute top-0.5 left-1 bg-blue-500 text-white font-mono text-[5px] px-1 rounded-sm leading-none">Typo</div>
+            <span className="text-[26px] font-bold text-blue-500/40 select-none font-display">Aa</span>
+            <div className="flex flex-col text-[6px] font-mono text-blue-400">
+              <span>PP Neue</span>
+              <span>w: auto</span>
+            </div>
+            {/* Corner wireframe dots */}
+            <span className="absolute -top-1 -left-1 w-1.5 h-1.5 bg-blue-500 border border-white" />
+            <span className="absolute -bottom-1 -right-1 w-1.5 h-1.5 bg-blue-500 border border-white" />
+          </div>
+
+          {/* Color swatch wireframe */}
+          <div className="border border-dashed border-blue-400 rounded-xl bg-blue-50/15 p-2 flex flex-col justify-center gap-1.5 relative h-[50px]">
+            <div className="absolute top-0.5 left-1 bg-blue-500 text-white font-mono text-[5px] px-1 rounded-sm leading-none">Colors</div>
+            <div className="flex items-center gap-1">
+              <span className="w-2.5 h-2.5 rounded-full border border-dashed border-blue-400" />
+              <span className="font-mono text-[5.5px] text-blue-400">#FAF9F5</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <span className="w-2.5 h-2.5 rounded-full border border-dashed border-blue-400 bg-blue-400/20" />
+              <span className="font-mono text-[5.5px] text-blue-400">#C9FE34</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Mock Browser Wireframe */}
+        <div className="flex-grow border border-dashed border-blue-400 rounded-xl bg-blue-50/10 p-2.5 relative overflow-hidden flex flex-col justify-between">
+          <div className="absolute top-0.5 left-1.5 bg-blue-500 text-white font-mono text-[5.5px] px-1 rounded-sm leading-none z-10">WebpageBrowser</div>
+          
+          {/* Header */}
+          <div className="flex items-center justify-between border-b border-dashed border-blue-200 pb-1.5 mb-1.5">
+            <span className="font-mono text-[6.5px] font-bold text-blue-500">Logo</span>
+            <div className="flex gap-2 font-mono text-[5.5px] text-blue-300">
+              <span>[Work]</span>
+              <span>[About]</span>
+            </div>
+            <div className="w-10 h-3 border border-dashed border-blue-300 rounded-full" />
+          </div>
+
+          {/* Hero */}
+          <div className="border border-dashed border-blue-400 rounded-xl bg-blue-50/15 flex-grow p-2.5 flex flex-col justify-center items-center text-center">
+            <span className="font-mono text-[8px] font-bold text-blue-500 mb-1 border border-dashed border-blue-300 px-1">Headline</span>
+            <div className="w-24 h-1 bg-blue-200/40 rounded-full my-0.5" />
+            <div className="w-16 h-1 bg-blue-200/40 rounded-full my-0.5" />
+            <div className="w-14 h-4 border border-dashed border-blue-400 rounded-full mt-2 bg-blue-50/30" />
+          </div>
         </div>
       </div>
 
-      {/* Editor Main Canvas with Wireframe -> Render transition */}
-      <div className="flex-grow flex items-center justify-center relative w-full h-32 md:h-36 my-2">
-        <div className="w-full max-w-[280px] border border-[#EAE8E3] rounded-2xl bg-white p-4 shadow-[0_8px_24px_rgba(0,0,0,0.02)] relative overflow-hidden h-28 md:h-32 flex flex-col justify-between">
-          
-          {/* Blueprint vector grid background */}
-          <div className="absolute inset-0 bg-[radial-gradient(#EAE8E3_1px,transparent_1px)] [background-size:12px_12px] opacity-40 pointer-events-none" />
-
-          {/* Wireframe vs Code Split Render */}
-          <div className="relative z-10 flex-grow flex flex-col justify-between h-full">
-            <div className="flex items-center justify-between">
-              <span className="font-mono text-[8px] md:text-[9px] text-[#999999] uppercase font-bold">Layout Container</span>
-              <span className="font-mono text-[8px] md:text-[9px] text-blue-500 font-bold">w: 100%</span>
+      {/* ── Styled Live CSS Render Layer (Right side of comparison) ── */}
+      <div 
+        className="absolute inset-0 bg-[#FAF9F5] p-4 flex flex-col justify-between text-[8px] z-20 overflow-hidden"
+        style={{ clipPath: `polygon(${sliderPos}% 0%, 100% 0%, 100% 100%, ${sliderPos}% 100%)` }}
+      >
+        {/* Top Assets Row */}
+        <div className="grid grid-cols-2 gap-3 mb-2 relative z-10">
+          {/* Typography Design block */}
+          <div className="border border-[#EAE8E3] rounded-xl bg-white p-2.5 flex items-center justify-center gap-2.5 shadow-[0_4px_12px_rgba(0,0,0,0.015)] h-[50px] relative">
+            <span className="text-[28px] font-extrabold text-black font-display tracking-tight leading-none">Aa</span>
+            <div className="flex flex-col text-[7px] text-[#888888] font-bold">
+              <span className="text-black font-extrabold">PP Neue</span>
+              <span className="font-mono text-[6px]">Display font</span>
             </div>
-            
-            <div className="my-1.5 p-2 border border-dashed border-blue-400 rounded-lg bg-blue-50/10 flex items-center justify-between">
-              <div className="space-y-1 w-2/3">
-                <div className="h-1.5 w-full bg-blue-200/50 rounded" />
-                <div className="h-1.5 w-1/2 bg-blue-200/50 rounded" />
+          </div>
+
+          {/* Color swatch blocks */}
+          <div className="border border-[#EAE8E3] rounded-xl bg-white p-2 flex flex-col justify-center gap-1.5 shadow-[0_4px_12px_rgba(0,0,0,0.015)] h-[50px]">
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#F5F5F0] border border-[#EAE7DF] shadow-sm shrink-0" />
+              <span className="font-mono text-[6.5px] text-[#5A5A50] font-bold">Cream</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#C9FE34] border border-[#BDEB19] shadow-sm shrink-0" />
+              <span className="font-mono text-[6.5px] text-black font-extrabold">Volt green</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Mock Browser Live Webpage */}
+        <div className="flex-grow border border-[#EAE8E3] rounded-xl bg-white shadow-[0_8px_24px_rgba(0,0,0,0.02)] relative overflow-hidden flex flex-col justify-between">
+          {/* Chrome top bar */}
+          <div className="bg-[#FAF8F5] border-b border-[#EAE8E3] px-2.5 py-1.5 flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+            <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
+            <div className="bg-white border border-[#EAE8E3] text-[#999999] text-[5.5px] px-4 py-0.5 rounded-md flex-grow text-center font-mono max-w-[130px] mx-auto select-none">
+              rayvok.com/branding
+            </div>
+          </div>
+
+          {/* Render Area */}
+          <div className="p-2.5 flex-grow flex flex-col justify-between h-full select-none">
+            {/* Header navbar */}
+            <div className="flex items-center justify-between pb-1 border-b border-[#FAF9F5] mb-1">
+              <span className="font-extrabold text-[#0E0E0E] text-[8px] tracking-tighter font-display">+ RAYVOK</span>
+              <div className="flex items-center gap-2.5 text-[#888888] font-bold text-[6px]">
+                <span>Work</span>
+                <span>About</span>
               </div>
-              <motion.div 
-                className="px-2 py-1 rounded bg-[#C9FE34] text-[8px] md:text-[9px] font-bold text-black border border-black/10 shadow-sm"
+              <button className="px-2.5 py-0.5 bg-black text-white text-[5.5px] font-bold rounded-full border border-black/10 select-none">
+                Start
+              </button>
+            </div>
+
+            {/* Centered Hero Area with beautiful layout */}
+            <div className="rounded-xl bg-[#FAF9F5] border border-[#EAE8E3] p-2.5 flex-grow flex flex-col justify-center items-center text-center">
+              <h5 className="font-extrabold text-[12px] md:text-[13px] text-[#0E0E0E] leading-none tracking-tight font-display mb-1.5">
+                Headline
+              </h5>
+              <div className="w-24 md:w-32 h-1 bg-[#888888]/15 rounded-full my-0.5 mx-auto" />
+              <div className="w-16 md:w-20 h-1 bg-[#888888]/15 rounded-full my-0.5 mx-auto" />
+              
+              {/* Perfectly aligned premium CTA Button */}
+              <motion.button 
+                className="flex items-center justify-center gap-1 bg-[#0E0E0E] text-white px-2.5 py-1 rounded-full text-[6.5px] md:text-[7px] font-bold mt-2.5 shadow-sm border border-black/10 mx-auto"
                 animate={isActive ? {
-                  scale: [1, 1.06, 1],
+                  scale: [1, 1.05, 1],
                 } : { scale: 1 }}
                 transition={{ duration: 1.5, repeat: Infinity }}
               >
-                CTA Button
-              </motion.div>
-            </div>
-
-            <div className="flex items-center justify-between border-t border-[#EAE8E3] pt-1 text-[8px] md:text-[9px] text-[#999999] font-mono">
-              <span>padding: 16px</span>
-              <span>radius: 12px</span>
+                <span>Get started</span>
+                <span className="flex items-center justify-center w-3 h-3 rounded-full bg-[#C9FE34] text-black">
+                  <svg className="w-1.5 h-1.5" fill="none" stroke="currentColor" strokeWidth="4.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
+              </motion.button>
             </div>
           </div>
-
-          {/* Figma Cursor Animation */}
-          <motion.div
-            className="absolute z-20 pointer-events-none"
-            animate={isActive ? {
-              x: [40, 180, 40],
-              y: [70, 30, 70],
-            } : { x: 40, y: 70 }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          >
-            <svg className="w-5 h-5 text-black drop-shadow-[0_2px_4px_rgba(0,0,0,0.15)]" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M4.5 3v15.3l4.7-4.7 5.8 5.8 2.6-2.6-5.8-5.8 5.8-.1L4.5 3z" />
-            </svg>
-            <div className="bg-[#00c2ff] text-white font-mono text-[7px] md:text-[8px] font-bold px-1 py-0.5 rounded ml-3 -mt-1 shadow">
-              Senior Designer
-            </div>
-          </motion.div>
-
         </div>
       </div>
 
-      {/* Footer bar */}
-      <div className="flex items-center justify-between text-[9px] md:text-[10px] font-mono text-[#999999] border-t border-[#EAE8E3] pt-3">
-        <span>FIGMA UI PROTOTYPES</span>
-        <span>MOBILE-FIRST CODE</span>
+      {/* ── Sliding Division Sweeping Bar ── */}
+      <div 
+        className="absolute top-0 bottom-0 w-0.5 bg-black/60 shadow-lg z-30 pointer-events-none"
+        style={{ left: `${sliderPos}%` }}
+      >
+        {/* Sweep handle icon indicator */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-black border border-white flex items-center justify-center shadow">
+          <svg className="w-2 h-2 text-white" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+          </svg>
+        </div>
       </div>
+
+      {/* Figma Resizing Cursor Animation */}
+      <motion.div
+        className="absolute z-40 pointer-events-none"
+        animate={isActive ? {
+          x: [35, 175, 230, 35],
+          y: [75, 45, 115, 75],
+        } : { x: 35, y: 75 }}
+        transition={{
+          duration: 5,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      >
+        <svg className="w-5 h-5 text-blue-500 drop-shadow-[0_2px_4px_rgba(0,0,0,0.15)]" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M4.5 3v15.3l4.7-4.7 5.8 5.8 2.6-2.6-5.8-5.8 5.8-.1L4.5 3z" />
+        </svg>
+        <div className="bg-[#00c2ff] text-white font-mono text-[7px] font-bold px-1.5 py-0.5 rounded-full ml-3.5 -mt-1 shadow tracking-tight">
+          Designing...
+        </div>
+      </motion.div>
     </div>
   );
 }
@@ -263,52 +506,59 @@ function LaunchVisual({ isActive }: { isActive: boolean }) {
   ];
 
   return (
-    <div className="w-full h-full bg-[#FAF9F5] p-5 flex flex-col justify-between select-none overflow-hidden">
+    <div className="w-full h-full bg-[#FAF9F5] p-5 flex flex-col justify-between select-none overflow-hidden relative">
+      {/* Grid lines */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#EAE8E3_1px,transparent_1px)] bg-[size:24px_24px] opacity-20 pointer-events-none" />
+
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-[#EAE8E3] pb-3">
+      <div className="flex items-center justify-between border-b border-[#EAE8E3] pb-3 relative z-10">
         <span className="font-mono text-[10px] md:text-[11px] uppercase tracking-wider text-[#5A5A50] font-bold">
           Production Audit & Handoff
         </span>
-        <div className="flex items-center gap-1.5 bg-[#E8FF8A] border border-[#BDEB19] text-black font-mono text-[9px] md:text-[10px] px-2 py-0.5 rounded-full font-bold">
+        <div className="flex items-center gap-1.5 bg-[#E8FF8A] border border-[#BDEB19] text-black font-mono text-[9px] md:text-[10px] px-2 py-0.5 rounded-full font-bold shadow-sm">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
           <span>LIVE & ACTIVE</span>
         </div>
       </div>
 
       {/* Scores speedometer grid */}
-      <div className="grid grid-cols-3 gap-2 flex-grow items-center justify-center my-2">
+      <div className="grid grid-cols-3 gap-2 flex-grow items-center justify-center my-1.5 relative z-10">
         {scores.map((s, idx) => {
           return (
-            <div key={idx} className="flex flex-col items-center justify-center bg-white border border-[#EAE8E3] rounded-xl p-2 md:p-2.5 shadow-[0_4px_12px_rgba(0,0,0,0.01)] h-[80px] md:h-[86px]">
-              <div className="relative w-10 h-10 md:w-11 md:h-11 flex items-center justify-center mb-1">
+            <div key={idx} className="flex flex-col items-center justify-center bg-white border border-[#EAE8E3] rounded-xl p-2 md:p-2.5 shadow-[0_4px_12px_rgba(0,0,0,0.01)] h-[76px] md:h-[82px]">
+              <div className="relative w-9 h-9 md:w-10 md:h-10 flex items-center justify-center mb-0.5">
                 {/* SVG Radial Meter */}
                 <svg className="w-full h-full transform -rotate-90">
                   <circle
-                    cx="22"
-                    cy="22"
-                    r="16"
+                    cx="18"
+                    cy="18"
+                    r="15"
                     className="stroke-[#F5F5F0]"
                     strokeWidth="3"
                     fill="transparent"
                   />
                   <motion.circle
-                    cx="22"
-                    cy="22"
-                    r="16"
+                    cx="18"
+                    cy="18"
+                    r="15"
                     className="stroke-[#9EC726]"
                     strokeWidth="3.2"
                     fill="transparent"
-                    strokeDasharray={101}
-                    initial={{ strokeDashoffset: 101 }}
-                    animate={isActive ? { strokeDashoffset: 0 } : { strokeDashoffset: 101 }}
-                    transition={{ duration: 1, delay: idx * 0.15, ease: "easeOut" }}
+                    strokeDasharray={95}
+                    initial={{ strokeDashoffset: 95 }}
+                    animate={isActive ? { strokeDashoffset: 0 } : { strokeDashoffset: 95 }}
+                    transition={{ duration: 1.2, delay: idx * 0.18, ease: "easeOut" }}
                   />
                 </svg>
-                <div className="absolute text-[10px] font-mono font-bold text-black">
+                <motion.div 
+                  className="absolute text-[9px] md:text-[10px] font-mono font-bold text-black"
+                  animate={isActive ? { scale: [1, 1.08, 1] } : {}}
+                  transition={{ duration: 2, repeat: Infinity, delay: idx * 0.3 }}
+                >
                   100
-                </div>
+                </motion.div>
               </div>
-              <span className="text-[8px] md:text-[9px] font-semibold text-[#5A5A50] text-center tracking-tight leading-tight line-clamp-1 w-full font-mono">
+              <span className="text-[8px] font-semibold text-[#5A5A50] text-center tracking-tight leading-tight line-clamp-1 w-full font-mono">
                 {s.name}
               </span>
             </div>
@@ -317,26 +567,35 @@ function LaunchVisual({ isActive }: { isActive: boolean }) {
       </div>
 
       {/* Digital Handoff Folder */}
-      <div className="border border-[#EAE8E3] bg-white rounded-xl p-2.5 flex items-center justify-between shadow-[0_4px_12px_rgba(0,0,0,0.01)] mt-1">
+      <div className="border border-[#EAE8E3] bg-white rounded-xl p-2.5 flex items-center justify-between shadow-[0_4px_12px_rgba(0,0,0,0.015)] mt-1.5 relative z-10">
         <div className="flex items-center gap-2 overflow-hidden">
-          <div className="w-7 h-7 rounded-lg bg-[#F5F5F0] border border-[#EAE8E3] flex items-center justify-center shrink-0">
+          <motion.div 
+            className="w-7 h-7 rounded-lg bg-[#F5F5F0] border border-[#EAE8E3] flex items-center justify-center shrink-0"
+            animate={isActive ? { y: [0, -3, 0] } : {}}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
             <svg className="w-3.5 h-3.5 text-black" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
             </svg>
-          </div>
+          </motion.div>
           <div className="text-left overflow-hidden">
-            <p className="text-[10px] font-bold text-[#1A1A1A] truncate leading-normal">
+            <p className="text-[9px] md:text-[10px] font-bold text-[#1A1A1A] truncate leading-normal">
               How-To-Update-Tutorial.mp4
             </p>
-            <p className="text-[8px] font-mono text-[#999999] leading-none">
+            <p className="text-[7px] md:text-[8px] font-mono text-[#999999] leading-none">
               TRAINING VIDEO VAULT
             </p>
           </div>
         </div>
         <button className="flex items-center justify-center w-6 h-6 rounded-full bg-[#C9FE34] hover:bg-[#E8FF8A] border border-black/10 transition-colors shadow-sm shrink-0">
-          <svg className="w-3 h-3 text-black" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M8 5v14l11-7z" />
-          </svg>
+          <motion.div
+            animate={isActive ? { y: [-1, 2, -1] } : {}}
+            transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <svg className="w-3.5 h-3.5 text-black" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </motion.div>
         </button>
       </div>
     </div>
@@ -559,7 +818,7 @@ export default function HowItWorksSection() {
                       duration: 0.5,
                       ease: [0.16, 1, 0.3, 1]
                     }}
-                    className="absolute inset-16 xl:inset-20 rounded-[24px] overflow-hidden border border-[#DEDAD0] bg-white shadow-[0_16px_48px_rgba(0,0,0,0.02)]"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[320px] sm:w-[380px] sm:h-[350px] xl:w-[450px] xl:h-[400px] rounded-[24px] overflow-hidden border border-[#DEDAD0] bg-white shadow-[0_16px_48px_rgba(0,0,0,0.02)]"
                     style={{ pointerEvents: isActive ? "auto" : "none" }}
                   >
                     <StepVisual stepNum={step.num} isActive={isActive} />
