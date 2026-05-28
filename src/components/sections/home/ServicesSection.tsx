@@ -155,7 +155,7 @@ export default function ServicesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.9, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
-              className="group rounded- overflow-hidden transition-all duration-500 shadow-[0_24px_60px_rgba(0,0,0,0.15)] relative border"
+              className="group rounded-lg overflow-hidden transition-all duration-500 shadow-[0_24px_60px_rgba(0,0,0,0.15)] relative border"
               style={{
                 backgroundColor: "var(--card-bg)",
                 borderColor: "var(--card-border)"
