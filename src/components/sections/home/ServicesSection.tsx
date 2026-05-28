@@ -179,7 +179,10 @@ export default function ServicesSection() {
                 </div>
 
                 {/* Right Column: Clean Content */}
-                <div className="lg:col-span-6 p-8 sm:p-12 lg:p-16 flex flex-col justify-between">
+                <div className="lg:col-span-6 p-8 sm:p-12 lg:p-16 flex flex-col justify-between"  style={{
+                    backgroundImage:
+                      "url('https://i.pinimg.com/736x/e4/ec/12/e4ec12f44e8ac845f9df71749d91b4ea.jpg')"
+                  }} >
                   <div>
                     <h3 
                       className="text-[32px] lg:text-[40px] font-display font-medium tracking-tight mb-6 leading-tight group-hover:text-[#C9FE34] transition-colors duration-300"
@@ -190,7 +193,7 @@ export default function ServicesSection() {
 
                     {/* Service Description */}
                     <p 
-                      className="text-[16px] lg:text-[17px] leading-relaxed mb-10 max-w-xl font-medium"
+                      className="text-[16px] lg:text-[22px] leading-relaxed mb-10 max-w-xl font-medium"
                       style={{ color: "var(--text-secondary)" }}
                     >
                       {service.description}
