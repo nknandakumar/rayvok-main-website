@@ -12,8 +12,8 @@ export default function ServicesSection() {
   const services = [
     {
       num: "01",
-      title: "Website Design",
-      description: "A website that makes your ideal client stop, trust you instantly, and reach out — designed from strategy, not templates.",
+      title: "Website",
+      description: "Your site is judged before a word is read. We build websites that win that moment — and turn it into a lead.",
       features: [
         "UI/UX design",
         "Responsive layout",
@@ -27,8 +27,8 @@ export default function ServicesSection() {
     },
     {
       num: "02",
-      title: "Web Development",
-      description: "Fast, clean, and built to perform — not just look good. Every site we build is optimised for speed, SEO, and conversion from the first line of code.",
+      title: "Web Apps",
+      description: "Manual processes cost you more than you realise. We build web apps that replace the chaos with systems that just work.",
       features: [
         "Custom build",
         "CMS integration",
@@ -43,7 +43,7 @@ export default function ServicesSection() {
     {
       num: "03",
       title: "Landing Pages",
-      description: "One page. One goal. Maximum conversions. Built for product launches, campaigns, and lead generation that need to perform from day one.",
+      description: "One page. One goal. Maximum conversions. Built for product launches, campaigns, and lead generation that push every visitor toward the one thing that matters.",
       features: [
         "Single-goal architecture",
         "A/B test ready",
@@ -155,7 +155,7 @@ export default function ServicesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.9, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
-              className="group rounded-[32px] overflow-hidden transition-all duration-500 shadow-[0_24px_60px_rgba(0,0,0,0.15)] relative border"
+              className="group rounded-lg overflow-hidden transition-all duration-500 shadow-[0_24px_60px_rgba(0,0,0,0.15)] relative border"
               style={{
                 backgroundColor: "var(--card-bg)",
                 borderColor: "var(--card-border)"
@@ -197,28 +197,7 @@ export default function ServicesSection() {
                     </p>
                   </div>
 
-                  <div>
-                    {/* Divider with hover reveal animation */}
-                    <div 
-                      className="w-full h-[1px] mb-8 relative overflow-hidden"
-                      style={{ backgroundColor: "var(--divider)" }}
-                    >
-                      <div className="absolute top-0 left-0 w-full h-full bg-[#C9FE34] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" />
-                    </div>
 
-                    {/* Features List (Removed green bullet check circles) */}
-                    <ul className="grid grid-cols-2 sm:grid-cols-2 gap-x-6 gap-y-3.5 mb-4">
-                      {service.features.map((feature, fIndex) => (
-                        <li 
-                          key={fIndex} 
-                          className="text-[14px] font-ui font-medium"
-                          style={{ color: "var(--text-accent)" }}
-                        >
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
                 </div>
               </div>
             </motion.div>
