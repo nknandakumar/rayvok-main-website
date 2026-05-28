@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Navigation from './Navigation';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -25,22 +26,15 @@ export default function Footer() {
             <div className="md:col-span-6 lg:col-span-7 flex flex-col items-start">
               {/* Favicon Icon above wordmark */}
               <div className="flex flex-row gap-2" >
-   <Image
-                src="https://res.cloudinary.com/dokrpo5fl/image/upload/w_128,h_128,c_fill,r_24/RaccentLogo_hadt1o.png"
-                alt="Rayvok Favicon"
-                width={40}
-                height={40}
-                className="w-10 h-10 object-cover rounded-lg mb-4"
-              />
-              {/* Wordmark Logo */}
-              <Image
-                src="https://res.cloudinary.com/dokrpo5fl/image/upload/v1779005682/wordmarklight_bx3hju.png"
-                alt="Rayvok Logo"
-                width={180}
-                height={60}
-                className="h-8 w-auto object-contain mb-6"
-              />
-                
+                <Image
+                  src="https://res.cloudinary.com/dokrpo5fl/image/upload/w_128,h_128,c_fill,r_24/RaccentLogo_hadt1o.png"
+                  alt="Rayvok Favicon"
+                  width={40}
+                  height={40}
+                  className="w-10 h-10 object-cover rounded-full mb-4"
+                />
+                {/* Wordmark Logo */}
+                <span className="font-display font-bold text-4xl  tracking-tight text-white mb-6">Rayvok</span>
               </div>
             
            
@@ -93,14 +87,7 @@ export default function Footer() {
                   >
                     Twitter / X
                   </a>
-                  <a 
-                    href="https://youtube.com" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="hover:text-white transition-colors"
-                  >
-                    Youtube
-                  </a>
+                
                   <a 
                     href="https://linkedin.com" 
                     target="_blank" 
@@ -158,9 +145,9 @@ export default function Footer() {
               <button
                 type="button"
                 onClick={() => setIsWorkOpen(!isWorkOpen)}
-                className="flex items-center justify-between w-full py-5 text-left text-white font-display text-[18px] font-bold transition-colors hover:text-[#C9FE34]"
+                className="flex items-center justify-between w-full py-5 text-left text-white font-display text-[20px] tracking-wide  transition-colors hover:text-[#C9FE34]"
               >
-                <span>Work</span>
+                <span>Navigation</span>
                 <ChevronDown
                   size={18}
                   className={`text-[#8C8C85] transition-transform duration-300 ${
@@ -201,7 +188,7 @@ export default function Footer() {
               <button
                 type="button"
                 onClick={() => setIsSocialOpen(!isSocialOpen)}
-                className="flex items-center justify-between w-full py-5 text-left text-white font-display text-[18px] font-bold transition-colors hover:text-[#C9FE34]"
+                className="flex items-center justify-between w-full py-5 text-left text-white font-display text-[20px] tracking-wide  transition-colors hover:text-[#C9FE34]"
               >
                 <span>Social</span>
                 <ChevronDown
@@ -229,14 +216,7 @@ export default function Footer() {
                       >
                         Twitter / X
                       </a>
-                      <a
-                        href="https://youtube.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-white transition-colors"
-                      >
-                        Youtube
-                      </a>
+                   
                       <a
                         href="https://linkedin.com"
                         target="_blank"
@@ -268,16 +248,10 @@ export default function Footer() {
               alt="Rayvok Icon"
               width={48}
               height={48}
-              className="w-12 h-12 object-cover rounded-2xl"
+              className="w-12 h-12 object-cover rounded-full"
             />
             {/* Wordmark Logo Centered */}
-            <Image
-              src="https://res.cloudinary.com/dokrpo5fl/image/upload/v1779005682/wordmarklight_bx3hju.png"
-              alt="Rayvok Wordmark"
-              width={160}
-              height={40}
-              className="h-8 w-auto object-contain"
-            />
+            <span className="font-display font-bold  text-4xl tracking-wide text-white">Rayvok</span>
             <p className="text-[#8C8C85] text-[12px] mt-2 tracking-wide font-mono uppercase">
               &copy; {currentYear} RAYVOK. ALL RIGHTS RESERVED.
             </p>
@@ -350,29 +324,9 @@ export default function Footer() {
                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
               </svg>
             </a>
-            <a
-              href="https://youtube.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center w-12 h-12 rounded-full border border-white/10 text-white hover:bg-white hover:text-black transition-all duration-300"
-              aria-label="YouTube"
-            >
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
-                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
-              </svg>
-            </a>
+           
             
-            {/* Trailing Brand Icon Badge */}
-            <div className="flex items-center justify-center w-12 h-12 rounded-full overflow-hidden border border-white/10 bg-rayvok-surface select-none">
-              <Image
-                src="https://res.cloudinary.com/dokrpo5fl/image/upload/w_128,h_128,c_fill,r_24/RaccentLogo_hadt1o.png"
-                alt="Rayvok Accent Badge"
-                width={40}
-                height={40}
-                className="w-10 h-10 object-cover rounded-xl"
-              />
-            </div>
+         
           </div>
         </div>
 
