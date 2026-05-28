@@ -713,7 +713,7 @@ export default function HowItWorksSection() {
   ];
 
   return (
-    <section className="py-2 md:py-40  relative overflow-clip bg-rayvok-offwhite">
+    <section className="pt-12 md:py-40  relative overflow-clip bg-rayvok-offwhite">
       {/* Background radial glow */}
       <div className="absolute w-[500px] h-[500px] rounded-full bg-[#C9FE34]/6 blur-[140px] top-[20%] left-[-150px] pointer-events-none" />
       
