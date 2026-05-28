@@ -20,7 +20,7 @@ export default function ServicesSection() {
         "Brand-aligned visuals",
         "CTA architecture",
       ],
-      image: "https://i.pinimg.com/736x/1d/43/35/1d4335e99b360da547b69887a8c22fff.jpg",
+      image: "https://res.cloudinary.com/dokrpo5fl/image/upload/v1779961581/57932ba2-e5b0-4f65-8d31-77f7f370fcde_lhb2kb.png",
       objectPosition: "object-top",
       objectFit: "object-cover",
       imagePadding: ""
@@ -35,7 +35,7 @@ export default function ServicesSection() {
         "Mobile-first",
         "Core Web Vitals optimised",
       ],
-      image: "https://res.cloudinary.com/dokrpo5fl/image/upload/v1779550626/4e8e9846-d7fc-4a0f-a287-b7cf5dd11b92_fqlysj.png",
+      image: "https://res.cloudinary.com/dokrpo5fl/image/upload/v1779962079/8fee14b4baf22ae3e31fedf18056d209_npnes0.jpg",
       objectPosition: "object-center",
       objectFit: "object-cover",
       imagePadding: ""
@@ -155,7 +155,7 @@ export default function ServicesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.9, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
-              className="group rounded-lg overflow-hidden transition-all duration-500 shadow-[0_24px_60px_rgba(0,0,0,0.15)] relative border"
+              className="group rounded- overflow-hidden transition-all duration-500 shadow-[0_24px_60px_rgba(0,0,0,0.15)] relative border"
               style={{
                 backgroundColor: "var(--card-bg)",
                 borderColor: "var(--card-border)"
@@ -179,10 +179,7 @@ export default function ServicesSection() {
                 </div>
 
                 {/* Right Column: Clean Content */}
-                <div className="lg:col-span-6 p-8 sm:p-12 lg:p-16 flex flex-col justify-between"  style={{
-                    backgroundImage:
-                      "url('https://i.pinimg.com/736x/e4/ec/12/e4ec12f44e8ac845f9df71749d91b4ea.jpg')"
-                  }} >
+                <div className="lg:col-span-6 p-8 sm:p-12 lg:p-16 flex flex-col justify-between">
                   <div>
                     <h3 
                       className="text-[32px] lg:text-[40px] font-display font-medium tracking-tight mb-6 leading-tight group-hover:text-[#C9FE34] transition-colors duration-300"
