@@ -92,7 +92,7 @@ export default function ServicesSection() {
     <section 
       ref={sectionRef}
       id="services" 
-      className="py-32 px-6 md:px-12 relative overflow-hidden"
+      className="py-32 px-6 md:px-12 relative bg-rayvok-offwhite overflow-hidden"
       style={{
         backgroundColor: "var(--sec-bg)",
         // Set initial dark theme styles on render to prevent layout flash before GSAP loads

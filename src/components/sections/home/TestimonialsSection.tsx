@@ -119,7 +119,7 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <section id="testimonials" className="py-32 px-6 md:px-12 bg-[#FAF8F5] border-t border-[#EAE7DF] relative overflow-hidden">
+    <section id="testimonials" className="py-32 px-6 md:px-12 bg-rayvok-offwhite  relative overflow-hidden">
       <div className="absolute w-[350px] h-[350px] rounded-full bg-blue-100/20 blur-[100px] bottom-[-100px] right-[-50px] pointer-events-none" />
 
       <div className="container mx-auto">

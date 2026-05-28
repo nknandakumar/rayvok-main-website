@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function FinalCTASection() {
   return (
-    <section className="py-28 md:py-30 px-6 md:px-12 border-t border-[#EAE7DF] text-center bg-[#FAF8F5] relative md:h-screen overflow-hidden">
+    <section className="py-28 md:py-30 px-6 md:px-12  text-center bg-rayvok-offwhite relative md:h-screen overflow-hidden">
       {/* Soft warm background radial accent */}
       <div className="absolute w-[450px] h-[450px] rounded-full bg-[#C9FE34]/5 blur-[120px] bottom-[-200px] left-1/2 -translate-x-1/2 pointer-events-none" />
 

@@ -39,7 +39,7 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="py-24 md:py-36 px-6 md:px-12 bg-rayvok-offwhite border-t border-[#EAE7DF] relative overflow-hidden">
+    <section id="faq" className="py-24 md:py-36 px-6 md:px-12 bg-rayvok-offwhite  relative overflow-hidden">
       {/* Background radial glow */}
       <div className="absolute w-[500px] h-[500px] rounded-full bg-[#C9FE34]/5 blur-[140px] bottom-[-150px] left-[-150px] pointer-events-none" />
 
