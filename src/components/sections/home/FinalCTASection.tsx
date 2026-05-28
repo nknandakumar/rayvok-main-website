@@ -8,7 +8,7 @@ export default function FinalCTASection() {
 
       <div className="container mx-auto pt-10 max-w-4xl relative z-10 flex flex-col justify-center items-center">
         {/* Typographical Heading matching the uploaded screenshot */}
-        <h2 className="text-[#1A1A1A] text-[24px] md:text-[56px] lg:text-[46px] leading-[1.1] tracking-tight font-display font-semibold mb-6">
+        <h2 className="text-[#1A1A1A] text-[24px] md:text-[56px] lg:text-[46px] leading-[1.1] tracking-tight font-display  mb-6">
           We treat every project as a joint venture, where our drive for creativity meets our <span className="text-[#999999]" > clients&apos; pursuit of success</span>, achieving remarkable breakthroughs together.
         </h2>
        

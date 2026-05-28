@@ -51,7 +51,7 @@ export default function Footer() {
         backgroundColor: "var(--footer-bg)",
         color: "var(--footer-text-primary)",
         borderColor: "var(--footer-border)",
-        "--footer-bg": "#FAF8F5",
+        "--footer-bg": "#F5F5F0",
         "--footer-text-primary": "#1A1A1A",
         "--footer-text-hover": "#1A1A1A",
         "--footer-border": "#EAE7DF",

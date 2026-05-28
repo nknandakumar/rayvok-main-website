@@ -52,7 +52,7 @@ export default function FAQSection() {
             <p className="label text-[#5A5A55] rounded-lg bg-[#EAE8E3] border border-[#DEDAD0] inline-block px-4 py-1.5 mb-6">
               FAQ
             </p>
-            <h2 className="text-[#1A1A1A] text-[38px] md:text-[54px] lg:text-[64px] xl:text-[80px] leading-[1.1] tracking-tight font-display font-semibold mb-6">
+            <h2 className="text-[#1A1A1A] text-[32px] md:text-[54px] lg:text-[80px] leading-[1.1] tracking-tight mb-6">
               Questions? <span className="text-[#999999]">Answered.</span>
             </h2>
             <p className="text-[#5C5C57] text-[16px] md:text-[18px] leading-relaxed mb-8 max-w-md">

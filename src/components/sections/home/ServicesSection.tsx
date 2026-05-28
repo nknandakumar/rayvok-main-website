@@ -64,7 +64,7 @@ export default function ServicesSection() {
 
       const ctx = gsap.context(() => {
         gsap.to(sectionRef.current, {
-          "--sec-bg": "#FAF9F5",
+          "--sec-bg": "#F5F5F0",
           "--card-bg": "#FFFFFF",
           "--card-border": "#EAE7DF",
           "--text-primary": "#1A1A1A",
@@ -138,7 +138,7 @@ export default function ServicesSection() {
               whileInView={{ y: 0 }}
               viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[38px] md:text-[54px] lg:text-[80px] leading-[1.1] tracking-tight font-display font-semibold"
+              className="text-[32px] md:text-[54px] lg:text-[80px] leading-[1.1] tracking-tight"
               style={{ color: "var(--text-primary)" }}
             >
               Everything your business needs to show up and convert.

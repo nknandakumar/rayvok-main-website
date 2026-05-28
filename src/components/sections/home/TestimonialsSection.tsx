@@ -141,7 +141,7 @@ export default function TestimonialsSection() {
               whileInView={{ y: 0 }}
               viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[#1A1A1A] text-[38px] md:text-[54px] lg:text-[80px] leading-[1.1] tracking-tight font-display font-semibold"
+              className="text-[#1A1A1A] text-[32px] md:text-[54px] lg:text-[80px] leading-[1.1] tracking-tight"
             >
               Don&apos;t take our <span className="text-[#8C8A82]">word for it.</span>
             </motion.h2>

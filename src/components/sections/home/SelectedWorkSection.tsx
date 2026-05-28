@@ -248,7 +248,7 @@ export default function SelectedWorkSection() {
 										delay: 0.1,
 										ease: [0.16, 1, 0.3, 1],
 									}}
-									className="text-[#1A1A1A] text-[38px] md:text-[54px] lg:text-[80px] leading-[1.1] tracking-tight"
+									className="text-[#1A1A1A] text-[32px] md:text-[54px] lg:text-[80px] leading-[1.1] tracking-tight"
 								>
 									Work that <span className="text-[#999999]">converts</span>,
 									not just impresses.
@@ -392,7 +392,7 @@ export default function SelectedWorkSection() {
             
 								{/* CTA Button — hidden on desktop (cursor replaces it), visible + centered at bottom on mobile */}
 								<div className="relative z-10 md:hidden flex items-end justify-center block">
-									  <Link href="/start" className="btn-primary  text-ui text-lg  order-1  sm:w-auto">
+									  <Link href="/start" className="btn-primary  text-ui text-lg font-semibold  order-1  sm:w-auto">
                 Start a Project
               </Link>
 								</div>

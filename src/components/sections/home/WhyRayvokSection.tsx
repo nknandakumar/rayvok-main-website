@@ -12,7 +12,7 @@ export default function WhyRayvokSection() {
 						WHY US
 					</p>
 					<h2 className="text-[#1A1A1A] text-[32px] md:text-[54px] lg:text-[80px] leading-[1.1] tracking-tight max-w-[980px] mx-auto">
-						Get a premium website with a refreshed branding{" "}
+						Get a premium website with {" "}
 						<span className="text-[#999999]">in 2 weeks</span>, not months
 					</h2>
 				</div>

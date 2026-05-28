@@ -713,18 +713,18 @@ export default function HowItWorksSection() {
   ];
 
   return (
-    <section className="py-24 md:py-40 border-t border-[#EAE7DF] relative overflow-clip bg-rayvok-offwhite">
+    <section className="py-2 md:py-40  relative overflow-clip bg-rayvok-offwhite">
       {/* Background radial glow */}
       <div className="absolute w-[500px] h-[500px] rounded-full bg-[#C9FE34]/6 blur-[140px] top-[20%] left-[-150px] pointer-events-none" />
       
       <div className="w-full">
         {/* Section Header - Centered */}
-        <div className="mb-24 md:mb-36 max-w-4xl mx-auto text-center flex flex-col items-center px-6 md:px-12">
+        <div className="mb-12 md:mb-36 max-w-4xl mx-auto text-center flex flex-col items-center px-6 md:px-12">
           <p className="label text-[#5A5A55] rounded-lg bg-[#EAE8E3] border border-[#DEDAD0] inline-block px-4 py-1.5 mb-6">
             The process
           </p>
-          <h2 className="text-[#1A1A1A] text-[38px] md:text-[54px] lg:text-[80px] leading-[1.1] tracking-tight font-display font-semibold text-center">
-            From first message to <span className="text-[#999999]">live site</span> here&apos;s exactly what happens.
+          <h2 className="text-[#1A1A1A] text-[32px] md:text-[54px] lg:text-[80px] leading-[1.1] tracking-tight text-center">
+            From first message to <span className="text-[#999999]">live site </span> here&apos;s exactly what happens.
           </h2>
         </div>
 
