@@ -28,6 +28,13 @@ export default function Navigation() {
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
+         <Link
+          href="/"
+          className="font-display text-5xl font-bold text-rayvok-offwhite hover:text-rayvok-volt transition-colors"
+          onClick={() => setIsMobileMenuOpen(false)}
+        >
+          Home
+        </Link>
         <Link
           href="/work"
           className="font-display text-5xl font-bold text-rayvok-offwhite hover:text-rayvok-volt transition-colors"
@@ -35,6 +42,7 @@ export default function Navigation() {
         >
           Work
         </Link>
+        {/* Commented out About page link for now
         <Link
           href="/about"
           className="font-display text-5xl font-bold text-rayvok-offwhite hover:text-rayvok-volt transition-colors"
@@ -42,6 +50,7 @@ export default function Navigation() {
         >
           About
         </Link>
+        */}
         <Link
           href="/start"
           className="font-display text-5xl font-bold text-rayvok-offwhite hover:text-rayvok-volt transition-colors"
@@ -84,6 +93,15 @@ export default function Navigation() {
 
           {/* Desktop Nav Links */}
           <nav className="hidden md:flex items-center gap-8 px-4">
+             <Link
+              href="/"
+              className={`font-ui text-[14px] tracking-wide uppercase transition-colors hover:text-rayvok-offwhite ${
+                pathname === "/" ? "text-rayvok-offwhite font-medium" : "text-rayvok-mid"
+              }`}
+            >
+              Home
+            </Link>
+
             <Link
               href="/work"
               className={`font-ui text-[14px] tracking-wide uppercase transition-colors hover:text-rayvok-offwhite ${
@@ -92,6 +110,7 @@ export default function Navigation() {
             >
               Work
             </Link>
+            {/* Commented out About page link for now
             <Link
               href="/about"
               className={`font-ui text-[14px] tracking-wide uppercase transition-colors hover:text-rayvok-offwhite ${
@@ -100,6 +119,7 @@ export default function Navigation() {
             >
               About
             </Link>
+            */}
             <Link
               href="/start"
               className={`font-ui text-[13px] tracking-[0.06em] uppercase transition-colors hover:text-rayvok-volt ${

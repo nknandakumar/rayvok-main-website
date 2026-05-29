@@ -30,7 +30,7 @@ export default function WhyRayvokSection() {
 										<path d="M1 5L4 8L11 1" stroke="#0E0E0E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 									</svg>
 								</span>
-								<span className="text-[#1A1A1A] text-[24px] leading-[36px] font-normal">Flat fee of € 2,000</span>
+								<span className="text-[#1A1A1A] text-[24px] leading-[36px] font-normal">Beskop Design</span>
 							</li>
 							<li className="flex items-center gap-4 py-6">
 								<span className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-[#C9FE34] border border-black/10">
@@ -54,7 +54,7 @@ export default function WhyRayvokSection() {
 										<path d="M1 5L4 8L11 1" stroke="#0E0E0E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 									</svg>
 								</span>
-								<span className="text-[#1A1A1A] text-[24px] leading-[36px] font-normal">Senior designers only</span>
+								<span className="text-[#1A1A1A] text-[24px] leading-[36px] font-normal">Every detail is intentional</span>
 							</li>
 						</ul>
 					</div>
@@ -71,7 +71,7 @@ export default function WhyRayvokSection() {
 										<path d="M1 1L9 9M9 1L1 9" stroke="#8C8A82" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
 									</svg>
 								</span>
-								<span className="text-[#1A1A1A] text-[24px] leading-[36px] font-normal">€ 30,000+ and variable costs</span>
+								<span className="text-[#1A1A1A] text-[24px] leading-[36px] font-normal">Template adapted to fit your name</span>
 							</li>
 							<li className="flex items-center gap-4 py-6">
 								<span className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-[#FAF8F5] border border-[#EAE7DF]">
@@ -95,7 +95,7 @@ export default function WhyRayvokSection() {
 										<path d="M1 1L9 9M9 1L1 9" stroke="#8C8A82" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
 									</svg>
 								</span>
-								<span className="text-[#1A1A1A] text-[24px] leading-[36px] font-normal">Juniors involved</span>
+								<span className="text-[#1A1A1A] text-[24px] leading-[36px] font-normal">Good enough to ship, not to last</span>
 							</li>
 						</ul>
 					</div>

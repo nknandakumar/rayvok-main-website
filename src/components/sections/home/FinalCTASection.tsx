@@ -7,9 +7,10 @@ export default function FinalCTASection() {
       <div className="absolute w-[450px] h-[450px] rounded-full bg-[#C9FE34]/5 blur-[120px] bottom-[-200px] left-1/2 -translate-x-1/2 pointer-events-none" />
 
       <div className="container mx-auto pt-10 max-w-4xl relative z-10 flex flex-col justify-center items-center">
-        {/* Typographical Heading matching the uploaded screenshot */}
         <h2 className="text-[#1A1A1A] text-[24px] md:text-[56px] lg:text-[46px] leading-[1.1] tracking-tight font-display  mb-6">
-          We treat every project as a joint venture, where our drive for creativity meets our <span className="text-[#999999]" > clients&apos; pursuit of success</span>, achieving remarkable breakthroughs together.
+          Your business deserves<br />
+          a presence that works as hard as you do.<br />
+          <span className="text-[#999999]">Let&apos;s build it together</span>
         </h2>
        
 

@@ -6,6 +6,7 @@ import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navigation from './Navigation';
+import { usePathname } from "next/navigation";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -14,9 +15,18 @@ export default function Footer() {
   const [isWorkOpen, setIsWorkOpen] = useState(false);
   const [isSocialOpen, setIsSocialOpen] = useState(false);
   const footerRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+
+  // On "/" (Home), the footer is preceded by a light section.
+  // On this page, we want it to start light and transition to dark on scroll.
+  // On other pages (like /work, /work/[slug] or /start), the page is dark throughout,
+  // so the footer should start and stay solid dark with no transition.
+  const isLightPage = pathname === "/";
 
   // GSAP ScrollTrigger Scroll Transition setup
   useEffect(() => {
+    if (!isLightPage) return;
+
     if (typeof window !== "undefined") {
       gsap.registerPlugin(ScrollTrigger);
 
@@ -41,7 +51,7 @@ export default function Footer() {
 
       return () => ctx.revert();
     }
-  }, []);
+  }, [isLightPage]);
 
   return (
     <footer 
@@ -51,13 +61,13 @@ export default function Footer() {
         backgroundColor: "var(--footer-bg)",
         color: "var(--footer-text-primary)",
         borderColor: "var(--footer-border)",
-        "--footer-bg": "#F5F5F0",
-        "--footer-text-primary": "#1A1A1A",
-        "--footer-text-hover": "#1A1A1A",
-        "--footer-border": "#EAE7DF",
-        "--footer-btn-bg": "#000000",
-        "--footer-btn-text": "#FFFFFF",
-        "--footer-social-border": "rgba(0, 0, 0, 0.1)",
+        "--footer-bg": isLightPage ? "#F5F5F0" : "#000000",
+        "--footer-text-primary": isLightPage ? "#1A1A1A" : "#FFFFFF",
+        "--footer-text-hover": isLightPage ? "#1A1A1A" : "#FFFFFF",
+        "--footer-border": isLightPage ? "#EAE7DF" : "rgba(255, 255, 255, 0.05)",
+        "--footer-btn-bg": isLightPage ? "#000000" : "#FFFFFF",
+        "--footer-btn-text": isLightPage ? "#FFFFFF" : "#000000",
+        "--footer-social-border": isLightPage ? "rgba(0, 0, 0, 0.1)" : "rgba(255, 255, 255, 0.1)",
       } as React.CSSProperties}
     >
       <div className="container mx-auto px-6 md:px-12">

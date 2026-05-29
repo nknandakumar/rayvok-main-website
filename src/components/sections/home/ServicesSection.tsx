@@ -50,7 +50,7 @@ export default function ServicesSection() {
         "Fast turnaround (1–2 weeks)",
         "Analytics-ready",
       ],
-      image: "https://res.cloudinary.com/dokrpo5fl/image/upload/v1779550784/ee4d380f-9de6-466e-8759-8b06ef8393a2.png",
+      image: "https://res.cloudinary.com/dokrpo5fl/image/upload/v1779968157/55d6b08a-2dcf-4d37-90e0-18033af58673_f7vmby.png",
       objectPosition: "object-top",
       objectFit: "object-cover",
       imagePadding: ""

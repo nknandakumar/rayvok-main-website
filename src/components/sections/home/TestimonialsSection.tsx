@@ -16,7 +16,7 @@ type Testimonial = {
 
 function FeedbackCard({ testimonial }: { testimonial: Testimonial }) {
   return (
-    <div className="bg-[#121212] border border-white/5  p-8 md:p-12 shadow-[0_16px_40px_rgba(0,0,0,0.3)] min-h-[340px] md:min-h-[280px] flex flex-col justify-between">
+    <div className="bg-[#121212] border border-white/5  rounded-lg p-8 md:p-12 shadow-[0_16px_40px_rgba(0,0,0,0.3)] min-h-[340px] md:min-h-[280px] flex flex-col justify-between">
       <div className="flex items-center gap-4 mb-8">
         <div className="relative w-12 h-12 rounded-[12px] overflow-hidden shrink-0 border border-white/10">
           <Image

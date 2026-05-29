@@ -1,0 +1,395 @@
+"use client";
+
+import { useState, useCallback, useRef } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+
+export default function WorkPageContent() {
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [activeFilter, setActiveFilter] = useState<"ALL" | "WEBSITES" | "WEB APPS">("ALL");
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    setCursorPos({ x: e.clientX, y: e.clientY });
+  }, []);
+
+  const projects = [
+    {
+      company: "Nexlify Inc.",
+      name: "SaaS Platform Redesign",
+      category: "Web design & development",
+      tags: ["SaaS", "Web Design", "Development", "Framer Motion"],
+      result: "60% increase in demo requests",
+      image:
+        "https://res.cloudinary.com/dokrpo5fl/image/upload/v1779617908/093bcda213e0b719adce00c8a1c8292a_kaqbvt.jpg",
+      slug: "saas-platform",
+      aspect: "aspect-[1/1]",
+      colSpan: "md:col-span-5",
+      offset: "",
+      country: "USA",
+      flagCode: "us",
+      type: "webapp"
+    },
+    {
+      company: "Forma Studio",
+      name: "Architecture Studio Portfolio",
+      category: "Web design & development",
+      tags: ["Creative Portfolio", "Web Design", "Development"],
+      result: "3x more inbound leads",
+      image:
+        "https://res.cloudinary.com/dokrpo5fl/image/upload/v1779617745/c3b8b15d1cf1e40dcc5f0df62dc6037c_etqlzb.jpg",
+      slug: "architecture-studio",
+      aspect: "md:aspect-[1.5/1] aspect-[4/3]",
+      colSpan: "md:col-span-7",
+      offset: "md:mt-24",
+      country: "UAE",
+      flagCode: "ae",
+      type: "website"
+    },
+    {
+      company: "Orion Commerce",
+      name: "D2C E-commerce Experience",
+      category: "Web design & development",
+      tags: ["E-commerce", "Web Design", "Development"],
+      result: "2.4% conversion increase",
+      image:
+        "https://images.unsplash.com/photo-1555421689-491a97ff2040?q=80&w=2670&auto=format&fit=crop",
+      slug: "d2c-brand",
+      aspect: "md:aspect-[21/9] aspect-[16/9]",
+      colSpan: "md:col-span-12",
+      offset: "mt-10",
+      country: "UK",
+      flagCode: "gb",
+      type: "webapp"
+    },
+    {
+      company: "Apex Tech",
+      name: "B2B Tech Landing Page",
+      category: "Web design & development",
+      tags: ["Landing Page", "Web Design", "Development"],
+      result: "40% acquisition drop",
+      image:
+        "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=2676&auto=format&fit=crop",
+      slug: "b2b-landing-page",
+      aspect: "md:aspect-[1.5/1] aspect-[4/3]",
+      colSpan: "md:col-span-7",
+      offset: "",
+      country: "GER",
+      flagCode: "de",
+      type: "website"
+    },
+    {
+      company: "Lumina Agency",
+      name: "Creative Branding Experience",
+      category: "Web design & development",
+      tags: ["Branding", "Creative", "Web Design"],
+      result: "95 Lighthouse score",
+      image:
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
+      slug: "creative-branding",
+      aspect: "aspect-[1/1]",
+      colSpan: "md:col-span-5",
+      offset: "md:mt-24",
+      country: "FRA",
+      flagCode: "fr",
+      type: "website"
+    },
+  ];
+
+  const filteredProjects = projects.filter((project) => {
+    if (activeFilter === "ALL") return true;
+    if (activeFilter === "WEBSITES") return project.type === "website";
+    if (activeFilter === "WEB APPS") return project.type === "webapp";
+    return true;
+  });
+
+  return (
+    <>
+      {/* ── Custom Rectangle Cursor ────────────────────────────── */}
+      <AnimatePresence>
+        {hoveredCard !== null && (
+          <motion.div
+            className="fixed z-[9999] pointer-events-none hidden md:flex items-center justify-center"
+            style={{
+              left: cursorPos.x,
+              top: cursorPos.y,
+              translateX: "-50%",
+              translateY: "-50%",
+            }}
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.7 }}
+            transition={{ type: "spring", stiffness: 500, damping: 30 }}
+          >
+            <div className="bg-rayvok-volt text-rayvok-black px-5 py-2.5 flex items-center gap-2.5 shadow-xl font-semibold">
+              <svg
+                width="11"
+                height="11"
+                viewBox="0 0 12 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 11L11 1M11 1H3M11 1V9"
+                  stroke="#0E0E0E"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <span className="font-ui font-bold text-[11px] uppercase tracking-[0.1em] whitespace-nowrap">
+                View Project
+              </span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <section
+        id="work-page"
+        ref={sectionRef}
+        className="py-32 px-6 md:px-12 bg-rayvok-black relative overflow-hidden min-h-screen"
+        onMouseMove={handleMouseMove}
+      >
+        {/* Subtle tonal accents */}
+        <div className="absolute w-[600px] h-[600px] rounded-full bg-rayvok-volt/5 blur-[180px] bottom-[-200px] right-[-200px] -z-10 pointer-events-none" />
+        <div className="absolute w-[500px] h-[500px] rounded-full bg-blue-900/10 blur-[150px] top-[-100px] left-[-100px] -z-10 pointer-events-none" />
+
+        <div className="container mx-auto">
+          {/* ── Section Header ─────────────────────────────── */}
+          <div className="flex flex-col items-center justify-center mb-24 text-center">
+            <div className="overflow-hidden mb-6">
+              <motion.p
+                initial={{ y: "100%" }}
+                whileInView={{ y: 0 }}
+                viewport={{ once: true, amount: 0 }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="label text-rayvok-volt bg-rayvok-volt/10 border border-rayvok-volt/20 inline-block px-4 py-1.5 font-mono rounded-lg uppercase tracking-widest"
+              >
+                Case Studies
+              </motion.p>
+            </div>
+
+            <div className="overflow-hidden">
+              <motion.h1
+                initial={{ y: "100%" }}
+                whileInView={{ y: 0 }}
+                viewport={{ once: true, amount: 0 }}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.1,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="text-rayvok-offwhite text-[48px] sm:text-[80px] md:text-[120px] lg:text-[150px] font-black uppercase tracking-[0.08em] leading-[0.9]"
+              >
+                OUR WORKS
+              </motion.h1>
+            </div>
+
+            <div className="overflow-hidden max-w-xl mx-auto">
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-rayvok-mid text-[16px] md:text-[18px] font-medium mt-6 leading-relaxed"
+              >
+                Web design and development built for one goal — making your business impossible to ignore online.
+              </motion.p>
+            </div>
+
+            {/* ── Dynamic Filter Buttons ──────────────────────── */}
+            <div className="flex flex-wrap items-center justify-center gap-4 mt-12">
+              {(["ALL", "WEBSITES", "WEB APPS"] as const).map((filter) => (
+                <button
+                  key={filter}
+                  onClick={() => setActiveFilter(filter)}
+                  className={`font-ui text-[12px] tracking-[0.08em] uppercase px-6 py-2.5 rounded-full border transition-all duration-300 cursor-pointer ${
+                    activeFilter === filter
+                      ? "bg-rayvok-volt border-rayvok-volt text-rayvok-black font-semibold shadow-[0_4px_12px_rgba(201,254,52,0.2)]"
+                      : "border-white/10 text-rayvok-mid hover:border-white/30 hover:text-rayvok-offwhite"
+                  }`}
+                >
+                  {filter}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* ── Dynamic Layout Grid ────────────────────── */}
+          {activeFilter === "ALL" ? (
+            /* Asymmetric staggered grid (optimized for 5 projects layout) */
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-x-10 gap-y-16 items-start">
+              {filteredProjects.map((project, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: idx * 0.05,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  className={`${project.colSpan} ${project.offset} group block md:cursor-none cursor-pointer`}
+                  onMouseEnter={() => setHoveredCard(idx)}
+                  onMouseLeave={() => setHoveredCard(null)}
+                >
+                  <Link
+                    href={`/work/${project.slug}`}
+                    className={
+                      idx === 2 ? "block w-full max-w-[1300px] mx-auto" : "block"
+                    }
+                  >
+                    <div
+                      className={`relative ${idx === 2 ? "w-full md:h-[720px] h-[400px]" : project.aspect} overflow-hidden mb-6 border border-white/10 bg-[#121212]`}
+                    >
+                      <Image
+                        src={project.image}
+                        alt={project.name}
+                        fill
+                        className="object-cover scale-[1.05] transition-transform duration-600 ease-out group-hover:scale-[1.00]"
+                      />
+
+                      <div
+                        className="absolute inset-0 z-10 transition-opacity duration-500 opacity-0 group-hover:opacity-100 pointer-events-none"
+                        style={{
+                          boxShadow: "inset 0 0 80px 24px rgba(0,0,0,0.48)",
+                        }}
+                      />
+
+                      <div className="absolute bottom-4 right-4 z-20 bg-rayvok-black/90 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={`https://flagcdn.com/w40/${project.flagCode}.png`}
+                          alt={project.country}
+                          width={20}
+                          height={15}
+                          className="rounded-[2px] rounded-full object-cover"
+                          style={{ width: 20, height: 20 }}
+                        />
+                        <span className="font-ui font-semibold text-[11px] text-rayvok-offwhite tracking-wider uppercase leading-none">
+                          {project.country}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="space-y-2.5">
+                      <div className="flex items-center gap-2 text-rayvok-mid font-ui text-[13px] tracking-wider uppercase">
+                        <span>{project.company}</span>
+                      </div>
+
+                      <h3 className="text-rayvok-offwhite text-[24px] lg:text-[28px] font-display font-medium tracking-tight leading-tight group-hover:text-rayvok-volt transition-colors duration-300">
+                        {project.name}
+                      </h3>
+
+                      <div className="flex items-center gap-2">
+                        <span className="font-ui text-[11px] text-rayvok-volt tracking-wider uppercase">
+                          {project.result}
+                        </span>
+                      </div>
+
+                      <div className="flex flex-wrap gap-2 pt-1">
+                        {project.tags.map((tag, tIdx) => (
+                          <span
+                            key={tIdx}
+                            className="font-ui text-[11px] tracking-[0.06em] uppercase px-3 py-1 rounded-full border border-white/10 text-rayvok-offwhite/60"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          ) : (
+            /* Symmetric 2-column grid when filters are active (prevents weird gaps) */
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+              {filteredProjects.map((project, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: idx * 0.05,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  className="group block md:cursor-none cursor-pointer"
+                  onMouseEnter={() => setHoveredCard(idx)}
+                  onMouseLeave={() => setHoveredCard(null)}
+                >
+                  <Link href={`/work/${project.slug}`} className="block">
+                    <div
+                      className="relative aspect-[16/10] overflow-hidden mb-6 border border-white/10 bg-[#121212]"
+                    >
+                      <Image
+                        src={project.image}
+                        alt={project.name}
+                        fill
+                        className="object-cover scale-[1.05] transition-transform duration-600 ease-out group-hover:scale-[1.00]"
+                      />
+
+                      <div
+                        className="absolute inset-0 z-10 transition-opacity duration-500 opacity-0 group-hover:opacity-100 pointer-events-none"
+                        style={{
+                          boxShadow: "inset 0 0 80px 24px rgba(0,0,0,0.48)",
+                        }}
+                      />
+
+                      <div className="absolute bottom-4 right-4 z-20 bg-rayvok-black/90 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={`https://flagcdn.com/w40/${project.flagCode}.png`}
+                          alt={project.country}
+                          width={20}
+                          height={15}
+                          className="rounded-[2px] rounded-full object-cover"
+                          style={{ width: 20, height: 20 }}
+                        />
+                        <span className="font-ui font-semibold text-[11px] text-rayvok-offwhite tracking-wider uppercase leading-none">
+                          {project.country}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="space-y-2.5">
+                      <div className="flex items-center gap-2 text-rayvok-mid font-ui text-[13px] tracking-wider uppercase">
+                        <span>{project.company}</span>
+                      </div>
+
+                      <h3 className="text-rayvok-offwhite text-[24px] lg:text-[28px] font-display font-medium tracking-tight leading-tight group-hover:text-rayvok-volt transition-colors duration-300">
+                        {project.name}
+                      </h3>
+
+                      <div className="flex items-center gap-2">
+                        <span className="font-ui text-[11px] text-rayvok-volt tracking-wider uppercase">
+                          {project.result}
+                        </span>
+                      </div>
+
+                      <div className="flex flex-wrap gap-2 pt-1">
+                        {project.tags.map((tag, tIdx) => (
+                          <span
+                            key={tIdx}
+                            className="font-ui text-[11px] tracking-[0.06em] uppercase px-3 py-1 rounded-full border border-white/10 text-rayvok-offwhite/60"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    </>
+  );
+}
