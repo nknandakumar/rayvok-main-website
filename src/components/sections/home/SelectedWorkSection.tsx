@@ -187,7 +187,7 @@ export default function SelectedWorkSection() {
 						transition={{ type: "spring", stiffness: 400, damping: 30 }}
 					>
 						<Link
-							href="/work"
+							href="/case-studies"
 							className="pointer-events-auto flex items-center gap-3 bg-[#1A1A1A] text-[#F5F5F0] font-ui  text-[12px] uppercase tracking-[0.1em] px-7 py-3.5 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.22)] hover:bg-rayvok-volt hover:text-rayvok-black transition-all duration-300 whitespace-nowrap"
 						>
 							<span className="w-2 h-2 rounded-full bg-rayvok-volt group-hover:bg-rayvok-black transition-colors" />
@@ -275,7 +275,7 @@ export default function SelectedWorkSection() {
 								onMouseLeave={() => setHoveredCard(null)}
 							>
 								<Link
-									href={`/work/${project.slug}`}
+									href={`/case-studies/${project.slug}`}
 									className={
 										idx === 2 ? "block w-full max-w-[1300px] mx-auto" : "block"
 									}

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 type Testimonial = {
@@ -14,10 +14,26 @@ type Testimonial = {
   after: string;
 };
 
-function FeedbackCard({ testimonial }: { testimonial: Testimonial }) {
+function FeedbackCard({ testimonial, isActive }: { testimonial: Testimonial; isActive: boolean }) {
+  const combinedText = `${testimonial.before} ${testimonial.during} ${testimonial.after}`;
   return (
-    <div className="bg-[#121212] border border-white/5  rounded-lg p-8 md:p-12 shadow-[0_16px_40px_rgba(0,0,0,0.3)] min-h-[340px] md:min-h-[280px] flex flex-col justify-between">
-      <div className="flex items-center gap-4 mb-8">
+    <div className={`bg-[#121212] border border-white/5 rounded-2xl p-8 md:p-12 min-h-[320px] flex flex-col justify-between h-full select-none transition-all duration-500
+      ${isActive 
+        ? "shadow-[0_40px_80px_-20px_rgba(0,0,0,0.38)]" 
+        : "shadow-none"
+      }
+    `}>
+      <div>
+        {/* Elegant Quotation Mark Icon */}
+        <div className="text-[#C9FE34] text-[64px] font-serif leading-none h-6 select-none pointer-events-none opacity-40">
+          &ldquo;
+        </div>
+        <p className="text-[#FAF8F5] text-[16px] md:text-[20px] lg:text-[22px] leading-[1.6] font-display font-medium tracking-tight mb-8">
+          {combinedText}
+        </p>
+      </div>
+
+      <div className="flex items-center gap-4">
         <div className="relative w-12 h-12 rounded-[12px] overflow-hidden shrink-0 border border-white/10">
           <Image
             src={testimonial.avatar}
@@ -31,35 +47,32 @@ function FeedbackCard({ testimonial }: { testimonial: Testimonial }) {
           <h4 className="text-[#FAF8F5] text-[18px] font-display font-medium leading-tight">
             {testimonial.author}
           </h4>
-          <p className="font-ui text-[#dddbd2] text-[11px] uppercase tracking-wider  mt-1">
+          <p className="font-ui text-[#dddbd2] text-[11px] uppercase tracking-wider mt-1">
             {testimonial.role} at {testimonial.company}
           </p>
         </div>
-      </div>
-
-      <div className="grid gap-5">
-        {[
-          ["Before", testimonial.before],
-          ["During", testimonial.during],
-          ["After", testimonial.after]
-        ].map(([label, text]) => (
-          <div key={label} className="grid gap-2">
-            <p className="font-ui text-[#FF4D00] text-[11px] uppercase tracking-wider">
-              {label}
-            </p>
-            <p className="text-[#FAF8F5] text-[18px] lg:text-[22px] leading-[1.4] font-display font-medium tracking-tight">
-              {text}
-            </p>
-          </div>
-        ))}
       </div>
     </div>
   );
 }
 
 export default function TestimonialsSection() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(1); // Start at index 1 (cloned last item is index 0)
+  const [shouldAnimate, setShouldAnimate] = useState(true);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = useState(0);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    
+    const handleResize = () => {
+      setContainerWidth(containerRef.current?.offsetWidth || 0);
+    };
+    
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const testimonials: Testimonial[] = [
     {
@@ -91,38 +104,65 @@ export default function TestimonialsSection() {
     }
   ];
 
+  // Extend the testimonials array to support infinite scrolling
+  const extendedTestimonials = [
+    testimonials[testimonials.length - 1], // Cloned last item at index 0
+    ...testimonials,                       // Real items at index 1 to N
+    testimonials[0]                        // Cloned first item at index N + 1
+  ];
+
   const handleNext = () => {
-    setDirection(1);
-    setActiveIndex((prev) => (prev + 1) % testimonials.length);
+    if (!shouldAnimate) return;
+    setActiveIndex((prev) => prev + 1);
   };
 
   const handlePrev = () => {
-    setDirection(-1);
-    setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    if (!shouldAnimate) return;
+    setActiveIndex((prev) => prev - 1);
   };
 
-  const activeTestimonial = testimonials[activeIndex];
+  const handleAnimationComplete = () => {
+    if (activeIndex === testimonials.length + 1) {
+      setShouldAnimate(false);
+      setActiveIndex(1);
+    } else if (activeIndex === 0) {
+      setShouldAnimate(false);
+      setActiveIndex(testimonials.length);
+    }
+  };
 
-  const slideVariants = {
-    enter: (dir: number) => ({
-      x: dir > 0 ? 50 : -50,
-      opacity: 0
-    }),
-    center: {
-      x: 0,
-      opacity: 1
-    },
-    exit: (dir: number) => ({
-      x: dir < 0 ? 50 : -50,
-      opacity: 0
-    })
+  useEffect(() => {
+    if (!shouldAnimate) {
+      const raf = requestAnimationFrame(() => {
+        setShouldAnimate(true);
+      });
+      return () => cancelAnimationFrame(raf);
+    }
+  }, [shouldAnimate]);
+
+  const isMobile = containerWidth < 768;
+  const cardWidth = isMobile ? Math.min(containerWidth - 60, 320) : 650;
+  const gap = isMobile ? 16 : 32;
+
+  // Track offset to center the active card
+  const xOffset = containerWidth > 0 
+    ? (containerWidth / 2) - (cardWidth / 2) - activeIndex * (cardWidth + gap)
+    : 0;
+
+  const handleDragEnd = (event: any, info: any) => {
+    const threshold = 50;
+    if (info.offset.x < -threshold) {
+      handleNext();
+    } else if (info.offset.x > threshold) {
+      handlePrev();
+    }
   };
 
   return (
-    <section id="testimonials" className="py-32 px-6 md:px-12 bg-rayvok-offwhite  relative overflow-hidden">
+    <section id="testimonials" className="py-32 px-6 md:px-12 bg-rayvok-offwhite relative overflow-hidden">
       <div className="absolute w-[350px] h-[350px] rounded-full bg-blue-100/20 blur-[100px] bottom-[-100px] right-[-50px] pointer-events-none" />
 
-      <div className="container mx-auto">
+      <div className="container mx-auto max-w-7xl">
         <div className="mb-24 text-center">
           <div className="overflow-hidden mb-6">
             <motion.p
@@ -148,30 +188,62 @@ export default function TestimonialsSection() {
           </div>
         </div>
 
-        <div className="relative w-full max-w-[850px] mx-auto overflow-hidden">
-          <AnimatePresence mode="wait" initial={false} custom={direction}>
-            <motion.div
-              key={activeIndex}
-              custom={direction}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{
-                x: { type: "spring", stiffness: 350, damping: 30 },
-                opacity: { duration: 0.25 }
-              }}
-            >
-              <FeedbackCard testimonial={activeTestimonial} />
-            </motion.div>
-          </AnimatePresence>
+        {/* Slider Viewport Container */}
+        <div 
+          ref={containerRef} 
+          className="relative w-full overflow-hidden py-4 select-none"
+        >
+          {/* Gradient Overlay Masks for seamless fading on left & right */}
+          <div className="absolute top-0 bottom-0 left-0 w-8 md:w-48 bg-gradient-to-r from-[#F5F5F0] via-[#F5F5F0]/80 to-transparent pointer-events-none z-20" />
+          <div className="absolute top-0 bottom-0 right-0 w-8 md:w-48 bg-gradient-to-l from-[#F5F5F0] via-[#F5F5F0]/80 to-transparent pointer-events-none z-20" />
+
+          <motion.div
+            className="flex items-stretch cursor-grab active:cursor-grabbing"
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.2}
+            onDragEnd={handleDragEnd}
+            animate={{ x: xOffset }}
+            transition={shouldAnimate ? { type: "spring", stiffness: 300, damping: 30 } : { duration: 0 }}
+            onAnimationComplete={handleAnimationComplete}
+            style={{ 
+              gap: `${gap}px`, 
+              width: `${extendedTestimonials.length * cardWidth + (extendedTestimonials.length - 1) * gap}px` 
+            }}
+          >
+            {extendedTestimonials.map((testimonial, idx) => {
+              const isActive = idx === activeIndex;
+              return (
+                <motion.div
+                  key={idx}
+                  className="shrink-0 transition-all duration-500 ease-out"
+                  style={{ 
+                    width: `${cardWidth}px`,
+                  }}
+                  animate={{
+                    scale: isActive ? 1 : 0.92,
+                    opacity: isActive ? 1 : 0.35,
+                    filter: isActive ? "blur(0px)" : "blur(1px)",
+                  }}
+                  onClick={() => {
+                    if (!shouldAnimate) return;
+                    if (!isActive) {
+                      setActiveIndex(idx);
+                    }
+                  }}
+                >
+                  <FeedbackCard testimonial={testimonial} isActive={isActive} />
+                </motion.div>
+              );
+            })}
+          </motion.div>
         </div>
 
-        <div className="flex items-center justify-center gap-6 mt-12">
+        <div className="flex items-center justify-center gap-6 mt-16">
           <button
             onClick={handlePrev}
             aria-label="Previous Testimonial"
-            className="w-12 h-12  border border-[#DEDAD0] bg-white flex items-center justify-center text-[#1A1A1A] hover:bg-[#C9FE34] hover:border-[#BDEB19] hover:text-[#0E0E0E] transition-all duration-300 shadow-[0_2px_8px_rgba(0,0,0,0.02)] cursor-pointer group"
+            className="w-12 h-12 border border-[#DEDAD0] bg-white flex items-center justify-center text-[#1A1A1A] hover:bg-[#C9FE34] hover:border-[#BDEB19] hover:text-[#0E0E0E] transition-all duration-300 shadow-[0_2px_8px_rgba(0,0,0,0.02)] cursor-pointer group"
           >
             <svg className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-0.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -181,7 +253,7 @@ export default function TestimonialsSection() {
           <button
             onClick={handleNext}
             aria-label="Next Testimonial"
-            className="w-12 h-12  border border-[#DEDAD0] bg-white flex items-center justify-center text-[#1A1A1A] hover:bg-[#C9FE34] hover:border-[#BDEB19] hover:text-[#0E0E0E] transition-all duration-300 shadow-[0_2px_8px_rgba(0,0,0,0.02)] cursor-pointer group"
+            className="w-12 h-12 border border-[#DEDAD0] bg-white flex items-center justify-center text-[#1A1A1A] hover:bg-[#C9FE34] hover:border-[#BDEB19] hover:text-[#0E0E0E] transition-all duration-300 shadow-[0_2px_8px_rgba(0,0,0,0.02)] cursor-pointer group"
           >
             <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />

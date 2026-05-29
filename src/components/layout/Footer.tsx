@@ -19,7 +19,7 @@ export default function Footer() {
 
   // On "/" (Home), the footer is preceded by a light section.
   // On this page, we want it to start light and transition to dark on scroll.
-  // On other pages (like /work, /work/[slug] or /start), the page is dark throughout,
+  // On other pages (like /case-studies, /case-studies/[slug] or /start), the page is dark throughout,
   // so the footer should start and stay solid dark with no transition.
   const isLightPage = pathname === "/";
 
@@ -64,7 +64,7 @@ export default function Footer() {
         "--footer-bg": isLightPage ? "#F5F5F0" : "#000000",
         "--footer-text-primary": isLightPage ? "#1A1A1A" : "#FFFFFF",
         "--footer-text-hover": isLightPage ? "#1A1A1A" : "#FFFFFF",
-        "--footer-border": isLightPage ? "#EAE7DF" : "rgba(255, 255, 255, 0.05)",
+        "--footer-border": isLightPage ? "#EAE7DF" : "rgba(255, 255, 255, 0.08)",
         "--footer-btn-bg": isLightPage ? "#000000" : "#FFFFFF",
         "--footer-btn-text": isLightPage ? "#FFFFFF" : "#000000",
         "--footer-social-border": isLightPage ? "rgba(0, 0, 0, 0.1)" : "rgba(255, 255, 255, 0.1)",
@@ -104,11 +104,11 @@ export default function Footer() {
               </p>
               <Link 
                 href="/start" 
-                className="inline-flex items-center justify-center font-ui font-semibold text-[13px] tracking-wide uppercase px-7 py-3 rounded-full hover:opacity-90 active:scale-[0.98] transition-all duration-300 shadow mt-8 border-none"
-                style={{
-                  backgroundColor: "var(--footer-btn-bg)",
-                  color: "var(--footer-btn-text)",
-                }}
+                className={`inline-flex items-center justify-center font-ui font-semibold text-[13px] tracking-wide uppercase px-7 py-3 rounded-full hover:opacity-90 active:scale-[0.98] transition-all duration-300 mt-8 border-none ${
+                  isLightPage
+                    ? "bg-[#000000] text-[#FFFFFF] shadow-[0_2px_12px_rgba(0,0,0,0.15)]"
+                    : "bg-[#FFFFFF] text-[#000000] shadow-[0_2px_12px_rgba(255,255,255,0.1)]"
+                }`}
               >
                 Book a Call
               </Link>
@@ -134,8 +134,8 @@ export default function Footer() {
                   <Link href="/#faq" className="hover:text-[var(--footer-text-hover)] transition-colors">
                     FAQs
                   </Link>
-                  <Link href="/#work" className="hover:text-[var(--footer-text-hover)] transition-colors">
-                    Featured Work
+                  <Link href="/case-studies" className="hover:text-[var(--footer-text-hover)] transition-colors">
+                    Case Studies
                   </Link>
                 </nav>
               </div>
@@ -254,8 +254,8 @@ export default function Footer() {
                       <Link href="/#faq" className="hover:text-[var(--footer-text-hover)] transition-colors">
                         FAQs
                       </Link>
-                      <Link href="/#work" className="hover:text-[var(--footer-text-hover)] transition-colors">
-                        Featured Work
+                      <Link href="/case-studies" className="hover:text-[var(--footer-text-hover)] transition-colors">
+                        Case Studies
                       </Link>
                     </nav>
                   </motion.div>

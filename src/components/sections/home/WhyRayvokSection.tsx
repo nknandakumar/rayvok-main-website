@@ -30,7 +30,7 @@ export default function WhyRayvokSection() {
 										<path d="M1 5L4 8L11 1" stroke="#0E0E0E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 									</svg>
 								</span>
-								<span className="text-[#1A1A1A] text-[24px] leading-[36px] font-normal">Beskop Design</span>
+								<span className="text-[#1A1A1A] text-[24px] leading-[36px] font-normal">Beskope Design</span>
 							</li>
 							<li className="flex items-center gap-4 py-6">
 								<span className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-[#C9FE34] border border-black/10">

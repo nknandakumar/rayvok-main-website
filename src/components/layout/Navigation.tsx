@@ -24,7 +24,7 @@ export default function Navigation() {
       {/* Mobile full-screen overlay — z-index 150, below the navbar pill */}
       <div
         style={{ zIndex: 150 }}
-        className={`fixed inset-0 bg-rayvok-black flex flex-col items-center justify-center gap-10 transition-transform duration-500 ease-in-out md:hidden ${
+        className={`fixed inset-0  flex flex-col items-center justify-center gap-10 transition-transform duration-500 ease-in-out md:hidden ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -36,11 +36,11 @@ export default function Navigation() {
           Home
         </Link>
         <Link
-          href="/work"
+          href="/case-studies"
           className="font-display text-5xl font-bold text-rayvok-offwhite hover:text-rayvok-volt transition-colors"
           onClick={() => setIsMobileMenuOpen(false)}
         >
-          Work
+          Case Studies
         </Link>
         {/* Commented out About page link for now
         <Link
@@ -103,12 +103,12 @@ export default function Navigation() {
             </Link>
 
             <Link
-              href="/work"
+              href="/case-studies"
               className={`font-ui text-[14px] tracking-wide uppercase transition-colors hover:text-rayvok-offwhite ${
-                pathname === "/work" ? "text-rayvok-offwhite font-medium" : "text-rayvok-mid"
+                pathname === "/case-studies" ? "text-rayvok-offwhite font-medium" : "text-rayvok-mid"
               }`}
             >
-              Work
+              Case Studies
             </Link>
             {/* Commented out About page link for now
             <Link

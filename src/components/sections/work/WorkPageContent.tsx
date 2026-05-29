@@ -150,7 +150,7 @@ export default function WorkPageContent() {
       <section
         id="work-page"
         ref={sectionRef}
-        className="py-32 px-6 md:px-12 bg-rayvok-black relative overflow-hidden min-h-screen"
+        className="pt-32 pb-12 px-6 md:px-12 bg-rayvok-black relative overflow-hidden min-h-screen"
         onMouseMove={handleMouseMove}
       >
         {/* Subtle tonal accents */}
@@ -159,19 +159,7 @@ export default function WorkPageContent() {
 
         <div className="container mx-auto">
           {/* ── Section Header ─────────────────────────────── */}
-          <div className="flex flex-col items-center justify-center mb-24 text-center">
-            <div className="overflow-hidden mb-6">
-              <motion.p
-                initial={{ y: "100%" }}
-                whileInView={{ y: 0 }}
-                viewport={{ once: true, amount: 0 }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="label text-rayvok-volt bg-rayvok-volt/10 border border-rayvok-volt/20 inline-block px-4 py-1.5 font-mono rounded-lg uppercase tracking-widest"
-              >
-                Case Studies
-              </motion.p>
-            </div>
-
+          <div className="flex flex-col items-center mb-18 text-left">
             <div className="overflow-hidden">
               <motion.h1
                 initial={{ y: "100%" }}
@@ -182,26 +170,14 @@ export default function WorkPageContent() {
                   delay: 0.1,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="text-rayvok-offwhite text-[48px] sm:text-[80px] md:text-[120px] lg:text-[150px] font-black uppercase tracking-[0.08em] leading-[0.9]"
+                className="text-rayvok-offwhite text-[48px] sm:text-[80px] md:text-[120px] lg:text-[128px] font-black  "
               >
                 OUR WORKS
               </motion.h1>
             </div>
 
-            <div className="overflow-hidden max-w-xl mx-auto">
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-rayvok-mid text-[16px] md:text-[18px] font-medium mt-6 leading-relaxed"
-              >
-                Web design and development built for one goal — making your business impossible to ignore online.
-              </motion.p>
-            </div>
-
             {/* ── Dynamic Filter Buttons ──────────────────────── */}
-            <div className="flex flex-wrap items-center justify-center gap-4 mt-12">
+            <div className="flex flex-wrap items-center justify-start gap-4 mt-12">
               {(["ALL", "WEBSITES", "WEB APPS"] as const).map((filter) => (
                 <button
                   key={filter}
@@ -238,7 +214,7 @@ export default function WorkPageContent() {
                   onMouseLeave={() => setHoveredCard(null)}
                 >
                   <Link
-                    href={`/work/${project.slug}`}
+                    href={`/case-studies/${project.slug}`}
                     className={
                       idx === 2 ? "block w-full max-w-[1300px] mx-auto" : "block"
                     }
@@ -323,7 +299,7 @@ export default function WorkPageContent() {
                   onMouseEnter={() => setHoveredCard(idx)}
                   onMouseLeave={() => setHoveredCard(null)}
                 >
-                  <Link href={`/work/${project.slug}`} className="block">
+                  <Link href={`/case-studies/${project.slug}`} className="block">
                     <div
                       className="relative aspect-[16/10] overflow-hidden mb-6 border border-white/10 bg-[#121212]"
                     >

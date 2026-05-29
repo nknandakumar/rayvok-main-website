@@ -104,7 +104,7 @@ export default function RootLayout({
     >
       <body suppressHydrationWarning className="min-h-screen bg-rayvok-black text-rayvok-offwhite flex flex-col font-body selection:bg-rayvok-volt selection:text-rayvok-black">
         <Navigation />
-        <main className="flex-1 flex flex-col pt-24">{children}</main>
+        <main className="flex-1 flex flex-col">{children}</main>
         <Footer />
       </body>
     </html>

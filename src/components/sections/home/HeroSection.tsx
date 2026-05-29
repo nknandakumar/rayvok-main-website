@@ -14,7 +14,7 @@ export default function HeroSection() {
 
 	return (
 		<>
-			<section className="relative -mt-20 pt-26 pb-2 flex flex-col justify-center overflow-hidden bg-rayvok-black">
+			<section className="relative pt-32 pb-2 flex flex-col justify-center overflow-hidden bg-rayvok-black">
 				<div
 					className="container mx-auto px-6 md:px-12 relative flex flex-col items-start md:items-center text-left md:text-center"
 					style={{ zIndex: 1 }}
@@ -51,10 +51,10 @@ export default function HeroSection() {
 								Let&apos;Start a Project
 							</Link>
 							<Link
-								href="/work"
+								href="/case-studies"
 								className="btn-secondary order-2 md:order-1 w-full sm:w-auto"
 							>
-								See our work
+								See case studies
 							</Link>
 						</div>
 						<SocialProofStrip />
