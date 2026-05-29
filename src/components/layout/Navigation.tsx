@@ -24,7 +24,7 @@ export default function Navigation() {
       {/* Mobile full-screen overlay — z-index 150, below the navbar pill */}
       <div
         style={{ zIndex: 150 }}
-        className={`fixed inset-0  flex flex-col items-center justify-center gap-10 transition-transform duration-500 ease-in-out md:hidden ${
+        className={`fixed inset-0 bg-rayvok-offblack flex flex-col items-center justify-center gap-10 transition-transform duration-500 ease-in-out md:hidden ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >

@@ -22,6 +22,7 @@ export default function Footer() {
   // On other pages (like /case-studies, /case-studies/[slug] or /start), the page is dark throughout,
   // so the footer should start and stay solid dark with no transition.
   const isLightPage = pathname === "/";
+  const isCaseStudyDetail = pathname.startsWith("/case-studies/") && pathname !== "/case-studies";
 
   // GSAP ScrollTrigger Scroll Transition setup
   useEffect(() => {
@@ -61,10 +62,10 @@ export default function Footer() {
         backgroundColor: "var(--footer-bg)",
         color: "var(--footer-text-primary)",
         borderColor: "var(--footer-border)",
-        "--footer-bg": isLightPage ? "#F5F5F0" : "#000000",
+        "--footer-bg": isCaseStudyDetail ? "#0E0E0E" : (isLightPage ? "#F5F5F0" : "#000000"),
         "--footer-text-primary": isLightPage ? "#1A1A1A" : "#FFFFFF",
         "--footer-text-hover": isLightPage ? "#1A1A1A" : "#FFFFFF",
-        "--footer-border": isLightPage ? "#EAE7DF" : "rgba(255, 255, 255, 0.08)",
+        "--footer-border": isCaseStudyDetail ? "transparent" : (isLightPage ? "#EAE7DF" : "rgba(255, 255, 255, 0.08)"),
         "--footer-btn-bg": isLightPage ? "#000000" : "#FFFFFF",
         "--footer-btn-text": isLightPage ? "#FFFFFF" : "#000000",
         "--footer-social-border": isLightPage ? "rgba(0, 0, 0, 0.1)" : "rgba(255, 255, 255, 0.1)",
