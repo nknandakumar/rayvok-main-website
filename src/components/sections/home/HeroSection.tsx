@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Link from "next/link";
+import { gsap } from "gsap";
 import SocialProofStrip from "./SocialProofStrip";
 import ButtonCTA from "@/components/ui/ButtonCTA";
 
@@ -13,6 +15,43 @@ export default function HeroSection() {
 		"https://res.cloudinary.com/dokrpo5fl/image/upload/v1779009695/width_302_aog703.jpg",
 	];
 
+	const eyebrowRef = useRef<HTMLParagraphElement>(null);
+	const headingRef = useRef<HTMLHeadingElement>(null);
+	const descriptionRef = useRef<HTMLParagraphElement>(null);
+	const ctaRef = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		// Prevent any flash by locking initial states
+		gsap.set([eyebrowRef.current, headingRef.current, descriptionRef.current, ctaRef.current], {
+			opacity: 0,
+			y: 35
+		});
+
+		const playIntro = () => {
+			gsap.to([eyebrowRef.current, headingRef.current, descriptionRef.current, ctaRef.current], {
+				opacity: 1,
+				y: 0,
+				duration: 0.9,
+				stagger: 0.12,
+				ease: "power3.out",
+				delay: 0.2
+			});
+		};
+
+		// Check if preloader is already finished, else listen for completion
+		if ((window as any).__rayvokPreloaderComplete) {
+			playIntro();
+		} else {
+			const handlePreloaderComplete = () => {
+				playIntro();
+			};
+			window.addEventListener("preloaderComplete", handlePreloaderComplete);
+			return () => {
+				window.removeEventListener("preloaderComplete", handlePreloaderComplete);
+			};
+		}
+	}, []);
+
 	return (
 		<>
 			<section className="relative pt-32 pb-2 flex flex-col justify-center overflow-hidden bg-rayvok-black">
@@ -22,28 +61,28 @@ export default function HeroSection() {
 				>
 					<div className="max-w-6xl w-full">
 						<p
-							className="label text-[10px] md:text-sm text-white rounded-lg bg-rayvok-surface/20 border border-rayvok-mid inline-block px-4 py-1.5 mb-6 animate-fade-in-up"
-							style={{ animationDelay: "0.1s", animationFillMode: "both" }}
+							ref={eyebrowRef}
+							className="label text-[10px] md:text-sm text-white rounded-lg bg-rayvok-surface/20 border border-rayvok-mid inline-block px-4 py-1.5 mb-6 opacity-0"
 						>
 							Web design &amp; development
 						</p>
 						<h1
-							className="text-rayvok-offwhite mb-6 tracking-[-0.02em] text-[46px] leading-[1] md:text-[64px] lg:text-[88px] animate-fade-in-up"
-							style={{ animationDelay: "0.2s", animationFillMode: "both" }}
+							ref={headingRef}
+							className="text-rayvok-offwhite mb-6 tracking-[-0.02em] text-[46px] leading-[1] md:text-[64px] lg:text-[88px] opacity-0"
 						>
 							Web design that turns visitors into customers
 						</h1>
 						<p
-							className="text-rayvok-mid fontui mb-10 max-w-2xl md:mx-auto text-[16px] md:text-[20px] animate-fade-in-up"
-							style={{ animationDelay: "0.3s", animationFillMode: "both" }}
+							ref={descriptionRef}
+							className="text-rayvok-mid fontui mb-10 max-w-2xl md:mx-auto text-[16px] md:text-[20px] opacity-0"
 						>
 							We design and build websites for businesses, SaaS products, and
 							professionals that convert visitors into leads, booked calls, and
 							customers.
 						</p>
 						<div
-							className="flex  items-center flex-col md:flex-row gap-4 md:justify-center animate-fade-in-up w-full sm:w-auto"
-							style={{ animationDelay: "0.4s", animationFillMode: "both" }}
+							ref={ctaRef}
+							className="flex items-center flex-col md:flex-row gap-4 md:justify-center w-full sm:w-auto opacity-0"
 						>
 							<ButtonCTA
 								href="/start"
@@ -60,7 +99,7 @@ export default function HeroSection() {
 									<span className="block transition-transform duration-300 ease-out group-hover:-translate-y-full">
 										See case studies
 									</span>
-									<span className="absolute  inset-0 block translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0">
+									<span className="absolute inset-0 block translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0">
 										See case studies
 									</span>
 								</span>

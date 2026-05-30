@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // ─── STEP 1: DISCOVERY CALL VISUAL WIDGET ────────────────────────────────────
 function DiscoveryVisual({ isActive }: { isActive: boolean }) {
@@ -669,6 +671,44 @@ function StepVisual({ stepNum, isActive }: StepVisualProps) {
 export default function HowItWorksSection() {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Eyebrow reveal trigger
+      gsap.fromTo(".process-eyebrow",
+        { opacity: 0, y: 25 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".process-eyebrow",
+            start: "top 88%",
+            toggleActions: "play none none reset"
+          }
+        }
+      );
+
+      // Heading reveal trigger
+      gsap.fromTo(".process-heading",
+        { opacity: 0, y: 35 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".process-heading",
+            start: "top 88%",
+            toggleActions: "play none none reset"
+          }
+        }
+      );
+    }
+  }, []);
+
   const steps = [
     {
       num: "01",
@@ -720,10 +760,10 @@ export default function HowItWorksSection() {
       <div className="w-full">
         {/* Section Header - Centered */}
         <div className="mb-12 md:mb-36 max-w-4xl mx-auto text-center flex flex-col items-center px-6 md:px-12">
-          <p className="label text-[#5A5A55] rounded-lg bg-[#EAE8E3] border border-[#DEDAD0] inline-block px-4 py-1.5 mb-6">
+          <p className="process-eyebrow label text-[#5A5A55] rounded-lg bg-[#FFFFFF] border border-[#DEDAD0] inline-block px-4 py-1.5 mb-6 opacity-0">
             The process
           </p>
-          <h2 className="text-[#1A1A1A] text-[32px] md:text-[54px] lg:text-[80px] leading-[1.1] tracking-tight text-center">
+          <h2 className="process-heading text-[#1A1A1A] text-[32px] md:text-[54px] lg:text-[80px] leading-[1.1] tracking-tight text-center opacity-0">
             From first message to <span className="text-[#999999]">live site </span> here&apos;s exactly what happens.
           </h2>
         </div>

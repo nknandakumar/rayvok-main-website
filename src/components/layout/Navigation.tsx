@@ -79,8 +79,8 @@ export default function Navigation() {
     switch (id) {
       case "home": return "Home";
       case "services": return "Services";
-      case "work": return "Selected Work";
-      case "process": return "How It Works";
+      case "work": return "Works";
+      case "process": return "Process";
       case "why-us": return "Why Us";
       case "testimonials": return "Testimonials";
       case "faq": return "FAQ";

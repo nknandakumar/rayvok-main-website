@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import ButtonCTA from "@/components/ui/ButtonCTA";
 
@@ -39,6 +41,46 @@ export default function FAQSection() {
 
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Left column reveal (stagger children)
+      gsap.fromTo(".faq-left-col > *",
+        { opacity: 0, y: 25 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".faq-left-col",
+            start: "top 88%",
+            toggleActions: "play none none reset"
+          }
+        }
+      );
+
+      // Right column accordion items reveal
+      gsap.fromTo(".faq-accordion-item",
+        { opacity: 0, y: 35 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.08,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".faq-right-col",
+            start: "top 88%",
+            toggleActions: "play none none reset"
+          }
+        }
+      );
+    }
+  }, []);
+
   return (
     <section id="faq" className="py-24 md:py-36 px-6 md:px-12 bg-rayvok-offwhite  relative overflow-hidden">
       {/* Background radial glow */}
@@ -49,29 +91,31 @@ export default function FAQSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start justify-start">
           
           {/* Left Column: Heading & CTA */}
-          <div className="lg:col-span-5 flex flex-col items-start lg:sticky -mt-10">
-            <p className="label text-[#5A5A55] rounded-lg bg-[#EAE8E3] border border-[#DEDAD0] inline-block px-4 py-1.5 mb-6">
+          <div className="faq-left-col lg:col-span-5 flex flex-col items-start lg:sticky -mt-10">
+            <p className="label text-[#5A5A55] rounded-lg bg-[#FFFFFF] border border-[#DEDAD0] inline-block px-4 py-1.5 mb-6 opacity-0">
               FAQ
             </p>
-            <h2 className="text-[#1A1A1A] text-[32px] md:text-[54px] lg:text-[80px] leading-[1.1] tracking-tight mb-6">
+            <h2 className="text-[#1A1A1A] text-[32px] md:text-[54px] lg:text-[80px] leading-[1.1] tracking-tight mb-6 opacity-0">
               Questions? <span className="text-[#999999]">Answered.</span>
             </h2>
-            <p className="text-[#5C5C57] text-[16px] md:text-[18px] leading-relaxed mb-8 max-w-md">
+            <p className="text-[#5C5C57] text-[16px] md:text-[18px] leading-relaxed mb-8 max-w-md opacity-0">
               We're here for you ⚡ Have a specific question not covered here? Reach out to us.
             </p>
-            <ButtonCTA href="/start">
-              Book a Call
-            </ButtonCTA>
+            <div className="opacity-0">
+              <ButtonCTA href="/start">
+                Book a Call
+              </ButtonCTA>
+            </div>
           </div>
 
           {/* Right Column: Accordion stack separated by thin border dividers */}
-          <div className="lg:col-span-7 border-t border-[#E6E2D8]">
+          <div className="faq-right-col lg:col-span-7 border-t border-[#E6E2D8]">
             {faqs.map((faq, index) => {
               const isOpen = openIndex === index;
               return (
                 <div 
                   key={index} 
-                  className="border-b border-[#E6E2D8] transition-all duration-300 group"
+                  className="faq-accordion-item border-b border-[#E6E2D8] transition-all duration-300 group opacity-0"
                 >
                   <button 
                     className="w-full text-left py-6 flex justify-between items-center focus:outline-none bg-transparent cursor-pointer"

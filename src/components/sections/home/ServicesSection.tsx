@@ -57,12 +57,13 @@ export default function ServicesSection() {
     }
   ];
 
-  // GSAP ScrollTrigger Scroll Transition setup
+  // GSAP ScrollTrigger Scroll Transition & Reveal setup
   useEffect(() => {
     if (typeof window !== "undefined") {
       gsap.registerPlugin(ScrollTrigger);
 
       const ctx = gsap.context(() => {
+        // Tonal theme change scroll trigger
         gsap.to(sectionRef.current, {
           "--sec-bg": "#F5F5F0",
           "--card-bg": "#FFFFFF",
@@ -81,6 +82,56 @@ export default function ServicesSection() {
             end: "top 25%",
             scrub: true,
           }
+        });
+
+        // Eyebrow reveal trigger
+        gsap.fromTo(".services-eyebrow",
+          { opacity: 0, y: 25 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: ".services-eyebrow",
+              start: "top 88%",
+              toggleActions: "play none none reset"
+            }
+          }
+        );
+
+        // Heading reveal trigger
+        gsap.fromTo(".services-heading",
+          { opacity: 0, y: 35 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: ".services-heading",
+              start: "top 88%",
+              toggleActions: "play none none reset"
+            }
+          }
+        );
+
+        // Service cards reveal trigger (staggered cascade trigger)
+        gsap.utils.toArray<HTMLElement>(".service-card").forEach((card) => {
+          gsap.fromTo(card,
+            { opacity: 0, y: 55 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.9,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 88%",
+                toggleActions: "play none none reset"
+              }
+            }
+          );
         });
       }, sectionRef);
 
@@ -116,46 +167,34 @@ export default function ServicesSection() {
         {/* Eyebrow & Headline with entrance reveals */}
         <div className="mb-24 text-center max-w-4xl">
           <div className="overflow-hidden mb-6 flex justify-center">
-            <motion.p 
-              initial={{ y: "100%" }}
-              whileInView={{ y: 0 }}
-              viewport={{ once: true, amount: 0 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="label inline-block px-4 py-1.5 font-mono rounded-lg border"
+            <p 
+              className="services-eyebrow label inline-block px-4 py-1.5 font-mono rounded-lg border opacity-0"
               style={{
                 color: "var(--label-text)",
-                backgroundColor: "var(--label-bg)",
+                backgroundColor: "#FFFFFF",
                 borderColor: "var(--label-border)"
               }}
             >
               What we build
-            </motion.p>
+            </p>
           </div>
           
           <div className="overflow-hidden">
-            <motion.h2 
-              initial={{ y: "100%" }}
-              whileInView={{ y: 0 }}
-              viewport={{ once: true, amount: 0 }}
-              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[32px] md:text-[54px] lg:text-[80px] leading-[1.1] tracking-tight"
+            <h2 
+              className="services-heading text-[32px] md:text-[54px] lg:text-[80px] leading-[1.1] tracking-tight opacity-0"
               style={{ color: "var(--text-primary)" }}
             >
               Everything your business needs to show up and convert.
-            </motion.h2>
+            </h2>
           </div>
         </div>
 
         {/* Large Vertical Stack of Premium Services */}
         <div className="flex flex-col gap-12 w-full max-w-[1300px]">
           {services.map((service, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0 }}
-              transition={{ duration: 0.9, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
-              className="group rounded-lg overflow-hidden transition-all duration-500 shadow-[0_24px_60px_rgba(0,0,0,0.15)] relative border"
+              className="service-card group rounded-lg overflow-hidden transition-all duration-500 shadow-[0_24px_60px_rgba(0,0,0,0.15)] relative border opacity-0"
               style={{
                 backgroundColor: "var(--card-bg)",
                 borderColor: "var(--card-border)"
@@ -200,7 +239,7 @@ export default function ServicesSection() {
 
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

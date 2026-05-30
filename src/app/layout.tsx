@@ -5,6 +5,7 @@ import "./globals.css";
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import SmoothScroll from "@/components/layout/SmoothScroll";
+import StairsPreloader from "@/components/ui/StairsPreloader";
 
 
 
@@ -80,17 +81,44 @@ const switzer = localFont({
 export const metadata: Metadata = {
   title: "Rayvok — Web Design & Development for Businesses and SaaS",
   description: "Rayvok builds high-performance websites for SaaS products, businesses, and professionals. Web design that turns visitors into revenue.",
+  metadataBase: new URL("https://rayvok.com"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Rayvok — Web Design & Development",
-    description: "Web design that turns visitors into revenue.",
+    description: "Rayvok builds high-performance websites for SaaS products, businesses, and professionals. Web design that turns visitors into revenue.",
+    url: "https://rayvok.com",
     siteName: "Rayvok",
     images: [
       {
-        url: "https://res.cloudinary.com/dokrpo5fl/image/upload/v1779005565/wordmarkdark_kpx3dm.png", // Update with actual OG image later
+        url: "https://res.cloudinary.com/dokrpo5fl/image/upload/v1780156439/520ogImage_vhge7h.png",
         width: 1200,
         height: 630,
+        alt: "Rayvok — Premium Web Design & Development",
       },
     ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Rayvok — Web Design & Development",
+    description: "Rayvok builds high-performance websites for SaaS products, businesses, and professionals. Web design that turns visitors into revenue.",
+    images: ["https://res.cloudinary.com/dokrpo5fl/image/upload/v1780156439/520ogImage_vhge7h.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
@@ -106,11 +134,56 @@ export default function RootLayout({
       className={`${geist.variable} ${inter.variable} ${spaceGrotesk.variable} ${spaceMono.variable} ${ppNeue.variable} ${switzer.variable} ${layGrotesk.variable} ${ppNeueMontrealMono.variable} antialiased`}
     >
       <body suppressHydrationWarning className="min-h-screen bg-rayvok-black text-rayvok-offwhite flex flex-col font-body selection:bg-rayvok-volt selection:text-rayvok-black">
+        <StairsPreloader />
         <SmoothScroll>
           <Navigation />
           <main className="flex-1 flex flex-col">{children}</main>
           <Footer />
         </SmoothScroll>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ProfessionalService",
+              "name": "Rayvok",
+              "image": "https://res.cloudinary.com/dokrpo5fl/image/upload/v1780156439/520ogImage_vhge7h.png",
+              "@id": "https://rayvok.com/#organization",
+              "url": "https://rayvok.com",
+              "telephone": "",
+              "priceRange": "₹20000 - ₹200000",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "",
+                "addressLocality": "",
+                "postalCode": "",
+                "addressCountry": "IN"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 0,
+                "longitude": 0
+              },
+              "openingHoursSpecification": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday"
+                ],
+                "opens": "09:00",
+                "closes": "18:00"
+              },
+              "sameAs": [
+                "https://x.com/rayvok"
+              ],
+              "description": "Rayvok builds high-performance websites for SaaS products, businesses, and professionals. Web design that turns visitors into revenue.",
+              "logo": "https://res.cloudinary.com/dokrpo5fl/image/upload/v1779005565/wordmarkdark_kpx3dm.png"
+            })
+          }}
+        />
       </body>
     </html>
   );

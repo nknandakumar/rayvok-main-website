@@ -4,6 +4,8 @@ import { useState, useCallback, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ButtonCTA from "@/components/ui/ButtonCTA";
 
 export default function SelectedWorkSection() {
@@ -25,6 +27,77 @@ export default function SelectedWorkSection() {
 			{ threshold: 0.08 },
 		);
 		observer.observe(el);
+
+		if (typeof window !== "undefined") {
+			gsap.registerPlugin(ScrollTrigger);
+
+			// Eyebrow reveal trigger
+			gsap.fromTo(".work-eyebrow",
+				{ opacity: 0, y: 25 },
+				{
+					opacity: 1,
+					y: 0,
+					duration: 0.8,
+					ease: "power3.out",
+					scrollTrigger: {
+						trigger: ".work-eyebrow",
+						start: "top 88%",
+						toggleActions: "play none none reset"
+					}
+				}
+			);
+
+			// Heading reveal trigger
+			gsap.fromTo(".work-heading",
+				{ opacity: 0, y: 35 },
+				{
+					opacity: 1,
+					y: 0,
+					duration: 0.9,
+					ease: "power3.out",
+					scrollTrigger: {
+						trigger: ".work-heading",
+						start: "top 88%",
+						toggleActions: "play none none reset"
+					}
+				}
+			);
+
+			// Individual project card reveals
+			gsap.utils.toArray<HTMLElement>(".work-project-card").forEach((card) => {
+				gsap.fromTo(card,
+					{ opacity: 0, y: 55 },
+					{
+						opacity: 1,
+						y: 0,
+						duration: 0.9,
+						ease: "power3.out",
+						scrollTrigger: {
+							trigger: card,
+							start: "top 88%",
+							toggleActions: "play none none reset"
+						}
+					}
+				);
+			});
+
+			// CTA card reveal trigger
+			gsap.fromTo(".work-cta-card",
+				{ opacity: 0, y: 60 },
+				{
+					opacity: 1,
+					y: 0,
+					duration: 1.0,
+					ease: "power3.out",
+					scrollTrigger: {
+						trigger: ".work-cta-card",
+						start: "top 88%",
+						toggleActions: "play none none reset"
+					}
+				}
+			);
+		}
+
 		return () => observer.disconnect();
 	}, []);
 
@@ -228,32 +301,20 @@ export default function SelectedWorkSection() {
 					<div className="flex flex-col md:flex-row md:items-center justify-center mb-24 gap-8">
 						<div className="max-w-2xl flex flex-col gap-6 justify-center items-center text-center">
 							<div className="overflow-hidden mb-6">
-								<motion.p
-									initial={{ y: "100%" }}
-									whileInView={{ y: 0 }}
-									viewport={{ once: true, amount: 0 }}
-									transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-									className="label text-[#20201e] bg-[#EAE8E3] border border-[#E1DDD5] inline-block px-4 py-1.5 font-mono rounded-lg"
+								<p
+									className="work-eyebrow label text-[#20201e] bg-[#FFFFFF] border border-[#E1DDD5] inline-block px-4 py-1.5 font-mono rounded-lg opacity-0"
 								>
 									Selected work
-								</motion.p>
+								</p>
 							</div>
 
 							<div className="overflow-hidden">
-								<motion.h2
-									initial={{ y: "100%" }}
-									whileInView={{ y: 0 }}
-									viewport={{ once: true, amount: 0 }}
-									transition={{
-										duration: 0.8,
-										delay: 0.1,
-										ease: [0.16, 1, 0.3, 1],
-									}}
-									className="text-[#1A1A1A] text-[32px] md:text-[54px] lg:text-[80px] leading-[1.1] tracking-tight"
+								<h2
+									className="work-heading text-[#1A1A1A] text-[32px] md:text-[54px] lg:text-[80px] leading-[1.1] tracking-tight opacity-0"
 								>
 									Work that <span className="text-[#999999]">converts</span>,
 									not just impresses.
-								</motion.h2>
+								</h2>
 							</div>
 						</div>
 					</div>
@@ -261,17 +322,9 @@ export default function SelectedWorkSection() {
 					{/* ── Asymmetric Staggered Grid ────────────────────── */}
 					<div className="grid grid-cols-1 md:grid-cols-12 gap-x-10 gap-y-16 items-start">
 						{projects.map((project, idx) => (
-							<motion.div
+							<div
 								key={idx}
-								initial={{ opacity: 0, y: 40 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								viewport={{ once: true, amount: 0 }}
-								transition={{
-									duration: 0.8,
-									delay: idx * 0.05,
-									ease: [0.16, 1, 0.3, 1],
-								}}
-								className={`${project.colSpan} ${project.offset} group block md:cursor-none cursor-pointer`}
+								className={`${project.colSpan} ${project.offset} work-project-card group block md:cursor-none cursor-pointer opacity-0`}
 								onMouseEnter={() => setHoveredCard(idx)}
 								onMouseLeave={() => setHoveredCard(null)}
 							>
@@ -349,16 +402,12 @@ export default function SelectedWorkSection() {
 										</div>
 									</div>
 								</Link>
-							</motion.div>
+							</div>
 						))}
 
 						{/* ─ Row 2 : CTA Card (col-span-12) ─ */}
-						<motion.div
-							initial={{ opacity: 0, y: 40 }}
-							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ once: true, amount: 0 }}
-							transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-							className="md:col-span-12 w-full mt-10"
+						<div
+							className="work-cta-card md:col-span-12 w-full mt-10 opacity-0"
 							onMouseEnter={() => setCtaHovered(true)}
 							onMouseLeave={() => setCtaHovered(false)}
 						>
@@ -382,21 +431,17 @@ export default function SelectedWorkSection() {
 									}}
 								/>
 
-								{/* Decorative glows */}
-								<div className="absolute top-0 right-0 w-[400px] h-[400px] bg-rayvok-volt/5 rounded-full blur-[100px] pointer-events-none transition-transform duration-700 group-hover:scale-110 z-10" />
-								<div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-blue-500/5 rounded-full blur-[80px] pointer-events-none z-10" />
-
 								{/* Desktop: entire card is clickable via Link overlay */}
 								<Link href="/start" className="absolute inset-0 z-20 hidden md:block" aria-label="Start a project" />
 							</div>
-						</motion.div>
+						</div>
             
-								{/* CTA Button — hidden on desktop (cursor replaces it), visible + centered at bottom on mobile */}
-								<div className="relative z-10 mb-40 md:hidden flex items-end justify-center block">
-									  <ButtonCTA href="/start" className="order-1 sm:w-auto">
-                 Start a Project
-               </ButtonCTA>
-								</div>
+						{/* CTA Button — hidden on desktop (cursor replaces it), visible + centered at bottom on mobile */}
+						<div className="relative z-10 mb-40 md:hidden flex items-end justify-center block">
+							<ButtonCTA href="/start" className="order-1 sm:w-auto">
+								Start a Project
+							</ButtonCTA>
+						</div>
 					</div>
 				</div>
 			</section>

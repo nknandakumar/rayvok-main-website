@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 type Testimonial = {
   author: string;
@@ -72,6 +74,44 @@ export default function TestimonialsSection() {
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Eyebrow reveal trigger
+      gsap.fromTo(".testimonials-eyebrow",
+        { opacity: 0, y: 25 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".testimonials-eyebrow",
+            start: "top 88%",
+            toggleActions: "play none none reset"
+          }
+        }
+      );
+
+      // Heading reveal trigger
+      gsap.fromTo(".testimonials-heading",
+        { opacity: 0, y: 35 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".testimonials-heading",
+            start: "top 88%",
+            toggleActions: "play none none reset"
+          }
+        }
+      );
+    }
   }, []);
 
   const testimonials: Testimonial[] = [
@@ -165,26 +205,18 @@ export default function TestimonialsSection() {
       <div className="container mx-auto max-w-7xl">
         <div className="mb-24 text-center">
           <div className="overflow-hidden mb-6">
-            <motion.p
-              initial={{ y: "100%" }}
-              whileInView={{ y: 0 }}
-              viewport={{ once: true, amount: 0 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="label text-[#8C8A82] rounded-lg bg-[#EAE8E3] border border-[#E1DDD5] inline-block px-4 py-1.5 font-mono"
+            <p
+              className="testimonials-eyebrow label text-[#8C8A82] rounded-lg bg-[#FFFFFF] border border-[#E1DDD5] inline-block px-4 py-1.5 font-mono opacity-0"
             >
               What clients say
-            </motion.p>
+            </p>
           </div>
           <div className="overflow-hidden">
-            <motion.h2
-              initial={{ y: "100%" }}
-              whileInView={{ y: 0 }}
-              viewport={{ once: true, amount: 0 }}
-              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[#1A1A1A] text-[32px] md:text-[54px] lg:text-[80px] leading-[1.1] tracking-tight"
+            <h2
+              className="testimonials-heading text-[#1A1A1A] text-[32px] md:text-[54px] lg:text-[80px] leading-[1.1] tracking-tight opacity-0"
             >
               Don&apos;t take our <span className="text-[#8C8A82]">word for it.</span>
-            </motion.h2>
+            </h2>
           </div>
         </div>
 

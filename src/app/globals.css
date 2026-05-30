@@ -193,3 +193,28 @@ html.lenis, html.lenis body {
   pointer-events: none;
 }
 
+/* Extreme GSAP scroll animation performance optimizations (GPU Compositing) */
+.services-eyebrow,
+.services-heading,
+.service-card,
+.work-eyebrow,
+.work-heading,
+.work-project-card,
+.work-cta-card,
+.process-eyebrow,
+.process-heading,
+.why-us-eyebrow,
+.why-us-heading,
+.why-us-list-item,
+.testimonials-eyebrow,
+.testimonials-heading,
+.faq-accordion-item,
+.faq-left-col > *,
+.cta-heading,
+.cta-content > * {
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+
