@@ -10,15 +10,14 @@ import FinalCTASection from "@/components/sections/home/FinalCTASection";
 export default function Home() {
   return (
     <>
-      <HeroSection />
-      <ServicesSection />
-      
-      <SelectedWorkSection />
-      <HowItWorksSection />
-      <WhyRayvokSection />
-      <TestimonialsSection />
-      <FAQSection />
-      <FinalCTASection />
+      <div id="home"><HeroSection /></div>
+      <div id="services"><ServicesSection /></div>
+      <div id="work"><SelectedWorkSection /></div>
+      <div id="process"><HowItWorksSection /></div>
+      <div id="why-us"><WhyRayvokSection /></div>
+      <div id="testimonials"><TestimonialsSection /></div>
+      <div id="faq"><FAQSection /></div>
+      <div id="cta"><FinalCTASection /></div>
     </>
   );
 }

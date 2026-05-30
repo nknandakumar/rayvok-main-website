@@ -112,7 +112,7 @@ export default function Footer() {
                 }}
               >
                 <span className="relative block overflow-hidden">
-                  <span className="block transition-transform duration-300 ease-out group-hover:-translate-y-full">
+                  <span className="block transition-transform duration-300 ease-out group-hover:-translate-y-full font-medium ">
                     Book a Call
                   </span>
                   <span className="absolute inset-0 block translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0">
@@ -189,7 +189,7 @@ export default function Footer() {
 
           {/* Bottom Part: Copyright and Legal */}
           <div 
-            className="flex flex-col md:flex-row justify-between items-start md:items-center pt-8 border-t gap-6 md:gap-0 mb-2 transition-colors duration-150"
+            className="flex flex-col md:flex-row justify-between items-start md:items-center pt-8 border-t gap-6 md:gap-0 mb-20 transition-colors duration-150"
             style={{ borderColor: "var(--footer-border)" }}
           >
             <p className="text-[#8C8C85] text-[12px] tracking-wide uppercase font-mono">
@@ -218,7 +218,7 @@ export default function Footer() {
         {/* ========================================================================= */}
         {/* MOBILE LAYOUT (< 768px)                                                   */}
         {/* ========================================================================= */}
-        <div className="block md:hidden flex flex-col gap-10">
+        <div className="block md:hidden mb-20 flex flex-col gap-10">
           {/* Collapsible Accordion Navigation Categories */}
           <div 
             className="flex flex-col border-t transition-colors duration-150"

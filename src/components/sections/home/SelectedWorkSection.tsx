@@ -180,7 +180,7 @@ export default function SelectedWorkSection() {
 			<AnimatePresence>
 				{sectionVisible && (
 					<motion.div
-						className="fixed bottom-8 left-1/2 z-[998] pointer-events-none"
+						className="fixed bottom-24 left-1/2 z-[998] pointer-events-none"
 						style={{ translateX: "-50%" }}
 						initial={{ y: 32, opacity: 0 }}
 						animate={{ y: 0, opacity: 1 }}
@@ -392,7 +392,7 @@ export default function SelectedWorkSection() {
 						</motion.div>
             
 								{/* CTA Button — hidden on desktop (cursor replaces it), visible + centered at bottom on mobile */}
-								<div className="relative z-10 md:hidden flex items-end justify-center block">
+								<div className="relative z-10 mb-40 md:hidden flex items-end justify-center block">
 									  <ButtonCTA href="/start" className="order-1 sm:w-auto">
                  Start a Project
                </ButtonCTA>
