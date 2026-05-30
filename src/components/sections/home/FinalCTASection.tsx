@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ButtonCTA from "@/components/ui/ButtonCTA";
 
 export default function FinalCTASection() {
   return (
@@ -16,12 +17,11 @@ export default function FinalCTASection() {
 
         {/* Dynamic primary pill CTA button matching screenshot styling */}
         <div className="flex flex-col items-center gap-6">
-          <Link 
+          <ButtonCTA 
             href="/start" 
-            className="inline-flex items-center justify-center bg-[#C9FE34] text-rayvok-black font-ui font-semibold text-[18px] tracking-wider uppercase px-9 py-4.5 rounded-full hover:bg-rayvok-volt-light hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-[0_4px_16px_rgba(201,254,52,0.15)] border-none"
           >
             Let&apos;s collaborate
-          </Link>
+          </ButtonCTA>
           
           <div className="space-y-1.5 mt-2">
             <p className="caption text-[#8C8C85] tracking-wide uppercase font-semibold">

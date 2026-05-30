@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import ButtonCTA from "@/components/ui/ButtonCTA";
 
 export default function FAQSection() {
   const faqs = [
@@ -58,9 +59,9 @@ export default function FAQSection() {
             <p className="text-[#5C5C57] text-[16px] md:text-[18px] leading-relaxed mb-8 max-w-md">
               We're here for you ⚡ Have a specific question not covered here? Reach out to us.
             </p>
-            <Link href="/start" className="btn-primary">
+            <ButtonCTA href="/start">
               Book a Call
-            </Link>
+            </ButtonCTA>
           </div>
 
           {/* Right Column: Accordion stack separated by thin border dividers */}

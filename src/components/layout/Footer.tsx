@@ -105,13 +105,20 @@ export default function Footer() {
               </p>
               <Link 
                 href="/start" 
-                className={`inline-flex items-center justify-center font-ui font-semibold text-[13px] tracking-wide uppercase px-7 py-3 rounded-full hover:opacity-90 active:scale-[0.98] transition-all duration-300 mt-8 border-none ${
-                  isLightPage
-                    ? "bg-[#000000] text-[#FFFFFF] shadow-[0_2px_12px_rgba(0,0,0,0.15)]"
-                    : "bg-[#FFFFFF] text-[#000000] shadow-[0_2px_12px_rgba(255,255,255,0.1)]"
-                }`}
+                className="group inline-flex items-center justify-center font-ui font-semibold text-[13px] tracking-wide uppercase px-7 py-3 rounded-full hover:opacity-90 active:scale-[0.98] transition-all duration-300 mt-8 border-none shadow-[0_2px_12px_rgba(0,0,0,0.15)]"
+                style={{
+                  backgroundColor: "var(--footer-btn-bg)",
+                  color: "var(--footer-btn-text)",
+                }}
               >
-                Book a Call
+                <span className="relative block overflow-hidden">
+                  <span className="block transition-transform duration-300 ease-out group-hover:-translate-y-full">
+                    Book a Call
+                  </span>
+                  <span className="absolute inset-0 block translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0">
+                    Book a Call
+                  </span>
+                </span>
               </Link>
             </div>
 

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import SocialProofStrip from "./SocialProofStrip";
+import ButtonCTA from "@/components/ui/ButtonCTA";
 
 export default function HeroSection() {
 	const images = [
@@ -41,20 +42,28 @@ export default function HeroSection() {
 							customers.
 						</p>
 						<div
-							className="flex items-center flex-col md:flex-row gap-4 md:justify-center animate-fade-in-up w-full sm:w-auto"
+							className="flex  items-center flex-col md:flex-row gap-4 md:justify-center animate-fade-in-up w-full sm:w-auto"
 							style={{ animationDelay: "0.4s", animationFillMode: "both" }}
 						>
-							<Link
+							<ButtonCTA
 								href="/start"
-								className="btn-primary order-1 md:order-2 w-full sm:w-auto"
+								className="order-1 md:order-2 w-full sm:w-auto"
+								showArrow={false}
 							>
-								Let&apos;Start a Project
-							</Link>
+								Let&apos;s Start a Project
+							</ButtonCTA>
 							<Link
 								href="/case-studies"
-								className="btn-secondary order-2 md:order-1 w-full sm:w-auto"
+								className="group btn-secondary order-2 md:order-1 w-full sm:w-auto"
 							>
-								See case studies
+								<span className="relative block overflow-hidden">
+									<span className="block transition-transform duration-300 ease-out group-hover:-translate-y-full">
+										See case studies
+									</span>
+									<span className="absolute  inset-0 block translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0">
+										See case studies
+									</span>
+								</span>
 							</Link>
 						</div>
 						<SocialProofStrip />

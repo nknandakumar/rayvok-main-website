@@ -4,6 +4,7 @@ import { useState, useCallback, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import ButtonCTA from "@/components/ui/ButtonCTA";
 
 export default function SelectedWorkSection() {
 	const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -392,9 +393,9 @@ export default function SelectedWorkSection() {
             
 								{/* CTA Button — hidden on desktop (cursor replaces it), visible + centered at bottom on mobile */}
 								<div className="relative z-10 md:hidden flex items-end justify-center block">
-									  <Link href="/start" className="btn-primary  text-ui text-lg font-semibold  order-1  sm:w-auto">
-                Start a Project
-              </Link>
+									  <ButtonCTA href="/start" className="order-1 sm:w-auto">
+                 Start a Project
+               </ButtonCTA>
 								</div>
 					</div>
 				</div>

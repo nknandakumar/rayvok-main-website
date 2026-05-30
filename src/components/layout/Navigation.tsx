@@ -155,9 +155,16 @@ export default function Navigation() {
           <div className="flex items-center gap-2 pr-1">
             <Link
               href="/start"
-              className="hidden md:flex items-center justify-center uppercase bg-rayvok-offwhite text-rayvok-black font-ui  text-[13px] font-semibold px-6 py-2.5 rounded-full transition-all hover:bg-white"
+              className="group hidden md:flex items-center justify-center uppercase bg-rayvok-offwhite text-rayvok-black font-ui  text-[13px] font-semibold px-6 py-2.5 rounded-full transition-all hover:bg-white"
             >
-              Start a project
+              <span className="relative block overflow-hidden">
+                <span className="block transition-transform duration-300 ease-out group-hover:-translate-y-full">
+                  Start a project
+                </span>
+                <span className="absolute inset-0 block translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0">
+                  Start a project
+                </span>
+              </span>
             </Link>
 
             {/* Hamburger — always above overlay because it's inside z-200 header */}
