@@ -24,7 +24,7 @@ export default function Navigation() {
       {/* Mobile full-screen overlay — z-index 150, below the navbar pill */}
       <div
         style={{ zIndex: 150 }}
-        className={`fixed inset-0 bg-rayvok-offblack flex flex-col items-center justify-center gap-10 transition-transform duration-500 ease-in-out md:hidden ${
+        className={`fixed inset-0 bg-rayvok-black flex flex-col items-center justify-center gap-10 transition-transform duration-500 ease-in-out md:hidden ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -95,20 +95,34 @@ export default function Navigation() {
           <nav className="hidden md:flex items-center gap-8 px-4">
              <Link
               href="/"
-              className={`font-ui text-[14px] tracking-wide uppercase transition-colors hover:text-rayvok-offwhite ${
+              className={`group font-ui text-[14px] tracking-wide uppercase transition-colors hover:text-rayvok-offwhite ${
                 pathname === "/" ? "text-rayvok-offwhite font-medium" : "text-rayvok-mid"
               }`}
             >
-              Home
+              <span className="relative block overflow-hidden">
+                <span className="block transition-transform duration-300 ease-out group-hover:-translate-y-full">
+                  Home
+                </span>
+                <span className="absolute inset-0 block translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0">
+                  Home
+                </span>
+              </span>
             </Link>
 
             <Link
               href="/case-studies"
-              className={`font-ui text-[14px] tracking-wide uppercase transition-colors hover:text-rayvok-offwhite ${
+              className={`group font-ui text-[14px] tracking-wide uppercase transition-colors hover:text-rayvok-offwhite ${
                 pathname === "/case-studies" ? "text-rayvok-offwhite font-medium" : "text-rayvok-mid"
               }`}
             >
-              Case Studies
+              <span className="relative block overflow-hidden">
+                <span className="block transition-transform duration-300 ease-out group-hover:-translate-y-full">
+                  Case Studies
+                </span>
+                <span className="absolute inset-0 block translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0">
+                  Case Studies
+                </span>
+              </span>
             </Link>
             {/* Commented out About page link for now
             <Link
@@ -122,11 +136,18 @@ export default function Navigation() {
             */}
             <Link
               href="/start"
-              className={`font-ui text-[13px] tracking-[0.06em] uppercase transition-colors hover:text-rayvok-volt ${
+              className={`group font-ui text-[13px] tracking-[0.06em] uppercase transition-colors hover:text-rayvok-volt ${
                 pathname === "/start" ? "text-rayvok-offwhite font-medium" : "text-rayvok-mid"
               }`}
             >
-              Contact
+              <span className="relative block overflow-hidden">
+                <span className="block transition-transform duration-300 ease-out group-hover:-translate-y-full">
+                  Contact
+                </span>
+                <span className="absolute inset-0 block translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0">
+                  Contact
+                </span>
+              </span>
             </Link>
           </nav>
 
