@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 export default function StartPage() {
   const [activeView, setActiveView] = useState<"form" | "cal">("form");
@@ -69,11 +70,16 @@ export default function StartPage() {
               {/* Avatar + Name */}
               <div className="flex items-center gap-4 mb-8">
                 <div className="relative w-14 h-14 rounded-2xl overflow-hidden border border-[#EAE7DF] shrink-0 bg-[#C9FE34]/15 flex items-center justify-center">
-                  {/* Volt R monogram */}
-                  <span className="font-display font-black text-[#1A1A1A] text-xl leading-none">R</span>
+                  <Image 
+                    src="https://res.cloudinary.com/dokrpo5fl/image/upload/w_128,h_128,c_fill,r_24/RaccentLogo_hadt1o.png" 
+                    alt="Rayvok Logo"
+                    width={56}
+                    height={56}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div>
-                  <p className="text-[#1A1A1A] font-display font-semibold text-[18px] leading-tight">Rayvok Studio</p>
+                  <p className="text-[#1A1A1A] font-display font-semibold text-[18px] leading-tight">Rayvok</p>
                   <p className="text-[#8C8C85] font-display text-[12px] uppercase tracking-wider mt-0.5 font-medium">Web Design & Dev</p>
                 </div>
               </div>
