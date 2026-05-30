@@ -6,6 +6,7 @@ import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import StairsPreloader from "@/components/ui/StairsPreloader";
+import CookieConsent from "@/components/ui/CookieConsent";
 
 
 
@@ -92,7 +93,7 @@ export const metadata: Metadata = {
     siteName: "Rayvok",
     images: [
       {
-        url: "https://res.cloudinary.com/dokrpo5fl/image/upload/v1780156439/520ogImage_vhge7h.png",
+        url: "https://res.cloudinary.com/dokrpo5fl/image/upload/c_scale,w_1200,h_630,q_auto,f_jpg/v1780156439/520ogImage_vhge7h.jpg",
         width: 1200,
         height: 630,
         alt: "Rayvok — Premium Web Design & Development",
@@ -105,7 +106,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Rayvok — Web Design & Development",
     description: "Rayvok builds high-performance websites for SaaS products, businesses, and professionals. Web design that turns visitors into revenue.",
-    images: ["https://res.cloudinary.com/dokrpo5fl/image/upload/v1780156439/520ogImage_vhge7h.png"],
+    images: ["https://res.cloudinary.com/dokrpo5fl/image/upload/c_scale,w_1200,h_630,q_auto,f_jpg/v1780156439/520ogImage_vhge7h.jpg"],
   },
   robots: {
     index: true,
@@ -135,6 +136,7 @@ export default function RootLayout({
     >
       <body suppressHydrationWarning className="min-h-screen bg-rayvok-black text-rayvok-offwhite flex flex-col font-body selection:bg-rayvok-volt selection:text-rayvok-black">
         <StairsPreloader />
+        <CookieConsent />
         <SmoothScroll>
           <Navigation />
           <main className="flex-1 flex flex-col">{children}</main>
@@ -147,7 +149,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "ProfessionalService",
               "name": "Rayvok",
-              "image": "https://res.cloudinary.com/dokrpo5fl/image/upload/v1780156439/520ogImage_vhge7h.png",
+              "image": "https://res.cloudinary.com/dokrpo5fl/image/upload/c_scale,w_1200,h_630,q_auto,f_jpg/v1780156439/520ogImage_vhge7h.jpg",
               "@id": "https://rayvok.com/#organization",
               "url": "https://rayvok.com",
               "telephone": "",

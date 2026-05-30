@@ -262,26 +262,20 @@ export default function SelectedWorkSection() {
 					>
 						<Link
 							href="/case-studies"
-							className="pointer-events-auto flex items-center gap-3 bg-[#1A1A1A] text-[#F5F5F0] font-ui  text-[12px] uppercase tracking-[0.1em] px-7 py-3.5 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.22)] hover:bg-rayvok-volt hover:text-rayvok-black transition-all duration-300 whitespace-nowrap"
+							className="pointer-events-auto group flex items-center gap-3 bg-[#1A1A1A] text-[#F5F5F0] font-ui text-[12px] uppercase tracking-[0.1em] px-7 py-3.5 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.22)] hover:bg-rayvok-volt hover:text-rayvok-black transition-all duration-300 whitespace-nowrap"
 						>
 							<span className="w-2 h-2 rounded-full bg-rayvok-volt group-hover:bg-rayvok-black transition-colors" />
-							See all work
-							<svg
-								className=""
-								width="11"
-								height="11"
-								viewBox="0 0 12 12"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path
-									d="M1 11L11 1M11 1H3M11 1V9"
-									stroke="currentColor"
-									strokeWidth="1.8"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-								/>
-							</svg>
+							
+							<span className="relative block overflow-hidden">
+								<span className="block transition-transform duration-300 ease-out group-hover:-translate-y-full">
+									See all work
+								</span>
+								<span className="absolute inset-0 block translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0">
+									See all work
+								</span>
+							</span>
+
+							
 						</Link>
 					</motion.div>
 				)}
