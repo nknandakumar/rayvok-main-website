@@ -4,6 +4,9 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
+import SmoothScroll from "@/components/layout/SmoothScroll";
+
+
 
 const geist = Geist({
   variable: "--font-geist",
@@ -103,9 +106,11 @@ export default function RootLayout({
       className={`${geist.variable} ${inter.variable} ${spaceGrotesk.variable} ${spaceMono.variable} ${ppNeue.variable} ${switzer.variable} ${layGrotesk.variable} ${ppNeueMontrealMono.variable} antialiased`}
     >
       <body suppressHydrationWarning className="min-h-screen bg-rayvok-black text-rayvok-offwhite flex flex-col font-body selection:bg-rayvok-volt selection:text-rayvok-black">
-        <Navigation />
-        <main className="flex-1 flex flex-col">{children}</main>
-        <Footer />
+        <SmoothScroll>
+          <Navigation />
+          <main className="flex-1 flex flex-col">{children}</main>
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );
