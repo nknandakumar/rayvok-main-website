@@ -221,6 +221,10 @@ export const fallbackTestimonials: SanityTestimonial[] = [
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
 
+if (!projectId && typeof window === "undefined") {
+  console.warn("⚠️ [Rayvok] NEXT_PUBLIC_SANITY_PROJECT_ID is not configured in environment variables. Website is running in fallbacks-only mode.");
+}
+
 // Create client conditionally (suppress warn if not configured)
 export const client = projectId
   ? createClient({
@@ -239,7 +243,7 @@ export async function getProjects(): Promise<SanityProject[]> {
     return fallbackProjects;
   }
   try {
-    const query = `*[_type == "project" && !(_id in drafts) && defined(company)] | order(arrangeNumber asc) {
+    const query = `*[_type == "project" && !(_id in path("drafts.**")) && defined(company)] | order(arrangeNumber asc) {
       company,
       name,
       category,
@@ -314,6 +318,9 @@ export async function getProjects(): Promise<SanityProject[]> {
         } as SanityProject;
       });
     }
+    if (typeof window === "undefined") {
+      console.warn("⚠️ [Rayvok] getProjects fetched empty results from Sanity. Returning fallbackProjects.");
+    }
     return fallbackProjects;
   } catch (error) {
     console.warn("Failed to fetch projects from Sanity, falling back:", error);
@@ -329,7 +336,7 @@ export async function getTestimonials(): Promise<SanityTestimonial[]> {
     return fallbackTestimonials;
   }
   try {
-    const query = `*[_type == "testimonial" && !(_id in drafts) && defined(author)] | order(arrangeNumber asc) {
+    const query = `*[_type == "testimonial" && !(_id in path("drafts.**")) && defined(author)] | order(arrangeNumber asc) {
       author,
       role,
       company,
