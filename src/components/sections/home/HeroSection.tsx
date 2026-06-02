@@ -34,7 +34,7 @@ export default function HeroSection() {
 				duration: 0.9,
 				stagger: 0.12,
 				ease: "power3.out",
-				delay: 0.2
+				delay: 0
 			});
 		};
 

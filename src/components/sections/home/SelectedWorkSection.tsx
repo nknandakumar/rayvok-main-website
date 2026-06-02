@@ -8,15 +8,75 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ButtonCTA from "@/components/ui/ButtonCTA";
 
+import { getProjects, SanityProject, fallbackProjects } from "@/sanity/client";
+
+function getCardLayout(idx: number) {
+	const group = Math.floor(idx / 3);
+	const position = idx % 3;
+	const isOddGroup = group % 2 === 1;
+
+	if (position === 2) {
+		return {
+			colSpan: "md:col-span-12",
+			offset: "mt-10",
+			aspect: "md:aspect-[21/9] aspect-[16/9]"
+		};
+	}
+
+	if (position === 0) {
+		if (isOddGroup) {
+			return {
+				colSpan: "md:col-span-7",
+				offset: "",
+				aspect: "md:aspect-[1.5/1] aspect-[4/3]"
+			};
+		} else {
+			return {
+				colSpan: "md:col-span-5",
+				offset: "",
+				aspect: "aspect-[1/1]"
+			};
+		}
+	}
+
+	// position === 1
+	if (isOddGroup) {
+		return {
+			colSpan: "md:col-span-5",
+			offset: "md:mt-24",
+			aspect: "aspect-[1/1]"
+		};
+	} else {
+		return {
+			colSpan: "md:col-span-7",
+			offset: "md:mt-24",
+			aspect: "md:aspect-[1.5/1] aspect-[4/3]"
+		};
+	}
+}
+
 export default function SelectedWorkSection() {
 	const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
 	const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 	const [ctaHovered, setCtaHovered] = useState(false);
 	const [sectionVisible, setSectionVisible] = useState(false);
+	const [projects, setProjects] = useState<SanityProject[]>(fallbackProjects);
 	const sectionRef = useRef<HTMLElement>(null);
 
 	const handleMouseMove = useCallback((e: React.MouseEvent) => {
 		setCursorPos({ x: e.clientX, y: e.clientY });
+	}, []);
+
+	useEffect(() => {
+		let active = true;
+		getProjects().then((data) => {
+			if (active) {
+				setProjects(data);
+			}
+		});
+		return () => {
+			active = false;
+		};
 	}, []);
 
 	useEffect(() => {
@@ -28,156 +88,84 @@ export default function SelectedWorkSection() {
 		);
 		observer.observe(el);
 
-		if (typeof window !== "undefined") {
-			gsap.registerPlugin(ScrollTrigger);
+		const ctx = gsap.context(() => {
+			if (typeof window !== "undefined") {
+				gsap.registerPlugin(ScrollTrigger);
 
-			// Eyebrow reveal trigger
-			gsap.fromTo(".work-eyebrow",
-				{ opacity: 0, y: 25 },
-				{
-					opacity: 1,
-					y: 0,
-					duration: 0.8,
-					ease: "power3.out",
-					scrollTrigger: {
-						trigger: ".work-eyebrow",
-						start: "top 88%",
-						toggleActions: "play none none reset"
+				// Eyebrow reveal trigger
+				gsap.fromTo(".work-eyebrow",
+					{ opacity: 0, y: 25 },
+					{
+						opacity: 1,
+						y: 0,
+						duration: 0.8,
+						ease: "power3.out",
+						scrollTrigger: {
+							trigger: ".work-eyebrow",
+							start: "top 88%",
+							toggleActions: "play none none reset"
+						}
 					}
-				}
-			);
+				);
 
-			// Heading reveal trigger
-			gsap.fromTo(".work-heading",
-				{ opacity: 0, y: 35 },
-				{
-					opacity: 1,
-					y: 0,
-					duration: 0.9,
-					ease: "power3.out",
-					scrollTrigger: {
-						trigger: ".work-heading",
-						start: "top 88%",
-						toggleActions: "play none none reset"
-					}
-				}
-			);
-
-			// Individual project card reveals
-			gsap.utils.toArray<HTMLElement>(".work-project-card").forEach((card) => {
-				gsap.fromTo(card,
-					{ opacity: 0, y: 55 },
+				// Heading reveal trigger
+				gsap.fromTo(".work-heading",
+					{ opacity: 0, y: 35 },
 					{
 						opacity: 1,
 						y: 0,
 						duration: 0.9,
 						ease: "power3.out",
 						scrollTrigger: {
-							trigger: card,
+							trigger: ".work-heading",
 							start: "top 88%",
 							toggleActions: "play none none reset"
 						}
 					}
 				);
-			});
 
-			// CTA card reveal trigger
-			gsap.fromTo(".work-cta-card",
-				{ opacity: 0, y: 60 },
-				{
-					opacity: 1,
-					y: 0,
-					duration: 1.0,
-					ease: "power3.out",
-					scrollTrigger: {
-						trigger: ".work-cta-card",
-						start: "top 88%",
-						toggleActions: "play none none reset"
+				// Individual project card reveals
+				gsap.utils.toArray<HTMLElement>(".work-project-card").forEach((card) => {
+					gsap.fromTo(card,
+						{ opacity: 0, y: 55 },
+						{
+							opacity: 1,
+							y: 0,
+							duration: 0.9,
+							ease: "power3.out",
+							scrollTrigger: {
+								trigger: card,
+								start: "top 88%",
+								toggleActions: "play none none reset"
+							}
+						}
+					);
+				});
+
+				// CTA card reveal trigger
+				gsap.fromTo(".work-cta-card",
+					{ opacity: 0, y: 60 },
+					{
+						opacity: 1,
+						y: 0,
+						duration: 1.0,
+						ease: "power3.out",
+						scrollTrigger: {
+							trigger: ".work-cta-card",
+							start: "top 88%",
+							toggleActions: "play none none reset"
+						}
 					}
-				}
-			);
-		}
+				);
+			}
+		}, sectionRef);
 
-		return () => observer.disconnect();
-	}, []);
+		return () => {
+			observer.disconnect();
+			ctx.revert();
+		};
+	}, [projects]);
 
-	const projects = [
-		{
-			company: "Nexlify Inc.",
-			name: "SaaS Platform Redesign",
-			category: "Web design & development",
-			tags: ["SaaS", "Web Design", "Development", "Framer Motion"],
-			result: "60% increase in demo requests",
-			image:
-				"https://res.cloudinary.com/dokrpo5fl/image/upload/v1779617908/093bcda213e0b719adce00c8a1c8292a_kaqbvt.jpg",
-			slug: "saas-platform",
-			aspect: "aspect-[1/1]",
-			colSpan: "md:col-span-5",
-			offset: "",
-			country: "USA",
-			flagCode: "us",
-		},
-		{
-			company: "Space of Tools",
-			name: "PDF & Document Workflow Platform",
-			category: "Web design & Web App development",
-			tags: ["Web App", "Web Design", "Development","SEO Optimization"],
-			result: "Improved user engagement by 20%",
-			image:
-				"https://res.cloudinary.com/dokrpo5fl/image/upload/v1780390885/34552185-686e-47e6-9880-1ef6700ed521_s5wlyj.png",
-			slug: "space-of-tools",
-			aspect: "md:aspect-[1.5/1] aspect-[4/3]",
-			colSpan: "md:col-span-7",
-			offset: "md:mt-24",
-			country: "IN",
-			flagCode: "in",
-		},
-		{
-			company: "Orion Commerce",
-			name: "D2C E-commerce Experience",
-			category: "Web design & development",
-			tags: ["E-commerce", "Web Design", "Development"],
-			result: "2.4% conversion increase",
-			image:
-				"https://images.unsplash.com/photo-1555421689-491a97ff2040?q=80&w=2670&auto=format&fit=crop",
-			slug: "d2c-brand",
-			aspect: "md:aspect-[21/9] aspect-[16/9]",
-			colSpan: "md:col-span-12",
-			offset: "mt-10",
-			country: "UK",
-			flagCode: "gb",
-		},
-		{
-			company: "Apex Tech",
-			name: "B2B Tech Landing Page",
-			category: "Web design & development",
-			tags: ["Landing Page", "Web Design", "Development"],
-			result: "40% acquisition drop",
-			image:
-				"https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=2676&auto=format&fit=crop",
-			slug: "b2b-landing-page",
-			aspect: "md:aspect-[1.5/1] aspect-[4/3]",
-			colSpan: "md:col-span-7",
-			offset: "",
-			country: "GER",
-			flagCode: "de",
-		},
-		{
-			company: "Lumina Agency",
-			name: "Creative Branding Experience",
-			category: "Web design & development",
-			tags: ["Branding", "Creative", "Web Design"],
-			result: "95 Lighthouse score",
-			image:
-				"https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
-			slug: "creative-branding",
-			aspect: "aspect-[1/1]",
-			colSpan: "md:col-span-5",
-			offset: "md:mt-24",
-			country: "FRA",
-			flagCode: "fr",
-		},
-	];
 
 	return (
 		<>
@@ -315,89 +303,93 @@ export default function SelectedWorkSection() {
 
 					{/* ── Asymmetric Staggered Grid ────────────────────── */}
 					<div className="grid grid-cols-1 md:grid-cols-12 gap-x-10 gap-y-16 items-start">
-						{projects.map((project, idx) => (
-							<div
-								key={idx}
-								className={`${project.colSpan} ${project.offset} work-project-card group block md:cursor-none cursor-pointer opacity-0`}
-								onMouseEnter={() => setHoveredCard(idx)}
-								onMouseLeave={() => setHoveredCard(null)}
-							>
-								<Link
-									href={`/case-studies/${project.slug}`}
-									className={
-										idx === 2 ? "block w-full max-w-[1300px] mx-auto" : "block"
-									}
+						{projects.map((project, idx) => {
+							const layout = getCardLayout(idx);
+							const isLarge = idx % 3 === 2;
+							return (
+								<div
+									key={idx}
+									className={`${layout.colSpan} ${layout.offset} work-project-card group block md:cursor-none cursor-pointer opacity-0`}
+									onMouseEnter={() => setHoveredCard(idx)}
+									onMouseLeave={() => setHoveredCard(null)}
 								>
-									{/* Image wrapper — zoomed-in default, returns to normal on hover (visual shrink, no bg exposed) */}
-									<div
-										className={`relative ${idx === 2 ? "w-full md:h-[720px] h-[400px]" : project.aspect} overflow-hidden mb-6 border border-[#E1DDD5] bg-[#F0EDE8]`}
+									<Link
+										href={`/case-studies/${project.slug}`}
+										className={
+											isLarge ? "block w-full max-w-[1300px] mx-auto" : "block"
+										}
 									>
-										<Image
-											src={project.image}
-											alt={project.name}
-											fill
-											className="object-cover scale-[1.05] transition-transform duration-600 ease-out group-hover:scale-[1.00]"
-										/>
-
-										{/* Inner vignette — darkens around edges on hover, stays inside */}
+										{/* Image wrapper — zoomed-in default, returns to normal on hover (visual shrink, no bg exposed) */}
 										<div
-											className="absolute inset-0 z-10 transition-opacity duration-500 opacity-0 group-hover:opacity-100 pointer-events-none"
-											style={{
-												boxShadow: "inset 0 0 80px 24px rgba(0,0,0,0.28)",
-											}}
-										/>
-
-										{/* Country badge — bottom right */}
-										<div className="absolute bottom-4 right-4 z-20 bg-white/95 backdrop-blur-md border border-black/10 px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm">
-											{/* eslint-disable-next-line @next/next/no-img-element */}
-											<img
-												src={`https://flagcdn.com/w40/${project.flagCode}.png`}
-												alt={project.country}
-												width={20}
-												height={15}
-												className="rounded-[2px] rounded-full object-cover"
-												style={{ width: 20, height: 20 }}
+											className={`relative ${isLarge ? "w-full md:h-[720px] h-[400px]" : layout.aspect} overflow-hidden mb-6 border border-[#E1DDD5] bg-[#F0EDE8]`}
+										>
+											<Image
+												src={project.image}
+												alt={project.name}
+												fill
+												className="object-cover scale-[1.05] transition-transform duration-600 ease-out group-hover:scale-[1.00]"
 											/>
-											<span className="font-ui font-semibold text-[11px] text-[#1A1A1A] tracking-wider uppercase leading-none">
-												{project.country}
-											</span>
-										</div>
-									</div>
 
-									{/* Card meta */}
-									<div className="space-y-2.5">
-										{/* Eyebrow: company */}
-										<div className="flex items-center gap-2 text-[#3A3A3A] font-ui text-[13px] tracking-wider uppercase">
-											<span>{project.company}</span>
-										</div>
+											{/* Inner vignette — darkens around edges on hover, stays inside */}
+											<div
+												className="absolute inset-0 z-10 transition-opacity duration-500 opacity-0 group-hover:opacity-100 pointer-events-none"
+												style={{
+													boxShadow: "inset 0 0 80px 24px rgba(0,0,0,0.28)",
+												}}
+											/>
 
-										{/* Title */}
-										<h3 className="text-[#1A1A1A] text-[24px] lg:text-[28px] font-display font-medium tracking-tight leading-tight">
-											{project.name}
-										</h3>
-
-										{/* Result — above eyebrow */}
-										<div className="flex items-center gap-2">
-											<span className="font-ui text-[11px] text-[#3A3A3A] tracking-wider uppercase ">
-												{project.result}
-											</span>
-										</div>
-
-										{/* Tags */}
-										<div className="flex flex-wrap gap-2 pt-1">
-											{project.tags.map((tag, tIdx) => (
-												<span
-													key={tIdx}
-													className="font-ui text-[11px] tracking-[0.06em] uppercase px-3 py-1 rounded-full border border-[#D5D2CB] text-[#1A1A1A]"
-												>
-													{tag}
+											{/* Country badge — bottom right */}
+											<div className="absolute bottom-4 right-4 z-20 bg-white/95 backdrop-blur-md border border-black/10 px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm">
+												{/* eslint-disable-next-line @next/next/no-img-element */}
+												<img
+													src={`https://flagcdn.com/w40/${project.flagCode}.png`}
+													alt={project.country}
+													width={20}
+													height={15}
+													className="rounded-[2px] rounded-full object-cover"
+													style={{ width: 20, height: 20 }}
+												/>
+												<span className="font-ui font-semibold text-[11px] text-[#1A1A1A] tracking-wider uppercase leading-none">
+													{project.country}
 												</span>
-											))}
+											</div>
 										</div>
-									</div>
-								</Link>
-							</div>
-						))}
+
+										{/* Card meta */}
+										<div className="space-y-2.5">
+											{/* Eyebrow: company */}
+											<div className="flex items-center gap-2 text-[#3A3A3A] font-ui text-[13px] tracking-wider uppercase">
+												<span>{project.company}</span>
+											</div>
+
+											{/* Title */}
+											<h3 className="text-[#1A1A1A] text-[24px] lg:text-[28px] font-display font-medium tracking-tight leading-tight">
+												{project.name}
+											</h3>
+
+											{/* Result — above eyebrow */}
+											<div className="flex items-center gap-2">
+												<span className="font-ui text-[11px] text-[#3A3A3A] tracking-wider uppercase ">
+													{project.result}
+												</span>
+											</div>
+
+											{/* Tags */}
+											<div className="flex flex-wrap gap-2 pt-1">
+												{(project.tags || []).map((tag, tIdx) => (
+													<span
+														key={tIdx}
+														className="font-ui text-[11px] tracking-[0.06em] uppercase px-3 py-1 rounded-full border border-[#D5D2CB] text-[#1A1A1A]"
+													>
+														{tag}
+													</span>
+												))}
+											</div>
+										</div>
+									</Link>
+								</div>
+							);
+						})}
 
 						{/* ─ Row 2 : CTA Card (col-span-12) ─ */}
 						<div

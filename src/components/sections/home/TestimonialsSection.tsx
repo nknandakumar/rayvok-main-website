@@ -6,15 +6,7 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-type Testimonial = {
-  author: string;
-  role: string;
-  company: string;
-  avatar: string;
-  before: string;
-  during: string;
-  after: string;
-};
+import { getTestimonials, fallbackTestimonials, SanityTestimonial as Testimonial } from "@/sanity/client";
 
 function FeedbackCard({ testimonial, isActive }: { testimonial: Testimonial; isActive: boolean }) {
   const combinedText = `${testimonial.before} ${testimonial.during} ${testimonial.after}`;
@@ -114,54 +106,39 @@ export default function TestimonialsSection() {
     }
   }, []);
 
-  const testimonials: Testimonial[] = [
-    {
-      author: "Arjun",
-      role: "Founder",
-      company: "SaaS Platform",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=120&h=120",
-      before: "Our old website looked like a side project and serious visitors were not turning into booked calls.",
-      during: "Rayvok rebuilt the site around the offer, clarified the message, and kept every review round focused.",
-      after: "Within two weeks of launch, three qualified leads reached out, more than the entire previous quarter."
-    },
-    {
-      author: "Meera",
-      role: "Creative Director",
-      company: "Architecture Studio",
-      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=120&h=120",
-      before: "The studio portfolio had strong work, but the website did not explain our process or build trust quickly.",
-      during: "The new pages were shaped around our best projects, client questions, and a cleaner consultation flow.",
-      after: "We now send prospects to the site with confidence, and enquiries come in with much better context."
-    },
-    {
-      author: "Kiran",
-      role: "CEO",
-      company: "Consulting Firm",
-      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=120&h=120",
-      before: "We had been disappointed by agencies before and our website was not creating enough sales conversations.",
-      during: "The process was direct, transparent, and focused on what our buyers needed to understand before contacting us.",
-      after: "The website finally explains our value clearly and brings in enquiries that are easier to qualify."
-    }
-  ];
+  const [testimonials, setTestimonials] = useState<Testimonial[]>(fallbackTestimonials);
 
-  // Extend the testimonials array to support infinite scrolling
-  const extendedTestimonials = [
+  useEffect(() => {
+    let active = true;
+    getTestimonials().then((data) => {
+      if (active) {
+        setTestimonials(data);
+      }
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  // Extend the testimonials array to support infinite scrolling safely
+  const extendedTestimonials = testimonials.length > 0 ? [
     testimonials[testimonials.length - 1], // Cloned last item at index 0
     ...testimonials,                       // Real items at index 1 to N
     testimonials[0]                        // Cloned first item at index N + 1
-  ];
+  ] : [];
 
   const handleNext = () => {
-    if (!shouldAnimate) return;
+    if (!shouldAnimate || testimonials.length === 0) return;
     setActiveIndex((prev) => prev + 1);
   };
 
   const handlePrev = () => {
-    if (!shouldAnimate) return;
+    if (!shouldAnimate || testimonials.length === 0) return;
     setActiveIndex((prev) => prev - 1);
   };
 
   const handleAnimationComplete = () => {
+    if (testimonials.length === 0) return;
     if (activeIndex === testimonials.length + 1) {
       setShouldAnimate(false);
       setActiveIndex(1);

@@ -1,0 +1,717 @@
+[
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "company",
+        "type": "string",
+        "title": "Company Name"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "name",
+        "type": "string",
+        "title": "Project Name"
+      },
+      {
+        "options": {
+          "source": "company",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "e.g. Web design & Web App development",
+        "name": "category",
+        "type": "string"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Website",
+              "value": "website"
+            },
+            {
+              "title": "Web App",
+              "value": "webapp"
+            }
+          ],
+          "layout": "radio"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "website",
+                  "webapp"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "type",
+        "type": "string",
+        "title": "Project Type"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Used to sort the projects on the site. Lower numbers appear first.",
+        "name": "arrangeNumber",
+        "type": "number",
+        "title": "Arrange Number / Hierarchy ID"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "e.g. Improved user engagement by 20%",
+        "name": "result",
+        "type": "string",
+        "title": "Result Highlights (Card Subtext)"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "You can upload an image file or use the external URL fallback.",
+        "name": "image",
+        "type": "image",
+        "title": "Main Grid Image (File Upload)"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Fallback if no image file is uploaded",
+        "name": "imageUrl",
+        "type": "url",
+        "title": "Main Grid Image (External URL Fallback)"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 4
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Upload exactly 4 images (representing [0] hero main mockup, [1] large desktop showcase preview, [2] and [3] double mobile preview grids)",
+        "of": [
+          {
+            "type": "image"
+          }
+        ],
+        "name": "images",
+        "type": "array",
+        "title": "Showcase Preview Mockups (Files Upload)"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "e.g. United Kingdom, India, USA",
+        "name": "country",
+        "type": "string",
+        "title": "Country Name"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "e.g. gb, in, us (lowercase 2-letter ISO code from flagcdn.com)",
+        "name": "flagCode",
+        "type": "string",
+        "title": "Country Flag Code (2-letter)"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "client",
+        "type": "string",
+        "title": "Client Name"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Adds a \"Live Website\" redirect button to the case study",
+        "name": "liveWebsiteUrl",
+        "type": "url",
+        "title": "Live Website URL"
+      },
+      {
+        "description": "Background image for the case study page hero",
+        "name": "heroBgImage",
+        "type": "image",
+        "title": "Hero Background Image (File Upload)"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "heroBgImageUrl",
+        "type": "url",
+        "title": "Hero Background Image (External URL Fallback)"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "e.g. Motorsport & Automotive",
+        "name": "industry",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "e.g. Responsive Website, Web Application",
+        "name": "platform",
+        "type": "string",
+        "title": "Platform Type"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "The main headline shown in the case study page",
+        "name": "heroTitle",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Subtext or summary for SEO metadata",
+        "name": "heroTagline",
+        "type": "string",
+        "title": "Hero Tagline (SEO Meta)"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Full summary introduction text",
+        "name": "abstract",
+        "type": "text",
+        "title": "Abstract Description"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "fields": [
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "problem",
+            "type": "text",
+            "title": "Problem Description"
+          },
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "solution",
+            "type": "text",
+            "title": "Solution Description"
+          }
+        ],
+        "name": "challenges",
+        "type": "object",
+        "title": "Challenges & Solutions"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "fields": [
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "intro",
+            "type": "text",
+            "title": "Results Intro Paragraph"
+          },
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 3
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "of": [
+              {
+                "fields": [
+                  {
+                    "validation": [
+                      {
+                        "rules": [
+                          {
+                            "flag": "presence",
+                            "constraint": "required"
+                          }
+                        ],
+                        "level": "error"
+                      }
+                    ],
+                    "name": "value",
+                    "type": "string",
+                    "title": "Metric Value (e.g. 100%, 4+, UK)"
+                  },
+                  {
+                    "validation": [
+                      {
+                        "rules": [
+                          {
+                            "flag": "presence",
+                            "constraint": "required"
+                          }
+                        ],
+                        "level": "error"
+                      }
+                    ],
+                    "name": "label",
+                    "type": "string",
+                    "title": "Metric Label (e.g. Mobile Responsive)"
+                  }
+                ],
+                "type": "object"
+              }
+            ],
+            "name": "stats",
+            "type": "array",
+            "title": "Stats Metrics"
+          }
+        ],
+        "name": "results",
+        "type": "object",
+        "title": "Results Stats Section"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 4
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Upload exactly 4 images for the showcase grid section",
+        "of": [
+          {
+            "type": "image"
+          }
+        ],
+        "name": "extraImages",
+        "type": "array",
+        "title": "Four Image Grids (Files Upload)"
+      }
+    ],
+    "name": "project",
+    "type": "document",
+    "title": "Project / Case Study"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "author",
+        "type": "string",
+        "title": "Author Name"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "e.g. Founder, CEO, Creative Director",
+        "name": "role",
+        "type": "string",
+        "title": "Author Role"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "company",
+        "type": "string",
+        "title": "Company Name"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "avatar",
+        "type": "image",
+        "title": "Client Avatar (File Upload)"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "avatarUrl",
+        "type": "url",
+        "title": "Client Avatar (External URL Fallback)"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "e.g. Our old website looked like a side project...",
+        "name": "before",
+        "type": "text",
+        "title": "Quote Part 1 (Before Rayvok)"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "e.g. Rayvok rebuilt the site around the offer...",
+        "name": "during",
+        "type": "text",
+        "title": "Quote Part 2 (During rayvok)"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "e.g. Within two weeks of launch, three qualified leads reached out...",
+        "name": "after",
+        "type": "text",
+        "title": "Quote Part 3 (After Rayvok results)"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Sort ordering position in the slider",
+        "name": "arrangeNumber",
+        "type": "number"
+      }
+    ],
+    "name": "testimonial",
+    "type": "document",
+    "title": "Client Testimonial"
+  }
+]
