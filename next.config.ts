@@ -30,7 +30,11 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: ".pinimg.com",
-      }
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+      },
     ],
   },
 };
