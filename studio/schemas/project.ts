@@ -29,8 +29,7 @@ export default {
       name: 'category',
       title: 'Category',
       type: 'string',
-      description: 'e.g. Web design & Web App development',
-      validation: (Rule: any) => Rule.required()
+      description: 'e.g. Web design & Web App development'
     },
     {
       name: 'type',
@@ -42,8 +41,7 @@ export default {
           { title: 'Web App', value: 'webapp' }
         ],
         layout: 'radio'
-      },
-      validation: (Rule: any) => Rule.required()
+      }
     },
     {
       name: 'arrangeNumber',
@@ -56,8 +54,7 @@ export default {
       name: 'result',
       title: 'Result Highlights (Card Subtext)',
       type: 'string',
-      description: 'e.g. Improved user engagement by 20%',
-      validation: (Rule: any) => Rule.required()
+      description: 'e.g. Improved user engagement by 20%'
     },
     {
       name: 'image',
@@ -84,21 +81,18 @@ export default {
       name: 'country',
       title: 'Country Name',
       type: 'string',
-      description: 'e.g. United Kingdom, India, USA',
-      validation: (Rule: any) => Rule.required()
+      description: 'e.g. United Kingdom, India, USA'
     },
     {
       name: 'flagCode',
       title: 'Country Flag Code (2-letter)',
       type: 'string',
-      description: 'e.g. gb, in, us (lowercase 2-letter ISO code from flagcdn.com)',
-      validation: (Rule: any) => Rule.required()
+      description: 'e.g. gb, in, us (lowercase 2-letter ISO code from flagcdn.com)'
     },
     {
       name: 'client',
       title: 'Client Name',
-      type: 'string',
-      validation: (Rule: any) => Rule.required()
+      type: 'string'
     },
     {
       name: 'liveWebsiteUrl',
@@ -121,36 +115,31 @@ export default {
       name: 'industry',
       title: 'Industry',
       type: 'string',
-      description: 'e.g. Motorsport & Automotive',
-      validation: (Rule: any) => Rule.required()
+      description: 'e.g. Motorsport & Automotive'
     },
     {
       name: 'platform',
       title: 'Platform Type',
       type: 'string',
-      description: 'e.g. Responsive Website, Web Application',
-      validation: (Rule: any) => Rule.required()
+      description: 'e.g. Responsive Website, Web Application'
     },
     {
       name: 'heroTitle',
       title: 'Hero Title',
       type: 'string',
-      description: 'The main headline shown in the case study page',
-      validation: (Rule: any) => Rule.required()
+      description: 'The main headline shown in the case study page'
     },
     {
       name: 'heroTagline',
       title: 'Hero Tagline (SEO Meta)',
       type: 'string',
-      description: 'Subtext or summary for SEO metadata',
-      validation: (Rule: any) => Rule.required()
+      description: 'Subtext or summary for SEO metadata'
     },
     {
       name: 'abstract',
       title: 'Abstract Description',
       type: 'text',
-      description: 'Full summary introduction text',
-      validation: (Rule: any) => Rule.required()
+      description: 'Full summary introduction text'
     },
     {
       name: 'challenges',
@@ -160,17 +149,14 @@ export default {
         {
           name: 'problem',
           title: 'Problem Description',
-          type: 'text',
-          validation: (Rule: any) => Rule.required()
+          type: 'text'
         },
         {
           name: 'solution',
           title: 'Solution Description',
-          type: 'text',
-          validation: (Rule: any) => Rule.required()
+          type: 'text'
         }
-      ],
-      validation: (Rule: any) => Rule.required()
+      ]
     },
     {
       name: 'results',
@@ -180,8 +166,7 @@ export default {
         {
           name: 'intro',
           title: 'Results Intro Paragraph',
-          type: 'text',
-          validation: (Rule: any) => Rule.required()
+          type: 'text'
         },
         {
           name: 'stats',
@@ -191,15 +176,14 @@ export default {
             {
               type: 'object',
               fields: [
-                { name: 'value', title: 'Metric Value (e.g. 100%, 4+, UK)', type: 'string', validation: (Rule: any) => Rule.required() },
-                { name: 'label', title: 'Metric Label (e.g. Mobile Responsive)', type: 'string', validation: (Rule: any) => Rule.required() }
+                { name: 'value', title: 'Metric Value (e.g. 100%, 4+, UK)', type: 'string' },
+                { name: 'label', title: 'Metric Label (e.g. Mobile Responsive)', type: 'string' }
               ]
             }
           ],
           validation: (Rule: any) => Rule.max(3)
         }
-      ],
-      validation: (Rule: any) => Rule.required()
+      ]
     },
     {
       name: 'extraImages',

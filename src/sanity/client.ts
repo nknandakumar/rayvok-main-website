@@ -245,7 +245,7 @@ export async function getProjects(): Promise<SanityProject[]> {
       category,
       tags,
       result,
-      "image": coalesce(image.asset->url, imageUrl),
+      "image": coalesce(image.asset->url, imageUrl, "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop"),
       "images": images[].asset->url,
       "slug": slug.current,
       country,
@@ -254,7 +254,7 @@ export async function getProjects(): Promise<SanityProject[]> {
       arrangeNumber,
       client,
       liveWebsiteUrl,
-      "heroBgImage": coalesce(heroBgImage.asset->url, heroBgImageUrl),
+      "heroBgImage": coalesce(heroBgImage.asset->url, heroBgImageUrl, "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop"),
       industry,
       platform,
       heroTitle,
@@ -273,9 +273,46 @@ export async function getProjects(): Promise<SanityProject[]> {
       },
       "extraImages": extraImages[].asset->url
     }`;
-    const data = await client.fetch<SanityProject[]>(query);
+    const data = await client.fetch<any[]>(query);
     if (data && data.length > 0) {
-      return data;
+      return data.map((item) => {
+        const company = item.company || "Client Brand";
+        const name = item.name || "Web Design & Development";
+        const mainImage = item.image || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop";
+        return {
+          ...item,
+          company,
+          name,
+          category: item.category || "Web design & development",
+          tags: (item.tags && item.tags.length > 0) ? item.tags : ["Web Design", "Development"],
+          result: item.result || "100% Mobile Responsive",
+          image: mainImage,
+          images: (item.images && item.images.length > 0) ? item.images : [mainImage],
+          slug: item.slug || "case-study",
+          country: item.country || "Global",
+          flagCode: item.flagCode ? item.flagCode.toLowerCase() : "un",
+          type: item.type || "website",
+          arrangeNumber: typeof item.arrangeNumber === "number" ? item.arrangeNumber : 99,
+          client: item.client || company,
+          industry: item.industry || "Digital Technology",
+          platform: item.platform || "Responsive Website",
+          heroTitle: item.heroTitle || `Building a Digital Experience for ${company}`,
+          heroTagline: item.heroTagline || `Premium custom digital solution crafted for brand growth`,
+          abstract: item.abstract || `A comprehensive overview of our custom solution designed to address specific digital needs, optimize performance, and streamline workflows.`,
+          challenges: {
+            problem: item.challenges?.problem || "The client required a modern digital presence to communicate value effectively, build audience trust, and provide a seamless mobile experience.",
+            solution: item.challenges?.solution || "We designed and developed a custom, high-performance web solution utilizing modern typography, dynamic animations, and fully responsive layouts."
+          },
+          results: {
+            intro: item.results?.intro || "The final launch successfully established a premium brand identity, optimized loading speed across devices, and received positive user feedback.",
+            stats: (item.results?.stats && item.results.stats.length > 0) ? item.results.stats : [
+              { value: "100%", label: "Mobile Responsive" },
+              { value: "Premium", label: "UI Design" }
+            ]
+          },
+          extraImages: item.extraImages || []
+        } as SanityProject;
+      });
     }
     return fallbackProjects;
   } catch (error) {

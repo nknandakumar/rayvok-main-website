@@ -51,11 +51,11 @@ function getCardLayout(idx: number) {
   }
 }
 
-export default function WorkPageContent() {
+export default function WorkPageContent({ initialProjects }: { initialProjects?: SanityProject[] }) {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [activeFilter, setActiveFilter] = useState<"ALL" | "WEBSITES" | "WEB APPS">("ALL");
-  const [projects, setProjects] = useState<SanityProject[]>(fallbackProjects);
+  const [projects, setProjects] = useState<SanityProject[]>(initialProjects || fallbackProjects);
   const sectionRef = useRef<HTMLElement>(null);
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
@@ -63,6 +63,7 @@ export default function WorkPageContent() {
   }, []);
 
   useEffect(() => {
+    if (initialProjects) return;
     let active = true;
     getProjects().then((data) => {
       if (active) {
@@ -72,7 +73,7 @@ export default function WorkPageContent() {
     return () => {
       active = false;
     };
-  }, []);
+  }, [initialProjects]);
 
 
   const filteredProjects = projects.filter((project) => {

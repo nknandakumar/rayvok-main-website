@@ -6,6 +6,8 @@ import CountUpText from "@/components/ui/CountUpText";
 
 import { getProjects, SanityProject } from "@/sanity/client";
 
+export const dynamic = "force-dynamic";
+
 export async function generateStaticParams() {
   const projects = await getProjects();
   return projects.map((project) => ({

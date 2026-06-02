@@ -7,10 +7,16 @@ export const metadata = {
   description: "Projects that convert. Web design and development built for one goal — making your business impossible to ignore online.",
 };
 
-export default function CaseStudiesPage() {
+import { getProjects } from "@/sanity/client";
+
+export const dynamic = "force-dynamic";
+
+export default async function CaseStudiesPage() {
+  const projects = await getProjects();
+
   return (
     <>
-      <WorkPageContent />
+      <WorkPageContent initialProjects={projects} />
       <FinalCTASection />
     </>
   );

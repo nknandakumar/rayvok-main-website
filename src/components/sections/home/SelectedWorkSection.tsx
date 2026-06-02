@@ -55,12 +55,12 @@ function getCardLayout(idx: number) {
 	}
 }
 
-export default function SelectedWorkSection() {
+export default function SelectedWorkSection({ initialProjects }: { initialProjects?: SanityProject[] }) {
 	const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
 	const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 	const [ctaHovered, setCtaHovered] = useState(false);
 	const [sectionVisible, setSectionVisible] = useState(false);
-	const [projects, setProjects] = useState<SanityProject[]>(fallbackProjects);
+	const [projects, setProjects] = useState<SanityProject[]>(initialProjects || fallbackProjects);
 	const sectionRef = useRef<HTMLElement>(null);
 
 	const handleMouseMove = useCallback((e: React.MouseEvent) => {
@@ -68,6 +68,7 @@ export default function SelectedWorkSection() {
 	}, []);
 
 	useEffect(() => {
+		if (initialProjects) return;
 		let active = true;
 		getProjects().then((data) => {
 			if (active) {
@@ -77,7 +78,7 @@ export default function SelectedWorkSection() {
 		return () => {
 			active = false;
 		};
-	}, []);
+	}, [initialProjects]);
 
 	useEffect(() => {
 		const el = sectionRef.current;

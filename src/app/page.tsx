@@ -7,12 +7,18 @@ import TestimonialsSection from "@/components/sections/home/TestimonialsSection"
 import FAQSection from "@/components/sections/home/FAQSection";
 import FinalCTASection from "@/components/sections/home/FinalCTASection";
 
-export default function Home() {
+import { getProjects } from "@/sanity/client";
+
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const projects = await getProjects();
+
   return (
     <>
       <div id="home"><HeroSection /></div>
       <div id="services"><ServicesSection /></div>
-      <div id="work"><SelectedWorkSection /></div>
+      <div id="work"><SelectedWorkSection initialProjects={projects} /></div>
       <div id="process"><HowItWorksSection /></div>
       <div id="why-us"><WhyRayvokSection /></div>
       <div id="testimonials"><TestimonialsSection /></div>
