@@ -18,9 +18,12 @@ const projectsData: Record<string, {
   challenges: { problem: string; solution: string };
   results: { intro: string; stats: { value: string; label: string }[] };
   heroBgImage?: string;
+  liveWebsiteUrl?: string;
+  extraImages?: string[];
 }> = {
   "saas-platform": {
     client: "Nexlify Inc.",
+    liveWebsiteUrl: "https://example.com",
     heroBgImage: "https://i.pinimg.com/1200x/13/ac/a8/13aca8182c28ea7fedf03704760781d0.jpg",
     industry: "AI Analytics",
     country: "USA",
@@ -39,6 +42,12 @@ const projectsData: Record<string, {
       problem: "The core challenge was making automated insights explainable and trustworthy. The design team needed to build a visual system that communicates intelligence hierarchy, supports long-term pattern tracking, and balances technical depth with minimalism.",
       solution: "We built a layered information architecture with high-level summaries that expand into deep dives, and transparency at every level. The visual system separates AI-generated insights from expert-reviewed guidance with clear, structured design language that communicates trust."
     },
+    extraImages: [
+      "https://res.cloudinary.com/dokrpo5fl/image/upload/v1780388850/ChatGPT_Image_Jun_2_2026_01_57_12_PM_stss9k.png",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1555421689-491a97ff2040?q=80&w=1000&auto=format&fit=crop"
+    ],
     results: {
       intro: "Nexlify's platform now reflects their deep technical expertise — helping them stand out in a highly competitive market and convert more enterprise visitors.",
       stats: [
@@ -48,36 +57,39 @@ const projectsData: Record<string, {
       ]
     }
   },
-  "architecture-studio": {
-    client: "Forma Studio",
-    industry: "Architecture",
-    country: "UAE",
-    platform: "Responsive Web",
-    heroTitle: "Premium Portfolio for an Architecture Studio",
+  "space-of-tools": {
+    client: "Space of Tools",
+    liveWebsiteUrl: "https://spaceoftools.com",
+    industry: "Productivity Software",
+    country: "India",
+    platform: "Web Application",
+    heroTitle: "Building a Modern Utility Platform for Document Productivity",
     heroTagline: "Visual storytelling built around light, raw concrete, and structure",
-    abstract: "Forma Studio is a high-end architectural firm designing brutalist and minimalist spaces in Dubai and Abu Dhabi. We created an immersive digital exhibition of their projects with architectural symmetry and structural grid layouts.",
-    tags: ["Creative Portfolio", "Web Design", "Development"],
+    abstract: "SpaceOfTools is a browser-native utility platform designed to help users convert, compress, edit, and optimize files without installing software or creating accounts. The project was built to simplify everyday document workflows while prioritizing privacy, performance, and usability. The platform focuses primarily on PDF productivity tools and supporting utilities for images, text, SEO, development, and finance.",
+    tags: ["Product Design", "Web Design", "Development","SEO Strategy"],
     images: [
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2000&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1501183007986-d0d080b147f9?q=80&w=1000&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop"
+      "https://res.cloudinary.com/dokrpo5fl/image/upload/v1780382373/2386b2f6-e96c-495e-ac7e-8ff9eddbb574_dunngk.png",
+      "https://res.cloudinary.com/dokrpo5fl/image/upload/v1780381024/bb9b0ff6-8e42-4921-89bd-99e0f2041f82_z38feh.png",
+      "https://res.cloudinary.com/dokrpo5fl/image/upload/v1780381472/83db746e-3610-43cc-8de6-37cc851eb698_tomede.png",
+      "https://res.cloudinary.com/dokrpo5fl/image/upload/v1780381939/8e3fc23b-6529-47fd-b736-7897c1160d07_ogpv4a.png"
     ],
     challenges: {
-      problem: "Traditional portfolios feel like flat PDF booklets. Forma wanted an immersive, interactive experience that feels like walking through a physical museum gallery where lighting, materials, and scale can be felt through the screen.",
-      solution: "We designed a layout using deep black backgrounds, full-bleed images, and a strict typographic grid. Smooth scrolling interactions mimic spatial exploration, and responsive image scaling maintains detail on any screen size."
+      problem: "The online tools market is crowded with slow, ad-heavy websites that often require file uploads, registrations, or unnecessary complexity. Most platforms prioritize monetization over user experience, resulting in poor trust and usability.",
+      solution: "We designed SpaceOfTools as a privacy-first, browser-native platform where users can complete common document and file tasks quickly and securely. The product architecture prioritizes PDF workflows, intuitive navigation, lightweight performance, and a distraction-free experience without advertisements or mandatory accounts."
     },
+   
     results: {
-      intro: "Forma's portfolio now reflects their architectural mastery — serving as a high-performance showroom that captures seven-figure commercial contracts.",
+      intro: "The results section should stay conservative and truthful since the platform is new.",
       stats: [
-        { value: "3x", label: "More inbound leads" },
-        { value: "4.8s", label: "Longer session time" },
-        { value: "100%", label: "Client wow factor" }
+        { value: "30+", label: "Tools available" },
+        { value: "100%", label: "Browser-native" },
+        { value: "100%", label: "No ads" }
       ]
     }
   },
   "d2c-brand": {
     client: "Orion Commerce",
+    liveWebsiteUrl: "https://example.com",
     industry: "E-commerce",
     country: "UK",
     platform: "Web App",
@@ -95,6 +107,12 @@ const projectsData: Record<string, {
       problem: "Most e-commerce systems are templates that look identical and lose brand personality in order to convert. Orion's previous platform suffered from a 78% cart abandonment rate due to complex checkouts and slow mobile speeds.",
       solution: "We separated content and commerce. The catalog uses editorial-style asymmetrical grids that showcase high-end details. The checkout was rebuilt into a single-step progressive form that loads in less than 200ms."
     },
+    extraImages: [
+      "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=80&w=1000&auto=format&fit=crop"
+    ],
     results: {
       intro: "Orion's digital flagship set new performance standards, successfully dropping shopping friction while increasing average order value.",
       stats: [
@@ -106,6 +124,7 @@ const projectsData: Record<string, {
   },
   "b2b-landing-page": {
     client: "Apex Tech",
+    liveWebsiteUrl: "https://example.com",
     industry: "B2B Tech",
     country: "GER",
     platform: "Responsive Web",
@@ -123,6 +142,12 @@ const projectsData: Record<string, {
       problem: "Apex's product was highly technical and abstract, making it difficult for landing page visitors to understand the value proposition quickly. Their bounce rate was over 65%, and inbound demos had stalled.",
       solution: "We designed interactive data diagrams and interactive code tabs that demonstrate real-time server telemetry. By animating key system benefits, we made concrete value understandable within the first 10 seconds of load."
     },
+    extraImages: [
+      "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=1000&auto=format&fit=crop"
+    ],
     results: {
       intro: "Apex Tech converted their landing page into their most active lead generation asset, significantly reducing sales cycle friction.",
       stats: [
@@ -134,6 +159,7 @@ const projectsData: Record<string, {
   },
   "creative-branding": {
     client: "Lumina Agency",
+    liveWebsiteUrl: "https://example.com",
     industry: "Creative Agency",
     country: "FRA",
     platform: "Web & Mobile",
@@ -151,6 +177,12 @@ const projectsData: Record<string, {
       problem: "Creative agency websites frequently overcomplicate usability, loading massive, slow video backgrounds and heavy elements that frustrate potential clients on mobile devices, leading to lost inquiries.",
       solution: "We focused on micro-interactions. The site utilizes light SVGs and smooth HTML5 canvas animations. Creative brand showcase cards expand dynamically into fullscreen case studies, achieving performance without sacrificing design soul."
     },
+    extraImages: [
+      "https://images.unsplash.com/photo-1542744094-3a31f103e35f?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1561070791-26c113006238?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=1000&auto=format&fit=crop"
+    ],
     results: {
       intro: "Lumina's website has set a benchmark for creative showcases, proving that cutting-edge visual design and perfect load times can exist in harmony.",
       stats: [
@@ -175,14 +207,14 @@ const catalogProjects = [
     country: "USA"
   },
   {
-    company: "Forma Studio",
-    name: "Architecture Studio Portfolio",
-    result: "3x more inbound leads",
-    image: "https://res.cloudinary.com/dokrpo5fl/image/upload/v1779617745/c3b8b15d1cf1e40dcc5f0df62dc6037c_etqlzb.jpg",
-    slug: "architecture-studio",
-    tags: ["Creative Portfolio", "Web Design", "Development"],
-    flagCode: "ae",
-    country: "UAE"
+    company: "Space of Tools",
+    name: "PDF & Document Workflow Platform",
+    result: "Improved user engagement by 20%",
+    image: "https://res.cloudinary.com/dokrpo5fl/image/upload/v1780390885/34552185-686e-47e6-9880-1ef6700ed521_s5wlyj.png",
+    slug: "space-of-tools",
+    tags: ["Web App", "Web Design", "Development", "SEO Optimization"],
+    flagCode: "in",
+    country: "India"
   },
   {
     company: "Orion Commerce",
@@ -420,6 +452,29 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
       </section>
 
       {/* ========================================================================= */}
+      {/* 4.5 EXTRA IMAGERY GRID SECTION (Dark theme - bg-rayvok-black)              */}
+      {/* ========================================================================= */}
+      {project.extraImages && project.extraImages.length === 4 && (
+        <section className="py-24 px-6 md:px-12 bg-rayvok-black relative overflow-hidden">
+          <div className="container mx-auto max-w-7xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {project.extraImages.map((img, i) => (
+                <div key={i} className="w-full aspect-[4/3] relative overflow-hidden border border-white/10 bg-[#121212] shadow-2xl">
+                  <Image 
+                    src={img} 
+                    alt={`${project.client} extra grid image ${i + 1}`}
+                    fill
+                    className="object-cover hover:scale-[1.03] transition-transform duration-700 ease-out"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ========================================================================= */}
       {/* 5. RESULTS SECTION (Dark theme - bg-[#121212])                              */}
       {/* ========================================================================= */}
       <section className="py-28 px-6 md:px-12 bg-[#121212] text-rayvok-offwhite relative overflow-hidden">
@@ -451,6 +506,23 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
               </div>
             ))}
           </div>
+
+          {/* Live Website Button */}
+          {project.liveWebsiteUrl && (
+            <div className="mt-20 flex justify-center md:justify-start">
+              <a 
+                href={project.liveWebsiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-rayvok-volt text-rayvok-black hover:bg-rayvok-offwhite transition-all duration-300 rounded-full font-ui text-[13px] font-semibold uppercase tracking-widest"
+              >
+                <span>Live Website</span>
+                <svg className="w-4 h-4 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 19L19 5M19 5V14M19 5H10" />
+                </svg>
+              </a>
+            </div>
+          )}
         </div>
       </section>
 
