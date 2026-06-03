@@ -2,7 +2,7 @@
 
 import Script from "next/script";
 
-const GA_ID = "G-SYH80DR7V9";
+const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-SYH80DR7V9";
 
 /**
  * Injects the Google Analytics 4 gtag scripts into the page.

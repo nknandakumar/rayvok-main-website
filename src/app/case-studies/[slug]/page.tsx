@@ -1,10 +1,9 @@
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import ProjectMetadataGrid from "@/components/ui/ProjectMetadataGrid";
 import CountUpText from "@/components/ui/CountUpText";
 import PageTimeTracker from "@/components/analytics/PageTimeTracker";
-import { trackLiveWebsiteClick, trackCaseStudyClick } from "@/lib/analytics";
+import TrackedLink from "@/components/analytics/TrackedLink";
 
 import { getProjects, SanityProject } from "@/sanity/client";
 
@@ -47,13 +46,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
     projects[(currentIndex + 2) % projects.length]
   ];
 
-  // Safely guarantee 4 showcase images by falling back to the main card image
-  const showcaseImages = [
-    ...(project.images || [])
-  ];
-  while (showcaseImages.length < 4) {
-    showcaseImages.push(project.image);
-  }
+  const showcaseImages = project.images || [];
 
   return (
     <article className="w-full relative overflow-x-hidden bg-rayvok-black">
@@ -103,19 +96,21 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         </div>
 
         {/* Main Hero Showcase Frame (FULL WIDTH, NO PADDING) */}
-        <div 
-          className="w-full aspect-[4/5] sm:aspect-[1/1] md:aspect-[16/9] relative overflow-hidden border-y border-white/10 bg-[#121212] shadow-2xl mt-16 animate-fade-in-up"
-          style={{ animationDelay: "0.3s", animationFillMode: "both" }}
-        >
-          <Image 
-            src={showcaseImages[0]} 
-            alt={`${project.client} main mockup`}
-            fill
-            className="object-cover scale-[1.02] hover:scale-[1.00] transition-transform duration-700 ease-out"
-            priority
-            sizes="100vw"
-          />
-        </div>
+        {showcaseImages.length > 0 && (
+          <div 
+            className="w-full aspect-[4/5] sm:aspect-[1/1] md:aspect-[16/9] relative overflow-hidden border-y border-white/10 bg-[#121212] shadow-2xl mt-16 animate-fade-in-up"
+            style={{ animationDelay: "0.3s", animationFillMode: "both" }}
+          >
+            <Image 
+              src={showcaseImages[0]} 
+              alt={`${project.client} main mockup`}
+              fill
+              className="object-cover scale-[1.02] hover:scale-[1.00] transition-transform duration-700 ease-out"
+              priority
+              sizes="100vw"
+            />
+          </div>
+        )}
 
       
       </section>
@@ -156,42 +151,44 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
       {/* ========================================================================= */}
       {/* 3. IMAGERY GRID SECTION (Dark theme - bg-rayvok-black)                      */}
       {/* ========================================================================= */}
-      <section className="py-24 px-6 md:px-12 bg-rayvok-black relative overflow-hidden">
-        <div className="container mx-auto max-w-9xl">
-          {/* Main Large Showcase Mockup */}
-          <div className="w-full aspect-[16/10] relative overflow-hidden border border-white/10 bg-[#121212] shadow-2xl mb-8">
-            <Image 
-              src={showcaseImages[1]} 
-              alt={`${project.client} desktop preview`}
-              fill
-              className="object-cover"
-              sizes="(max-width: 1280px) 100vw, 1280px"
-            />
-          </div>
+      {showcaseImages.length >= 4 && (
+        <section className="py-24 px-6 md:px-12 bg-rayvok-black relative overflow-hidden">
+          <div className="container mx-auto max-w-9xl">
+            {/* Main Large Showcase Mockup */}
+            <div className="w-full aspect-[16/10] relative overflow-hidden border border-white/10 bg-[#121212] shadow-2xl mb-8">
+              <Image 
+                src={showcaseImages[1]} 
+                alt={`${project.client} desktop preview`}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1280px) 100vw, 1280px"
+              />
+            </div>
 
-          {/* Staggered Double Device Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="w-full aspect-[1/1] relative overflow-hidden border border-white/10 bg-[#121212] shadow-2xl">
-              <Image 
-                src={showcaseImages[2]} 
-                alt={`${project.client} device preview mobile 1`}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 640px"
-              />
-            </div>
-            <div className="w-full aspect-[1/1] relative overflow-hidden border border-white/10 bg-[#121212] shadow-2xl">
-              <Image 
-                src={showcaseImages[3]} 
-                alt={`${project.client} device preview mobile 2`}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 640px"
-              />
+            {/* Staggered Double Device Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="w-full aspect-[1/1] relative overflow-hidden border border-white/10 bg-[#121212] shadow-2xl">
+                <Image 
+                  src={showcaseImages[2]} 
+                  alt={`${project.client} device preview mobile 1`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 640px"
+                />
+              </div>
+              <div className="w-full aspect-[1/1] relative overflow-hidden border border-white/10 bg-[#121212] shadow-2xl">
+                <Image 
+                  src={showcaseImages[3]} 
+                  alt={`${project.client} device preview mobile 2`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 640px"
+                />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ========================================================================= */}
       {/* 4. CHALLENGES & SOLUTIONS SECTION (Light theme - bg-rayvok-offwhite)        */}
@@ -233,7 +230,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
       {/* ========================================================================= */}
       {/* 4.5 EXTRA IMAGERY GRID SECTION (Dark theme - bg-rayvok-black)              */}
       {/* ========================================================================= */}
-      {project.extraImages && project.extraImages.length === 4 && (
+      {project.extraImages && project.extraImages.length > 0 && (
         <section className="py-24 px-6 md:px-12 bg-rayvok-black relative overflow-hidden">
           <div className="container mx-auto max-w-7xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -289,18 +286,19 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           {/* Live Website Button */}
           {project.liveWebsiteUrl && (
             <div className="mt-20 flex justify-center md:justify-start">
-              <a 
+              <TrackedLink 
                 href={project.liveWebsiteUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => trackLiveWebsiteClick(project.client, project.liveWebsiteUrl!)}
+                trackingType="live_website"
+                clientName={project.client}
                 className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-rayvok-volt text-rayvok-black hover:bg-rayvok-offwhite transition-all duration-300 rounded-full font-ui text-[13px] font-semibold uppercase tracking-widest"
               >
                 <span>Live Website</span>
                 <svg className="w-4 h-4 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 19L19 5M19 5V14M19 5H10" />
                 </svg>
-              </a>
+              </TrackedLink>
             </div>
           )}
         </div>
@@ -319,10 +317,12 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {relatedProjects.map((relProj, index) => (
-              <Link 
+              <TrackedLink 
                 key={index}
                 href={`/case-studies/${relProj.slug}`}
-                onClick={() => trackCaseStudyClick(relProj.name, relProj.slug)}
+                trackingType="case_study"
+                projectName={relProj.name}
+                projectSlug={relProj.slug}
                 className="group block w-full cursor-pointer"
               >
                 <div className="relative aspect-[16/10] overflow-hidden mb-6 border border-white/10 bg-[#121212]">
@@ -367,7 +367,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                     </span>
                   </div>
                 </div>
-              </Link>
+              </TrackedLink>
             ))}
           </div>
         </div>

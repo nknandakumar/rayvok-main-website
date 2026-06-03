@@ -82,7 +82,7 @@ const switzer = localFont({
 
 export const metadata: Metadata = {
   title: "Rayvok — Web Design & Development for Businesses and SaaS",
-  description: "Rayvok builds high-performance websites for SaaS products, businesses, and professionals. Web design that turns visitors into revenue.",
+  description: "Rayvok builds high-performance conversion-focused websites for SaaS products, businesses, and professionals. Web design that turns visitors into revenue.",
   metadataBase: new URL("https://rayvok.com"),
   alternates: {
     canonical: "/",
@@ -106,7 +106,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Rayvok — Web Design & Development",
-    description: "Rayvok builds high-performance websites for SaaS products, businesses, and professionals. Web design that turns visitors into revenue.",
+    description: "Rayvok builds high-performance conversion-focused websites for SaaS products, businesses, and professionals. Web design that turns visitors into revenue.",
     images: ["https://res.cloudinary.com/dokrpo5fl/image/upload/c_scale,w_1200,h_630,q_auto,f_jpg/v1780156439/520ogImage_vhge7h.jpg"],
   },
   robots: {

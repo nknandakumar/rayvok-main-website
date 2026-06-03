@@ -293,11 +293,11 @@ export async function getProjects(): Promise<SanityProject[]> {
           company,
           name,
           category: item.category || "Web design & development",
-          cardEyebrow: item.cardEyebrow || item.category || undefined,
+          cardEyebrow: item.cardEyebrow || item.category || "Web Design & Development",
           tags: (item.tags && item.tags.length > 0) ? item.tags : ["Web Design", "Development"],
           result: item.result || "100% Mobile Responsive",
           image: mainImage,
-          images: (item.images && item.images.length > 0) ? item.images : [mainImage],
+          images: (item.images && item.images.length > 0) ? item.images : undefined,
           slug: item.slug || "case-study",
           country: item.country || "Global",
           flagCode: item.flagCode ? item.flagCode.toLowerCase() : "un",
@@ -320,7 +320,7 @@ export async function getProjects(): Promise<SanityProject[]> {
               { value: "Premium", label: "UI Design" }
             ]
           },
-          extraImages: item.extraImages || []
+          extraImages: (item.extraImages && item.extraImages.length > 0) ? item.extraImages : undefined
         } as SanityProject;
       });
     }

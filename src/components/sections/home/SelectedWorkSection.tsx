@@ -358,9 +358,9 @@ export default function SelectedWorkSection({ initialProjects }: { initialProjec
 
 										{/* Card meta */}
 										<div className="space-y-2.5">
-											{/* Eyebrow: custom per-project label */}
+											{/* Eyebrow: company name */}
 											<div className="flex items-center gap-2 text-[#3A3A3A] font-ui text-[13px] tracking-wider uppercase">
-												<span>{project.cardEyebrow || project.company}</span>
+												<span>{project.company}</span>
 											</div>
 
 											{/* Title */}
