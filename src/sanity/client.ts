@@ -4,6 +4,7 @@ export interface SanityProject {
   company: string;
   name: string;
   category: string;
+  cardEyebrow?: string;
   tags: string[];
   result: string;
   image: string;
@@ -52,6 +53,7 @@ export const fallbackProjects: SanityProject[] = [
     company: "Space of Tools",
     name: "PDF & Document Workflow Platform",
     category: "Web design & Web App development",
+    cardEyebrow: "Document Productivity Tool",
     tags: ["Web App", "Web Design", "Development", "SEO Optimization"],
     result: "Improved user engagement by 20%",
     image: "https://res.cloudinary.com/dokrpo5fl/image/upload/v1780390885/34552185-686e-47e6-9880-1ef6700ed521_s5wlyj.png",
@@ -96,6 +98,7 @@ export const fallbackProjects: SanityProject[] = [
     company: "Paddock Passion",
     name: "Motorsport Community Platform",
     category: "Web design & development",
+    cardEyebrow: "Motorsport Community Platform",
     tags: ["Web Design", "Development", "User Experience"],
     result: "100% Mobile Responsive",
     image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=2000&auto=format&fit=crop",
@@ -141,6 +144,7 @@ export const fallbackProjects: SanityProject[] = [
     company: "Cinemax",
     name: "Cinematic Videography Portfolio",
     category: "Web design & development",
+    cardEyebrow: "Cinematic Videography Portfolio",
     tags: ["Web Design", "Brand Experience", "Digital Presence"],
     result: "4+ Service categories",
     image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2000&auto=format&fit=crop",
@@ -258,7 +262,8 @@ export async function getProjects(): Promise<SanityProject[]> {
       arrangeNumber,
       client,
       liveWebsiteUrl,
-      "heroBgImage": coalesce(heroBgImage.asset->url, heroBgImageUrl, "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop"),
+      "heroBgImage": coalesce(heroBgImage.asset->url, heroBgImageUrl),
+      cardEyebrow,
       industry,
       platform,
       heroTitle,
@@ -288,6 +293,7 @@ export async function getProjects(): Promise<SanityProject[]> {
           company,
           name,
           category: item.category || "Web design & development",
+          cardEyebrow: item.cardEyebrow || item.category || undefined,
           tags: (item.tags && item.tags.length > 0) ? item.tags : ["Web Design", "Development"],
           result: item.result || "100% Mobile Responsive",
           image: mainImage,

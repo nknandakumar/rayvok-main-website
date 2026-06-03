@@ -235,7 +235,7 @@ export default function WorkPageContent({ initialProjects }: { initialProjects?:
 
                       <div className="space-y-2.5">
                         <div className="flex items-center gap-2 text-rayvok-mid font-ui text-[13px] tracking-wider uppercase">
-                          <span>{project.company}</span>
+                          <span>{project.cardEyebrow || project.company}</span>
                         </div>
 
                         <h3 className="text-rayvok-offwhite text-[24px] lg:text-[28px] font-display font-medium tracking-tight leading-tight group-hover:text-rayvok-volt transition-colors duration-300">
@@ -317,7 +317,7 @@ export default function WorkPageContent({ initialProjects }: { initialProjects?:
 
                     <div className="space-y-2.5">
                       <div className="flex items-center gap-2 text-rayvok-mid font-ui text-[13px] tracking-wider uppercase">
-                        <span>{project.company}</span>
+                        <span>{project.cardEyebrow || project.company}</span>
                       </div>
 
                       <h3 className="text-rayvok-offwhite text-[24px] lg:text-[28px] font-display font-medium tracking-tight leading-tight group-hover:text-rayvok-volt transition-colors duration-300">

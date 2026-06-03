@@ -51,6 +51,12 @@ export default {
       validation: (Rule: any) => Rule.required()
     },
     {
+      name: 'cardEyebrow',
+      title: 'Card Eyebrow Label',
+      type: 'string',
+      description: 'Short label shown above the project title on cards — e.g. "Web App", "Motorsport Platform", "Videography Portfolio". Each project should have a unique eyebrow.'
+    },
+    {
       name: 'result',
       title: 'Result Highlights (Card Subtext)',
       type: 'string',
