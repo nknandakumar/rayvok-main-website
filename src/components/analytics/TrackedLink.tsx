@@ -34,22 +34,14 @@ export default function TrackedLink({
     }
   };
 
-  if (target === "_blank") {
-    return (
-      <a
-        href={href}
-        className={className}
-        target={target}
-        rel={rel}
-        onClick={handleClick}
-      >
-        {children}
-      </a>
-    );
-  }
-
   return (
-    <Link href={href} className={className} onClick={handleClick}>
+    <Link 
+      href={href} 
+      className={className} 
+      onClick={handleClick}
+      target={target}
+      rel={rel}
+    >
       {children}
     </Link>
   );

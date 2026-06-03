@@ -73,6 +73,7 @@ export default function SelectedWorkSection({ initialProjects }: { initialProjec
 		getProjects().then((data) => {
 			if (active) {
 				setProjects(data);
+				console.log("Projects loaded:", data);
 			}
 		});
 		return () => {

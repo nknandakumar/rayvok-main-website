@@ -98,7 +98,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         {/* Main Hero Showcase Frame (FULL WIDTH, NO PADDING) */}
         {showcaseImages.length > 0 && (
           <div 
-            className="w-full aspect-[4/5] sm:aspect-[1/1] md:aspect-[16/9] relative overflow-hidden border-y border-white/10 bg-[#121212] shadow-2xl mt-16 animate-fade-in-up"
+            className="w-full aspect-[4/3] md:aspect-[16/9] relative overflow-hidden border-y border-white/10 bg-[#121212] shadow-2xl mt-16 animate-fade-in-up"
             style={{ animationDelay: "0.3s", animationFillMode: "both" }}
           >
             <Image 

@@ -294,7 +294,7 @@ export async function getProjects(): Promise<SanityProject[]> {
           name,
           category: item.category || "Web design & development",
           cardEyebrow: item.cardEyebrow || item.category || "Web Design & Development",
-          tags: (item.tags && item.tags.length > 0) ? item.tags : ["Web Design", "Development"],
+          tags: item.category ? item.category.split(/[&%]/).map((c: string) => c.trim()).filter(Boolean) : ["Web Design", "Development"],
           result: item.result || "100% Mobile Responsive",
           image: mainImage,
           images: (item.images && item.images.length > 0) ? item.images : undefined,
