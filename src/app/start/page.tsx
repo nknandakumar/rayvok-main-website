@@ -190,9 +190,9 @@ export default function StartPage() {
               <div className="mt-8 p-1 bg-[#F5F5F0] rounded-lg border border-[#EAE7DF] grid grid-cols-2 gap-1">
                 <button
                   onClick={() => setActiveView("form")}
-                  className={`py-2.5 px-4 rounded-lg font-display text-[12px] uppercase tracking-wider transition-all duration-300 ${
+                  className={`py-2.5 px-4 rounded-sm font-display text-[12px] uppercase tracking-wider transition-all duration-300 ${
                     activeView === "form"
-                      ? "bg-[#C9FE34] text-rayvok-black font-semibold shadow-[0_2px_8px_rgba(201,254,52,0.25)]"
+                      ? "bg-neutral-800 text-rayvok-offwhite font-semibold shadow-[0_2px_8px_rgba(201,254,52,0.25)]"
                       : "text-[#8C8C85] hover:text-[#1A1A1A]"
                   }`}
                 >
@@ -200,9 +200,9 @@ export default function StartPage() {
                 </button>
                 <button
                   onClick={() => setActiveView("cal")}
-                  className={`py-2.5 px-4 rounded-lg font-display text-[12px] uppercase tracking-wider transition-all duration-300 ${
+                  className={`py-2.5 px-4 rounded-sm font-display text-[12px] uppercase tracking-wider transition-all duration-300 ${
                     activeView === "cal"
-                      ? "bg-[#C9FE34] text-rayvok-black font-semibold shadow-[0_2px_8px_rgba(201,254,52,0.25)]"
+                      ? "bg-neutral-800 text-rayvok-offwhite font-semibold shadow-[0_2px_8px_rgba(201,254,52,0.25)]"
                       : "text-[#8C8C85] hover:text-[#1A1A1A]"
                   }`}
                 >
@@ -375,14 +375,11 @@ export default function StartPage() {
                         <button
                           type="submit"
                           disabled={isSubmitting}
-                          className="inline-flex items-center gap-3 bg-[#1A1A1A] text-[#FFFFFF] font-display font-semibold text-[13px] tracking-widest uppercase px-8 py-4 rounded-full hover:bg-rayvok-black hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-sm disabled:opacity-60"
+                          className="inline-flex items-center gap-3 bg-[#1A1A1A] text-[#FFFFFF] font-display font-semibold text-[13px] tracking-widest uppercase px-8 py-4 rounded-lg hover:bg-rayvok-black hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-sm disabled:opacity-60"
                         >
-                          <span className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-                            <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
-                              <path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                          </span>
-                          {isSubmitting ? "Sending..." : "Submit brief"}
+  {isSubmitting ? "Sending..." : "Submit"}
+                          
+                        
                         </button>
                         <p className="text-[#8C8C85] font-display text-[11px] leading-relaxed max-w-[200px]">
                           By submitting you agree to our{" "}
