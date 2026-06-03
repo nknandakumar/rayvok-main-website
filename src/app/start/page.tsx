@@ -190,7 +190,7 @@ export default function StartPage() {
               <div className="mt-8 p-1 bg-[#F5F5F0] rounded-lg border border-[#EAE7DF] grid grid-cols-2 gap-1">
                 <button
                   onClick={() => setActiveView("form")}
-                  className={`py-2.5 px-4 rounded-sm font-display text-[12px] uppercase tracking-wider transition-all duration-300 ${
+                  className={`py-2.5 px-4 rounded-lg font-display text-[12px] uppercase tracking-wider transition-all duration-300 ${
                     activeView === "form"
                       ? "bg-neutral-800 text-rayvok-offwhite font-semibold shadow-[0_2px_8px_rgba(201,254,52,0.25)]"
                       : "text-[#8C8C85] hover:text-[#1A1A1A]"
@@ -200,7 +200,7 @@ export default function StartPage() {
                 </button>
                 <button
                   onClick={() => setActiveView("cal")}
-                  className={`py-2.5 px-4 rounded-sm font-display text-[12px] uppercase tracking-wider transition-all duration-300 ${
+                  className={`py-2.5 px-4 rounded-lg font-display text-[12px] uppercase tracking-wider transition-all duration-300 ${
                     activeView === "cal"
                       ? "bg-neutral-800 text-rayvok-offwhite font-semibold shadow-[0_2px_8px_rgba(201,254,52,0.25)]"
                       : "text-[#8C8C85] hover:text-[#1A1A1A]"
@@ -375,11 +375,9 @@ export default function StartPage() {
                         <button
                           type="submit"
                           disabled={isSubmitting}
-                          className="inline-flex items-center gap-3 bg-[#1A1A1A] text-[#FFFFFF] font-display font-semibold text-[13px] tracking-widest uppercase px-8 py-4 rounded-lg hover:bg-rayvok-black hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-sm disabled:opacity-60"
+                          className="w-full sm:w-auto flex justify-center items-center gap-3 bg-[#1A1A1A] text-[#FFFFFF] font-display font-semibold text-[13px] tracking-widest uppercase px-8 py-4 rounded-lg hover:bg-rayvok-black hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-sm disabled:opacity-60"
                         >
-  {isSubmitting ? "Sending..." : "Submit"}
-                          
-                        
+                          {isSubmitting ? "Sending..." : "Submit"}
                         </button>
                         <p className="text-[#8C8C85] font-display text-[11px] leading-relaxed max-w-[200px]">
                           By submitting you agree to our{" "}
