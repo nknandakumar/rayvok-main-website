@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import ProjectMetadataGrid from "@/components/ui/ProjectMetadataGrid";
 import CountUpText from "@/components/ui/CountUpText";
+import PageTimeTracker from "@/components/analytics/PageTimeTracker";
+import { trackLiveWebsiteClick, trackCaseStudyClick } from "@/lib/analytics";
 
 import { getProjects, SanityProject } from "@/sanity/client";
 
@@ -55,6 +57,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
   return (
     <article className="w-full relative overflow-x-hidden bg-rayvok-black">
+      <PageTimeTracker pageName={`case_study_${project.slug}`} />
       
       {/* ========================================================================= */}
       {/* 1. HERO SECTION (Dark theme - bg-rayvok-black)                            */}
@@ -290,6 +293,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                 href={project.liveWebsiteUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackLiveWebsiteClick(project.client, project.liveWebsiteUrl!)}
                 className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-rayvok-volt text-rayvok-black hover:bg-rayvok-offwhite transition-all duration-300 rounded-full font-ui text-[13px] font-semibold uppercase tracking-widest"
               >
                 <span>Live Website</span>
@@ -318,6 +322,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
               <Link 
                 key={index}
                 href={`/case-studies/${relProj.slug}`}
+                onClick={() => trackCaseStudyClick(relProj.name, relProj.slug)}
                 className="group block w-full cursor-pointer"
               >
                 <div className="relative aspect-[16/10] overflow-hidden mb-6 border border-white/10 bg-[#121212]">

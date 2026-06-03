@@ -1,4 +1,5 @@
 import Link from "next/link";
+import LegalPageTracker from "@/components/analytics/LegalPageTracker";
 
 export const metadata = {
   title: "Terms and Conditions — Rayvok",
@@ -8,6 +9,7 @@ export const metadata = {
 export default function TermsAndConditionsPage() {
   return (
     <section className="pt-32 pb-24 px-6 md:px-12 bg-rayvok-black min-h-screen text-rayvok-offwhite">
+      <LegalPageTracker pageName="terms_and_conditions" />
       <div className="container mx-auto max-w-3xl">
         {/* Header */}
         <div className="mb-12 border-b border-rayvok-surface pb-8">

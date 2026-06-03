@@ -2,6 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import PageTimeTracker from "@/components/analytics/PageTimeTracker";
+import {
+  trackContactPageView,
+  trackFormSubmitAttempt,
+  trackFormSubmitSuccess,
+  trackFormSubmitError,
+  trackBookCallClick,
+} from "@/lib/analytics";
 
 export default function StartPage() {
   const [activeView, setActiveView] = useState<"form" | "cal">("form");
@@ -14,11 +22,15 @@ export default function StartPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
   // Modal state
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
+    // Fire contact page view event once on mount
+    trackContactPageView();
+
     // Check if the modal has already been shown to the user in a previous visit/session
     const hasModalBeenShown = localStorage.getItem("rayvok_contact_modal_shown");
     if (hasModalBeenShown === "true") {
@@ -35,13 +47,46 @@ export default function StartPage() {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
+    setSubmitError(null);
+
+    try {
+      trackFormSubmitAttempt();
+      const payload = {
+        access_key: "432d13f1-644e-408b-ad05-aed471dee479",
+        subject: `New Project Brief from ${formData.name} — Rayvok`,
+        from_name: formData.name,
+        email: formData.email,
+        "Name": formData.name,
+        "Project Type": formData.projectType,
+        "Budget Range": formData.budget || "Not specified",
+        "Project Brief": formData.message,
+        botcheck: "",
+      };
+
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setIsSubmitted(true);
+        trackFormSubmitSuccess();
+      } else {
+        setSubmitError("Something went wrong. Please try again or email us directly.");
+        trackFormSubmitError("api_rejected");
+      }
+    } catch {
+      setSubmitError("Network error. Please check your connection and try again.");
+      trackFormSubmitError("network_error");
+    } finally {
       setIsSubmitting(false);
-      setIsSubmitted(true);
-    }, 1500);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -50,6 +95,7 @@ export default function StartPage() {
 
   return (
     <section className="pt-28 pb-24 px-6 md:px-12 bg-rayvok-offwhite min-h-screen text-[#1A1A1A] relative">
+      <PageTimeTracker pageName="contact" />
       <div className="container  mx-auto max-w-7xl">
 
         {/* Page Header */}
@@ -122,7 +168,10 @@ export default function StartPage() {
                 </a>
 
                 <button
-                  onClick={() => setActiveView(activeView === "cal" ? "form" : "cal")}
+                  onClick={() => {
+                    trackBookCallClick();
+                    setActiveView(activeView === "cal" ? "form" : "cal");
+                  }}
                   className="flex items-center gap-3 text-[#555550] hover:text-[#1A1A1A] transition-colors group w-full text-left"
                 >
                   <span className="w-8 h-8 rounded-lg border border-[#EAE7DF] flex items-center justify-center shrink-0 group-hover:border-[#8C8C85]/30 transition-colors">
@@ -340,6 +389,16 @@ export default function StartPage() {
                           <span className="text-[#1A1A1A] underline underline-offset-2 cursor-pointer font-medium">Privacy Policy</span>
                         </p>
                       </div>
+
+                      {/* Error message */}
+                      {submitError && (
+                        <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-lg px-4 py-3 mt-2">
+                          <svg className="shrink-0 mt-0.5" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#DC2626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                          </svg>
+                          <p className="font-display text-[13px] text-red-700">{submitError}</p>
+                        </div>
+                      )}
                     </form>
                   )}
                 </div>

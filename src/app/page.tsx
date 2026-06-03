@@ -6,6 +6,7 @@ import WhyRayvokSection from "@/components/sections/home/WhyRayvokSection";
 import TestimonialsSection from "@/components/sections/home/TestimonialsSection";
 import FAQSection from "@/components/sections/home/FAQSection";
 import FinalCTASection from "@/components/sections/home/FinalCTASection";
+import PageTimeTracker from "@/components/analytics/PageTimeTracker";
 
 import { getProjects } from "@/sanity/client";
 
@@ -16,6 +17,7 @@ export default async function Home() {
 
   return (
     <>
+      <PageTimeTracker pageName="home" />
       <div id="home"><HeroSection /></div>
       <div id="services"><ServicesSection /></div>
       <div id="work"><SelectedWorkSection initialProjects={projects} /></div>
@@ -27,3 +29,4 @@ export default async function Home() {
     </>
   );
 }
+

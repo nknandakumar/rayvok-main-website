@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { trackCTAClick } from "@/lib/analytics";
 
 interface ButtonCTAProps {
   href: string;
@@ -8,13 +11,19 @@ interface ButtonCTAProps {
   onClick?: () => void;
   arrowAbsolute?: boolean;
   showArrow?: boolean;
+  label?: string; // Optional override for GA label; defaults to href
 }
 
-export default function ButtonCTA({ href, children, className = "", onClick, arrowAbsolute = false, showArrow = true }: ButtonCTAProps) {
+export default function ButtonCTA({ href, children, className = "", onClick, arrowAbsolute = false, showArrow = true, label }: ButtonCTAProps) {
+  const handleClick = () => {
+    trackCTAClick(label ?? String(children) ?? href, href);
+    onClick?.();
+  };
+
   return (
     <Link
       href={href}
-      onClick={onClick}
+      onClick={handleClick}
       className={`group inline-flex p-[3px] rounded-full border border-rayvok-volt/40 hover:border-rayvok-volt transition-all duration-300 ${className}`}
     >
       <span className={`relative flex items-center justify-center bg-rayvok-volt text-rayvok-black font-ui font-medium text-[13px] tracking-[0.06em] uppercase rounded-full transition-all duration-300 group-hover:bg-rayvok-black group-hover:text-rayvok-volt w-full ${
@@ -32,3 +41,4 @@ export default function ButtonCTA({ href, children, className = "", onClick, arr
     </Link>
   );
 }
+

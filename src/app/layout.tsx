@@ -7,6 +7,7 @@ import Footer from "@/components/layout/Footer";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import StairsPreloader from "@/components/ui/StairsPreloader";
 import CookieConsent from "@/components/ui/CookieConsent";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 
 
 
@@ -135,6 +136,7 @@ export default function RootLayout({
       className={`${geist.variable} ${inter.variable} ${spaceGrotesk.variable} ${spaceMono.variable} ${ppNeue.variable} ${switzer.variable} ${layGrotesk.variable} ${ppNeueMontrealMono.variable} antialiased`}
     >
       <body suppressHydrationWarning className="min-h-screen bg-rayvok-black text-rayvok-offwhite flex flex-col font-body selection:bg-rayvok-volt selection:text-rayvok-black">
+        <GoogleAnalytics />
         <StairsPreloader />
         <CookieConsent />
         <SmoothScroll>
