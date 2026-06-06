@@ -19,12 +19,12 @@ export default function SocialProofStrip() {
   return (
     <section className="py-10 pt-10 flex justify-center px-4 md:px-0">
       {/* Constrained centered window */}
-      <div className="w-full max-w-lg flex flex-row items-center md:flex-col">
-        <p className="text-neutral-400 flex font-ui mb-0 md:mb-4 text-[14px] md:text-[16px] tracking-widest uppercase text-left md:text-center shrink-0 pr-6 md:pr-0 whitespace-nowrap">
-          Trusted By <span className="block md:hidden ml-2" >:</span>
+      <div className="w-full max-w-lg flex flex-col items-center">
+        <p className="text-neutral-400 font-ui mb-4 text-[14px] md:text-[18px] tracking-widest uppercase text-center shrink-0 whitespace-nowrap">
+          Trusted By
         </p>
 
-        <div className="relative flex-1 overflow-hidden w-full">
+        <div className="relative overflow-hidden w-full">
           <div className="flex whitespace-nowrap w-max animate-marquee-right">
             {/* Group 1 */}
             <div className="flex shrink-0 items-center gap-12 pr-12">
