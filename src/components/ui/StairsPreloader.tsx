@@ -88,7 +88,7 @@ export default function StairsPreloader() {
         {[...Array(5)].map((_, i) => (
           <div
             key={i}
-            className="stair-col w-[20vw] h-full bg-[#F5F5F0] border-r border-black/[0.03]"
+            className="stair-col w-[20vw] h-full bg-rayvok-volt border-r border-black/[0.03]"
           />
         ))}
       </div>

@@ -98,38 +98,45 @@ export default function Navigation() {
       {/* Mobile full-screen overlay — z-index 150, below the navbar pill */}
       <div
         style={{ zIndex: 150 }}
-        className={`fixed inset-0 bg-rayvok-black flex flex-col items-center justify-center gap-10 transition-transform duration-500 ease-in-out md:hidden ${
-          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        className={`fixed inset-0 bg-[#0A0A0A]/95 backdrop-blur-md flex flex-col justify-center px-10 transition-all duration-500 ease-in-out md:hidden ${
+          isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
-         <Link
-          href="/"
-          className="font-display text-5xl font-bold text-rayvok-offwhite hover:text-rayvok-volt transition-colors"
-          onClick={() => setIsMobileMenuOpen(false)}
-        >
-          Home
-        </Link>
-        <Link
-          href="/case-studies"
-          className="font-display text-5xl font-bold text-rayvok-offwhite hover:text-rayvok-volt transition-colors"
-          onClick={() => setIsMobileMenuOpen(false)}
-        >
-          Case Studies
-        </Link>
-        <Link
-          href="/start"
-          className="font-display text-5xl font-bold text-rayvok-offwhite hover:text-rayvok-volt transition-colors"
-          onClick={() => setIsMobileMenuOpen(false)}
-        >
-          Contact
-        </Link>
-        <Link
-          href="/start"
-          className="btn-primary mt-6"
-          onClick={() => setIsMobileMenuOpen(false)}
-        >
-          Start a project
-        </Link>
+        <nav className="flex flex-col gap-6 w-full mt-8">
+          <Link
+            href="/"
+            className="font-ui text-[32px] text-[#F5F5F0] hover:text-rayvok-volt transition-colors tracking-tight"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Home
+          </Link>
+          <div className="w-full h-[1px] bg-white/10" />
+          <Link
+            href="/case-studies"
+            className="font-ui text-[32px] text-[#F5F5F0] hover:text-rayvok-volt transition-colors tracking-tight"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Case Studies
+          </Link>
+          <div className="w-full h-[1px] bg-white/10" />
+          <Link
+            href="/start"
+            className="font-ui text-[32px] text-[#F5F5F0] hover:text-rayvok-volt transition-colors tracking-tight"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Contact
+          </Link>
+        </nav>
+        
+        <div className="mt-12 w-full">
+          <Link
+            href="/start"
+            className="inline-flex items-center justify-center w-full uppercase bg-[#F5F5F0] text-[#0A0A0A] font-ui text-[14px] tracking-wide font-semibold px-8 py-4 rounded-full transition-all hover:bg-white"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Start a project
+          </Link>
+        </div>
       </div>
 
       {/* Floating pill navbar — z-index 200, always on top. Hidden on scroll-down on Home. */}
