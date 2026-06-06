@@ -121,7 +121,7 @@ export default function FAQSection() {
                     className="w-full text-left py-6 flex justify-between items-center focus:outline-none bg-transparent cursor-pointer"
                     onClick={() => setOpenIndex(isOpen ? null : index)}
                   >
-                    <span className="text-[#1A1A1A] font-display font-medium text-[16px] md:text-[20px] pr-8 group-hover:text-black transition-colors duration-300 leading-snug">
+                    <span className="text-[#1A1A1A] font-display font-medium text-[24px] leading-[36px] pr-8 group-hover:text-black transition-colors duration-300 leading-snug">
                       {faq.q}
                     </span>
                     

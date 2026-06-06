@@ -17,52 +17,58 @@ const clients = [
 
 export default function SocialProofStrip() {
   return (
-    <section className="py-10 pt-10 flex justify-center">
-      {/* Constrained centered window — only ~3 names visible at a time */}
-      <div className="relative w-full max-w-lg overflow-hidden">
-        <div className="flex whitespace-nowrap w-max animate-marquee-right">
-          {/* Group 1 */}
-          <div className="flex shrink-0 items-center gap-12 pr-12">
-            {clients.map((client, idx) => (
-              <span
-                key={`client1-${idx}`}
-                className="inline-flex items-center gap-2.5 font-ui text-rayvok-offwhite/50 text-[14px] uppercase tracking-widest"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={client.logo}
-                  alt={client.name}
-                  className="h-[18px] w-auto rounded-full object-contain"
-                  style={{ filter: "grayscale(100%) brightness(0.6)" }}
-                />
-                {client.name}
-              </span>
-            ))}
-          </div>
-          {/* Group 2 — clone for seamless loop */}
-          <div className="flex shrink-0 items-center gap-12 pr-12">
-            {clients.map((client, idx) => (
-              <span
-                key={`client2-${idx}`}
-                className="inline-flex items-center gap-2.5 font-ui text-rayvok-offwhite/50 text-[14px] uppercase tracking-widest"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={client.logo}
-                  alt={client.name}
-                  className="h-[18px] w-auto rounded-full object-contain"
-                  style={{ filter: "grayscale(100%) brightness(0.6)" }}
-                />
-                {client.name}
-              </span>
-            ))}
-          </div>
-        </div>
+    <section className="py-10 pt-10 flex justify-center px-4 md:px-0">
+      {/* Constrained centered window */}
+      <div className="w-full max-w-lg flex flex-row items-center md:flex-col">
+        <p className="text-neutral-400 flex font-ui mb-0 md:mb-4 text-[14px] md:text-[16px] tracking-widest uppercase text-left md:text-center shrink-0 pr-6 md:pr-0 whitespace-nowrap">
+          Trusted By <span className="block md:hidden ml-2" >:</span>
+        </p>
 
-        {/* Left fade */}
-        <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-rayvok-black to-transparent z-10 pointer-events-none" />
-        {/* Right fade */}
-        <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-rayvok-black to-transparent z-10 pointer-events-none" />
+        <div className="relative flex-1 overflow-hidden w-full">
+          <div className="flex whitespace-nowrap w-max animate-marquee-right">
+            {/* Group 1 */}
+            <div className="flex shrink-0 items-center gap-12 pr-12">
+              {clients.map((client, idx) => (
+                <span
+                  key={`client1-${idx}`}
+                  className="inline-flex items-center gap-2.5 font-ui text-rayvok-offwhite/50 text-[14px] uppercase tracking-widest"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={client.logo}
+                    alt={client.name}
+                    className="h-[18px] w-auto rounded-full object-contain"
+                    style={{ filter: "grayscale(100%) brightness(0.6)" }}
+                  />
+                  {client.name}
+                </span>
+              ))}
+            </div>
+            {/* Group 2 — clone for seamless loop */}
+            <div className="flex shrink-0 items-center gap-12 pr-12">
+              {clients.map((client, idx) => (
+                <span
+                  key={`client2-${idx}`}
+                  className="inline-flex items-center gap-2.5 font-ui text-rayvok-offwhite/50 text-[14px] uppercase tracking-widest"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={client.logo}
+                    alt={client.name}
+                    className="h-[18px] w-auto rounded-full object-contain"
+                    style={{ filter: "grayscale(100%) brightness(0.6)" }}
+                  />
+                  {client.name}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Left fade */}
+          <div className="absolute inset-y-0 left-0 w-8 md:w-16 bg-gradient-to-r from-rayvok-black to-transparent z-10 pointer-events-none" />
+          {/* Right fade */}
+          <div className="absolute inset-y-0 right-0 w-8 md:w-16 bg-gradient-to-l from-rayvok-black to-transparent z-10 pointer-events-none" />
+        </div>
       </div>
     </section>
   );

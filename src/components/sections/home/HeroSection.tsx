@@ -93,7 +93,7 @@ export default function HeroSection() {
 							</ButtonCTA>
 							<Link
 								href="/case-studies"
-								className="group btn-secondary order-2 md:order-1 w-full sm:w-auto"
+								className=" md:hidden group btn-secondary order-2 md:order-1 w-full sm:w-auto"
 							>
 								<span className="relative block overflow-hidden">
 									<span className="block transition-transform duration-300 ease-out group-hover:-translate-y-full">
@@ -105,6 +105,7 @@ export default function HeroSection() {
 								</span>
 							</Link>
 						</div>
+						
 						<SocialProofStrip />
 					</div>
 				</div>
