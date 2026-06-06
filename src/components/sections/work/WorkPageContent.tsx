@@ -148,7 +148,7 @@ export default function WorkPageContent({ initialProjects }: { initialProjects?:
                   delay: 0.1,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="text-rayvok-offwhite text-[48px] sm:text-[80px] md:text-[120px] lg:text-[128px] font-black  "
+                className="text-rayvok-offwhite text-[48px] sm:text-[80px] md:text-[120px] font-medium lg:text-[128px] font-black  "
               >
                 OUR WORKS
               </motion.h1>
