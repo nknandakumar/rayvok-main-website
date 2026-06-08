@@ -181,7 +181,8 @@ export default function RootLayout({
                 "closes": "18:00"
               },
               "sameAs": [
-                "https://x.com/rayvok"
+                "https://www.linkedin.com/company/rayvok",
+                "https://www.instagram.com/rayvokhq"
               ],
               "description": "Rayvok builds high-performance websites for SaaS products, businesses, and professionals. Web design that turns visitors into revenue.",
               "logo": "https://res.cloudinary.com/dokrpo5fl/image/upload/v1779005565/wordmarkdark_kpx3dm.png"

@@ -158,16 +158,7 @@ export default function Footer() {
                 </h4>
                 <nav className="flex flex-col gap-3 font-ui text-[14px] text-[#8C8C85]">
                   <a 
-                    href="https://twitter.com/rayvokHQ" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="hover:text-[var(--footer-text-hover)] transition-colors"
-                  >
-                    Twitter / X
-                  </a>
-                
-                  <a 
-                    href="https://linkedin.com" 
+                    href="https://www.linkedin.com/company/rayvok" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="hover:text-[var(--footer-text-hover)] transition-colors"
@@ -175,7 +166,7 @@ export default function Footer() {
                     LinkedIn
                   </a>
                   <a 
-                    href="https://instagram.com" 
+                    href="https://www.instagram.com/rayvokhq" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="hover:text-[var(--footer-text-hover)] transition-colors"
@@ -301,16 +292,7 @@ export default function Footer() {
                   >
                     <nav className="flex flex-col gap-4 pb-6 pl-2 text-[15px] text-[#8C8C85] font-ui">
                       <a
-                        href="https://twitter.com/rayvokHQ"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-[var(--footer-text-hover)] transition-colors"
-                      >
-                        Twitter / X
-                      </a>
-                   
-                      <a
-                        href="https://linkedin.com"
+                        href="https://www.linkedin.com/company/rayvok"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="hover:text-[var(--footer-text-hover)] transition-colors"
@@ -318,7 +300,7 @@ export default function Footer() {
                         LinkedIn
                       </a>
                       <a
-                        href="https://instagram.com"
+                        href="https://www.instagram.com/rayvokhq"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="hover:text-[var(--footer-text-hover)] transition-colors"
@@ -389,7 +371,7 @@ export default function Footer() {
           {/* Centered Circular Social Icons ending with the Accent Favicon */}
           <div className="flex items-center justify-center gap-4 mt-4">
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/company/rayvok"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center w-12 h-12 rounded-full border transition-all duration-300 hover:bg-[var(--footer-text-primary)] hover:text-[var(--footer-bg)]"
@@ -403,19 +385,7 @@ export default function Footer() {
               </svg>
             </a>
             <a
-              href="https://twitter.com/rayvokHQ"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center w-12 h-12 rounded-full border transition-all duration-300 hover:bg-[var(--footer-text-primary)] hover:text-[var(--footer-bg)]"
-              style={{ borderColor: "var(--footer-social-border)", color: "var(--footer-text-primary)" }}
-              aria-label="Twitter"
-            >
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-            </a>
-            <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/rayvokhq"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center w-12 h-12 rounded-full border transition-all duration-300 hover:bg-[var(--footer-text-primary)] hover:text-[var(--footer-bg)]"
