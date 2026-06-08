@@ -7,7 +7,7 @@ const clients = [
   },
   {
     name: "Space of Tools",
-    logo: "https://res.cloudinary.com/dokrpo5fl/image/upload/v1779033680/e550059f-ce03-41a8-b4aa-162a162fceed.png",
+    logo: "https://res.cloudinary.com/dokrpo5fl/image/upload/v1780940347/logo_1_p5zhao.webp",
   },
   {
     name: "Cenimax",
