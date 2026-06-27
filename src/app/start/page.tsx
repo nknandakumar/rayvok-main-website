@@ -334,7 +334,8 @@ export default function StartPage() {
                         </div>
                       </div>
 
-                      {/* Budget — pill selectors */}
+                      {/* Budget — pill selectors (temporarily hidden) */}
+                      {/*
                       <div className="space-y-3">
                         <label className="text-[#8C8C85] font-display text-[11px] uppercase tracking-widest font-semibold">Budget range</label>
                         <div className="flex flex-wrap gap-2">
@@ -354,6 +355,7 @@ export default function StartPage() {
                           ))}
                         </div>
                       </div>
+                      */}
 
                       {/* Message */}
                       <div className="space-y-2">
