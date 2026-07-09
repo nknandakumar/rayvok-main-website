@@ -14,10 +14,6 @@ export default function FAQSection() {
       a: "Most projects go from kickoff to launch in 2–3 weeks. Landing pages are typically 1 week. Timeline depends on your feedback speed as much as ours."
     },
     {
-      q: "What does it cost?",
-      a: "Projects start from ₹20,000. Final pricing depends on scope — you'll get a fixed quote before we start. No hourly billing. No surprise invoices."
-    },
-    {
       q: "Do you work with early-stage businesses?",
       a: "Yes. Some of our best work has been for businesses in their first year. A strong web presence from day one is an advantage, not a luxury."
     },
