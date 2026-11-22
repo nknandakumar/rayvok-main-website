@@ -156,7 +156,7 @@ export default function Navigation() {
           {/* Logo */}
           <Link href="/" className="flex items-center justify-center shrink-0 pl-1">
             <Image
-              src="https://res.cloudinary.com/dokrpo5fl/image/upload/w_128,h_128,c_fill,r_24/RaccentLogo_hadt1o.png"
+              src="https://ik.imagekit.io/rayvok/rayvoklogo.webp"
               alt="Rayvok"
               width={40}
               height={40}

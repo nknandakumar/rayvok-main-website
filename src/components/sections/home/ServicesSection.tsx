@@ -20,7 +20,7 @@ export default function ServicesSection() {
         "Brand-aligned visuals",
         "CTA architecture",
       ],
-      image: "https://res.cloudinary.com/dokrpo5fl/image/upload/v1779961581/57932ba2-e5b0-4f65-8d31-77f7f370fcde_lhb2kb.png",
+      image: "https://i.pinimg.com/736x/b9/1a/42/b91a42cd2f570bc838793f5acf3e76b9.jpg",
       objectPosition: "object-top",
       objectFit: "object-cover",
       imagePadding: ""
@@ -35,7 +35,7 @@ export default function ServicesSection() {
         "Mobile-first",
         "Core Web Vitals optimised",
       ],
-      image: "https://res.cloudinary.com/dokrpo5fl/image/upload/v1779962079/8fee14b4baf22ae3e31fedf18056d209_npnes0.jpg",
+      image: "https://i.pinimg.com/736x/9f/e0/94/9fe094a7b247223d7efcbdd5a4fd5c2c.jpg",
       objectPosition: "object-center",
       objectFit: "object-cover",
       imagePadding: ""
@@ -50,7 +50,7 @@ export default function ServicesSection() {
         "Fast turnaround (1–2 weeks)",
         "Analytics-ready",
       ],
-      image: "https://res.cloudinary.com/dokrpo5fl/image/upload/v1779968157/55d6b08a-2dcf-4d37-90e0-18033af58673_f7vmby.png",
+      image: "https://i.pinimg.com/736x/be/9a/31/be9a315fe5f0f00debc3dde7ec10496d.jpg",
       objectPosition: "object-top",
       objectFit: "object-cover",
       imagePadding: ""

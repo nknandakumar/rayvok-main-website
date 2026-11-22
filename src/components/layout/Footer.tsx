@@ -84,7 +84,7 @@ export default function Footer() {
               {/* Favicon Icon above wordmark */}
               <div className="flex flex-row gap-2" >
                 <Image
-                  src="https://res.cloudinary.com/dokrpo5fl/image/upload/w_128,h_128,c_fill,r_24/RaccentLogo_hadt1o.png"
+                  src="hhttps://ik.imagekit.io/rayvok/rayvoklogo.webp"
                   alt="Rayvok Favicon"
                   width={40}
                   height={40}

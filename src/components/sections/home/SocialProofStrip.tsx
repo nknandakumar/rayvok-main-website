@@ -3,16 +3,20 @@
 const clients = [
   {
     name: "Paddock Passion",
-    logo: "https://res.cloudinary.com/dokrpo5fl/image/upload/v1779033013/logo_1_ombqjw.avif",
+    logo: "https://i.pinimg.com/736x/de/6e/62/de6e62fbbd367872a8a949f490a3d68e.jpg",
   },
   {
-    name: "Space of Tools",
-    logo: "https://res.cloudinary.com/dokrpo5fl/image/upload/v1780940347/logo_1_p5zhao.webp",
+    name: "Cluvion",
+    logo: "https://i.pinimg.com/736x/fa/92/99/fa929980ef0e2dc14748ff14920bbbdf.jpg",
   },
   {
-    name: "Cenimax",
-    logo: "https://res.cloudinary.com/dokrpo5fl/image/upload/v1779034326/d04970823d5c151bf1b54b63a6c710dd_moosnb.jpg",
+    name: "Hidden Ants Media",
+    logo: "https://i.pinimg.com/736x/9d/8e/96/9d8e960f8b8fff00027918eed8dd36b9.jpg",
   },
+  {
+    name: "Fblcok 14",
+    logo: "https://i.pinimg.com/736x/56/4c/71/564c71f990e1ffa66b20ae0b38fda428.jpg",
+}
 ];
 
 export default function SocialProofStrip() {

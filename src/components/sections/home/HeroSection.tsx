@@ -8,11 +8,12 @@ import ButtonCTA from "@/components/ui/ButtonCTA";
 
 export default function HeroSection() {
 	const images = [
-		"https://res.cloudinary.com/dokrpo5fl/image/upload/v1779009693/width_640_uxpskl.jpg",
-		"https://res.cloudinary.com/dokrpo5fl/image/upload/v1779009693/width_800_hodfgh.jpg",
-		"https://res.cloudinary.com/dokrpo5fl/image/upload/v1779009694/width_799_p4uive.jpg",
-		"https://res.cloudinary.com/dokrpo5fl/image/upload/v1779009692/width_735_vfarj7.jpg",
-		"https://res.cloudinary.com/dokrpo5fl/image/upload/v1779009695/width_302_aog703.jpg",
+		"https://i.pinimg.com/736x/a8/8f/cc/a88fccb6bba8c6999bdbd99ec9e79d72.jpg",
+		"https://i.pinimg.com/736x/bd/bb/99/bdbb998739ea53a20317c06f626153d2.jpg",
+		"https://i.pinimg.com/736x/ec/58/4d/ec584d5fc58eddb6601aed87e79b0983.jpg",
+		"https://i.pinimg.com/1200x/8f/87/fc/8f87fc02ca30266c6c75e673f4468ef1.jpg",
+		"https://i.pinimg.com/736x/8f/79/93/8f79931324665d73c8a5a322131b19fe.jpg",
+		
 	];
 
 	const eyebrowRef = useRef<HTMLParagraphElement>(null);
