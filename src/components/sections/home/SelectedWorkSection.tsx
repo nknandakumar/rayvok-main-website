@@ -404,7 +404,7 @@ export default function SelectedWorkSection({ initialProjects }: { initialProjec
 							>
 								{/* Image component for CTA Card */}
 								<Image
-									src="https://i.pinimg.com/736x/e4/b3/38/e4b338034e0448fefc126935aa532805.jpg"
+									src="https://i.pinimg.com/736x/06/04/f0/0604f032969313bbe1f5e46d0685fa31.jpg"
 									alt="Let's build your card"
 									fill
 									className="object-cover scale-[1.05] transition-transform duration-600 ease-out group-hover:scale-[1.00]"
